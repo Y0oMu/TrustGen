@@ -7,7 +7,7 @@
 
 *A modular and extensible toolkit for comprehensive trust evaluation of generative foundation models (GenFMs).*
 
----
+
 
 ## Table of Contents
 
@@ -19,7 +19,7 @@
 - [Contributing](#contributing)
 - [License](#license)
 
----
+
 
 ## Overview
 
@@ -33,7 +33,7 @@
 
 With **TrustEval-toolkit**, researchers and developers can gain actionable insights to build more trustworthy AI systems. Its modularity and extensibility make it adaptable to various generative AI models, including large language models (LLMs), vision-language models (VLMs), and text-to-image (T2I) models.
 
----
+
 
 ## Features
 
@@ -45,7 +45,7 @@ With **TrustEval-toolkit**, researchers and developers can gain actionable insig
 - **Optimized Inference**: Faster evaluations with optimized inference pipelines.
 - **Detailed Reports**: Generate interactive, easy-to-interpret evaluation reports.
 
----
+
 
 ## Installation
 
@@ -75,7 +75,7 @@ Install the package and its dependencies:
 pip install .
 ```
 
----
+
 
 ## Usage
 
@@ -184,7 +184,7 @@ await generate_responses(
 
 Your `report.html` will be saved in the `base_dir` folder. For additional examples, check the `examples` folder.
 
----
+
 
 ## Trustworthiness Report
 
@@ -209,7 +209,7 @@ The toolkit generates detailed evaluation reports with the following key section
 ### Leaderboard
 ![Leaderboard](images/leaderboard.png)
 
----
+
 
 ## Contributing
 
@@ -223,7 +223,7 @@ We welcome contributions from the community! To contribute:
 
 For detailed contribution guidelines, check the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
----
+
 
 ## Video Tutorials
 
@@ -231,10 +231,8 @@ Watch step-by-step tutorials on our YouTube channel:
 
 [![Watch Tutorials](https://img.youtube.com/vi/hpgo3EMOArw/0.jpg)](https://www.youtube.com/watch?v=hpgo3EMOArw)
 
----
+
 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
-![Anti-Trust - War Machine](https://www.youtube.com/watch?v=3CM1_Ji6fJ8)

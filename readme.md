@@ -1,42 +1,55 @@
 # TrustEval-toolkit
 
+[![GitHub Repo stars](https://img.shields.io/github/stars/nauyisu022/TrustEval-toolkit?style=social)](https://github.com/nauyisu022/TrustEval-toolkit/stargazers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Documentation](https://img.shields.io/badge/Docs-Website-blue)](https://trustgen.github.io/trustgen_docs/)
+[![YouTube Tutorials](https://img.shields.io/badge/Video_Tutorials-YouTube-red)](https://www.youtube.com/@TrustEval)
+
 *A modular and extensible toolkit for comprehensive trust evaluation of generative foundation models (GenFMs).*
 
-![Overview](images/overview.jpg)
+---
 
 ## Table of Contents
+
 - [Overview](#overview)
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Trustworthiness Report](#trustworthiness-report)
-- [Documentation](#documentation)
-- [Support](#support)
+- [Contributing](#contributing)
 - [License](#license)
 
 ---
 
 ## Overview
 
-**TrustEval-toolkit** is a dynamic and comprehensive framework for evaluating the trustworthiness of Generative Foundation Models (GenFMs). It supports multi-dimensional evaluation across key trust areas, including safety, fairness, robustness, privacy, and truthfulness. The toolkit is designed to provide flexibility, extensibility, and actionable insights for researchers and developers aiming to build trustworthy AI systems.
+**TrustEval-toolkit** is a dynamic and comprehensive framework for evaluating the trustworthiness of Generative Foundation Models (GenFMs). The toolkit enables multi-dimensional evaluation across key trust areas, including:
+
+- **Safety**
+- **Fairness**
+- **Robustness**
+- **Privacy**
+- **Truthfulness**
+
+With **TrustEval-toolkit**, researchers and developers can gain actionable insights to build more trustworthy AI systems. Its modularity and extensibility make it adaptable to various generative AI models, including large language models (LLMs), vision-language models (VLMs), and text-to-image (T2I) models.
 
 ---
 
 ## Features
 
 - **Dynamic Dataset Generation**: Automatically generate datasets tailored for evaluation tasks.
-- **Multi-Model Support**: Seamlessly evaluate large language models (LLMs), vision-language models (VLMs), and text-to-image (T2I) models.
+- **Multi-Model Compatibility**: Evaluate LLMs, VLMs, T2I models, and more.
 - **Customizable Metrics**: Configure workflows with flexible metrics and evaluation methods.
-- **Metadata-Driven Test Cases**: Efficiently design and execute test cases using metadata-driven pipelines.
-- **Comprehensive Dimensions**: Evaluate models across areas such as safety, fairness, robustness, privacy, and truthfulness.
-- **Efficient Inference**: Optimized inference pipelines for faster evaluations.
-- **Detailed Reports**: Generate comprehensive and interactive evaluation reports.
+- **Metadata-Driven Pipelines**: Design and execute test cases efficiently using metadata.
+- **Comprehensive Dimensions**: Evaluate models across safety, fairness, robustness, privacy, and truthfulness.
+- **Optimized Inference**: Faster evaluations with optimized inference pipelines.
+- **Detailed Reports**: Generate interactive, easy-to-interpret evaluation reports.
 
 ---
 
 ## Installation
 
-To install the **TrustEval-toolkit**, follow the steps below:
+To install the **TrustEval-toolkit**, follow these steps:
 
 ### 1. Clone the Repository
 
@@ -45,7 +58,7 @@ git clone https://github.com/nauyisu022/TrustEval-toolkit.git
 cd TrustEval-toolkit
 ```
 
-### 2. Set Up a Conda Environment
+### **2. Set Up a Conda Environment**
 
 Create and activate a new environment with Python 3.10:
 
@@ -54,7 +67,7 @@ conda create -n trusteval_env python=3.10
 conda activate trusteval_env
 ```
 
-### 3. Install Dependencies
+### **3. Install Dependencies**
 
 Install the package and its dependencies:
 
@@ -74,20 +87,17 @@ Run the configuration script to set up your API keys:
 python trusteval/src/configuration.py
 ```
 
-![API Configuration](images/api_config.png)
+### **Quick Start**
 
-### Quick Start
-> *The following code examples should be run in a Jupyter Notebook.*
+> *The following example demonstrates an **Advanced AI Risk Evaluation** workflow.*
 
-#### Example: Advanced AI Risk Evaluation
-
-**Step 0:** Set your project base directory.
+#### **Step 0: Set Your Project Base Directory**
 ```python
 import os
 base_dir = os.getcwd() + '/advanced_ai_risk'
 ```
 
-**Step 1:** Download metadata.
+#### **Step 1: Download Metadata**
 ```python
 from trusteval import download_metadata
 
@@ -97,7 +107,7 @@ download_metadata(
 )
 ```
 
-**Step 2:** Generate datasets dynamically.
+#### **Step 2: Generate Datasets Dynamically**
 ```python
 from trusteval.dimension.ai_risk import dynamic_dataset_generator
 
@@ -106,7 +116,7 @@ dynamic_dataset_generator(
 )
 ```
 
-**Step 3:** Apply contextual variations to the dataset.
+#### **Step 3: Apply Contextual Variations**
 ```python
 from trusteval import contextual_variator_cli
 
@@ -115,7 +125,7 @@ contextual_variator_cli(
 )
 ```
 
-**Step 4:** Generate responses from your models.
+#### **Step 4: Generate Model Responses**
 ```python
 from trusteval import generate_responses
 
@@ -131,9 +141,9 @@ await generate_responses(
 )
 ```
 
-**Step 5:** Evaluate the models.
+#### **Step 5: Evaluate and Generate Reports**
 
-- **Part 1: Judge the responses.**
+1. **Judge the Responses**
     ```python
     from trusteval import judge_responses
 
@@ -150,7 +160,7 @@ await generate_responses(
     )
     ```
 
-- **Part 2: Generate evaluation metrics.**
+2. **Generate Evaluation Metrics**
     ```python
     from trusteval import lm_metric
 
@@ -161,7 +171,7 @@ await generate_responses(
     )
     ```
 
-- **Part 3: Generate a detailed report.**
+3. **Generate Final Report**
     ```python
     from trusteval import report_generator
 
@@ -172,62 +182,54 @@ await generate_responses(
     )
     ```
 
-Your `report.html` will be generated in the `base_dir` folder.
-
-For other use cases, refer to the `examples` folder.
+Your `report.html` will be saved in the `base_dir` folder. For additional examples, check the `examples` folder.
 
 ---
 
 ## Trustworthiness Report
 
-A detailed trustworthiness evaluation report is generated for each dimension. The reports are presented as interactive web pages, which can be opened in a browser to explore the results. The evaluation report includes the following sections:
+The toolkit generates detailed evaluation reports with the following key sections:
 
-> *The data shown in the images below is simulated and does not reflect actual results.*
+1. **Test Model Results**: Displays model scores across multiple dimensions.
+2. **Model Performance Summary**: Highlights key insights and comparisons.
+3. **Error Case Study**: Provides examples of model errors with detailed analysis.
+4. **Leaderboard**: Compares model performance across versions.
 
-### **1. Test Model Results**
-Displays the evaluation scores for each model, with a breakdown of average scores across evaluation dimensions.
+> Example visualizations are provided below:
 
+### Test Model Results
 ![Test Model Results](images/test_model_results.png)
 
-### **2. Model Performance Summary**
-Summarizes the model's performance in the evaluated dimension using LLM-generated summaries, highlighting comparisons with other models.
-
+### Model Performance Summary
 ![Model Performance Summary](images/model_performance_summary.png)
 
-### **3. Error Case Study**
-Presents error cases for the evaluated dimension, including input/output examples and detailed judgments.
-
+### Error Case Study
 ![Error Case Study](images/error_case_study.png)
 
-### **4. Leaderboard**
-Shows the evaluation results for all models, along with visualized comparisons to previous versions (e.g., v1.0).
-
+### Leaderboard
 ![Leaderboard](images/leaderboard.png)
 
 ---
 
-## Documentation
+## Contributing
 
-For detailed documentation, including API references, tutorials, and best practices, please visit our official documentation site:
+We welcome contributions from the community! To contribute:
 
-[TrustEval Documentation](https://trustgen.github.io/trustgen_docs/)
+1. Fork the repository.
+2. Create a feature branch (`git checkout -b feature-name`).
+3. Commit your changes (`git commit -m 'Add feature'`).
+4. Push to your branch (`git push origin feature-name`).
+5. Open a pull request.
 
----
-
-## Support
-
-If you encounter any issues or have questions, you can:
-1. Check our [documentation](https://trustgen.github.io/trustgen_docs/).
-2. Open an issue in our [GitHub repository](https://github.com/nauyisu022/TrustEval-toolkit/issues).
-3. Contact the maintainers.
+For detailed contribution guidelines, check the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 ---
 
 ## Video Tutorials
 
-For visual demonstrations and step-by-step tutorials, visit our YouTube channel:
+Watch step-by-step tutorials on our YouTube channel:
 
-[TrustEval YouTube Channel](https://www.youtube.com/@TrustEval)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hpgo3EMOArw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ---
 

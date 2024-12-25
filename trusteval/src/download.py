@@ -20,7 +20,7 @@ url_mapping = {
     'fairness_vlm':'https://drive.google.com/uc?id=1pfLLxQW_2slVhh8a_0vtygkz3XlNvGm8'
 }
 
-def download_dataset(section, output_path):
+def download_metadata(section, output_path):
     url = url_mapping[section]
     if not os.path.exists(output_path):
         os.makedirs(output_path)

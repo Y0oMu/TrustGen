@@ -7,6 +7,8 @@
 
 *A modular and extensible toolkit for comprehensive trust evaluation of generative foundation models (GenFMs).*
 
+![Overview](images/overview.jpg)
+
 
 
 ## Table of Contents
@@ -30,15 +32,7 @@
 
 ## Overview
 
-**TrustEval-toolkit** is a dynamic and comprehensive framework for evaluating the trustworthiness of Generative Foundation Models (GenFMs). The toolkit enables multi-dimensional evaluation across key trust areas, including:
-
-- **Safety**
-- **Fairness**
-- **Robustness**
-- **Privacy**
-- **Truthfulness**
-
-With **TrustEval-toolkit**, researchers and developers can gain actionable insights to build more trustworthy AI systems. Its modularity and extensibility make it adaptable to various generative AI models, including large language models (LLMs), vision-language models (VLMs), and text-to-image (T2I) models.
+**TrustEval-toolkit** is a dynamic and comprehensive framework for evaluating the trustworthiness of Generative Foundation Models (GenFMs) across dimensions such as safety, fairness, robustness, privacy, and more.
 
 
 
@@ -93,6 +87,7 @@ Run the configuration script to set up your API keys:
 ```bash
 python trusteval/src/configuration.py
 ```
+![image](images/api_config.png)
 
 ### **Quick Start**
 

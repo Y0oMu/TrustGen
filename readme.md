@@ -3,7 +3,7 @@
 [![GitHub Repo stars](https://img.shields.io/github/stars/nauyisu022/TrustEval-toolkit?style=social)](https://github.com/nauyisu022/TrustEval-toolkit/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Documentation](https://img.shields.io/badge/Docs-Website-blue)](https://trustgen.github.io/trustgen_docs/)
-[![YouTube Tutorials](https://img.shields.io/badge/Video_Tutorials-YouTube-red)](https://www.youtube.com/@TrustEval)
+[![YouTube Tutorial](https://img.shields.io/badge/Video_Tutorial-YouTube-red)](https://www.youtube.com/@TrustEval)
 
 *A modular and extensible toolkit for comprehensive trust evaluation of generative foundation models (GenFMs).*
 
@@ -15,8 +15,15 @@
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+    - [Configure API Keys](#configure-api-keys)
+    - [Quick Start](#quick-start)
 - [Trustworthiness Report](#trustworthiness-report)
+    - [Test Model Results](#test-model-results)
+    - [Model Performance Summary](#model-performance-summary)
+    - [Error Case Study](#error-case-study)
+    - [Leaderboard](#leaderboard)
 - [Contributing](#contributing)
+- [Video Tutorial](#video-tutorials)
 - [License](#license)
 
 
@@ -220,9 +227,6 @@ We welcome contributions from the community! To contribute:
 3. Commit your changes (`git commit -m 'Add feature'`).
 4. Push to your branch (`git push origin feature-name`).
 5. Open a pull request.
-
-For detailed contribution guidelines, check the [CONTRIBUTING.md](CONTRIBUTING.md) file.
-
 
 
 ## Video Tutorials

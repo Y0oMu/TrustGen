@@ -190,25 +190,25 @@ Your `report.html` will be saved in the `base_dir` folder. For additional exampl
 
 ## Trustworthiness Report
 
-The toolkit generates detailed evaluation reports with the following key sections:
+A detailed trustworthiness evaluation report is generated for each dimension. The reports are presented as interactive web pages, which can be opened in a browser to explore the results. The report includes the following sections:
 
-1. **Test Model Results**: Displays model scores across multiple dimensions.
-2. **Model Performance Summary**: Highlights key insights and comparisons.
-3. **Error Case Study**: Provides examples of model errors with detailed analysis.
-4. **Leaderboard**: Compares model performance across versions.
+> *The data shown in the images below is simulated and does not reflect actual results.*
 
-> Example visualizations are provided below:
 
 ### Test Model Results
+Displays the evaluation scores for each model, with a breakdown of average scores across evaluation dimensions.
 ![Test Model Results](images/test_model_results.png)
 
 ### Model Performance Summary
+Summarizes the model's performance in the evaluated dimension using LLM-generated summaries, highlighting comparisons with other models.
 ![Model Performance Summary](images/model_performance_summary.png)
 
 ### Error Case Study
+Presents error cases for the evaluated dimension, including input/output examples and detailed judgments.
 ![Error Case Study](images/error_case_study.png)
 
 ### Leaderboard
+Shows the evaluation results for all models, along with visualized comparisons to previous versions (e.g., our v1.0 results).
 ![Leaderboard](images/leaderboard.png)
 
 

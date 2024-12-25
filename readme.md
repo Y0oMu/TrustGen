@@ -1,5 +1,31 @@
 # TrustEval-toolkit
 
+*A modular and extensible toolkit for comprehensive trust evaluation of generative foundation models (GenFMs).*
+
+![Overview](images/overview.jpg)
+
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Documentation](#documentation)
+- [Support](#support)
+- [License](#license)
+
+## Overview
+TrustEval-toolkit is a dynamic and comprehensive framework for evaluating the trustworthiness of Generative Foundation Models (GenFMs) across dimensions such as safety, fairness, robustness, privacy, and more.
+
+## Features
+- **Dynamic Dataset Generation**: Automatically generate datasets tailored for evaluation tasks.
+- **Multi-Model Support**: Evaluate LLMs, VLMs, and T2I models seamlessly.
+- **Customizable Metrics**: Configure evaluation workflows with flexible metrics and methods.
+- **Metadata-Driven Test Cases**: Design and execute test cases efficiently using metadata-driven pipelines.
+- **Comprehensive Dimensions**: Evaluate models across trust dimensions like safety, fairness, robustness, privacy, and truthfulness.
+- **Efficient Inference**: Optimized inference workflows for faster evaluations.
+- **Detailed Reports**: Generate comprehensive and interpretable evaluation reports.
+
+
 ## Installation
 
 To install and use the **TrustEval-toolkit**, follow the steps below:
@@ -31,7 +57,7 @@ pip install .
 ### Configure API Keys
 
 Run the configuration script to set up your API keys:
-```bash
+```bashlll
 python trusteval/src/configuration.py
 ```
 

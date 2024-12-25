@@ -7,7 +7,8 @@ from rich.table import Table
 
 console = Console()
 
-CONFIG_PATH = os.path.join(os.path.dirname(__file__), "config/config.yaml")
+# Adjust the CONFIG_PATH to point to the actual config.yaml outside the build directory
+CONFIG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config/config.yaml")
 
 def load_config():
     try:
@@ -234,6 +235,6 @@ def configuration():
             break
     
     console.print("\n[bold green]Configuration complete! Your config.yaml has been updated.[/bold green]", style="bold yellow")
-    
+
 if __name__ == "__main__":
     configuration()

@@ -51,7 +51,7 @@ With **TrustEval-toolkit**, researchers and developers can gain actionable insig
 
 To install the **TrustEval-toolkit**, follow these steps:
 
-### 1. Clone the Repository
+### **1. Clone the Repository**
 
 ```bash
 git clone https://github.com/nauyisu022/TrustEval-toolkit.git
@@ -79,7 +79,7 @@ pip install .
 
 ## Usage
 
-### Configure API Keys
+### **Configure API Keys**
 
 Run the configuration script to set up your API keys:
 
@@ -229,10 +229,12 @@ For detailed contribution guidelines, check the [CONTRIBUTING.md](CONTRIBUTING.m
 
 Watch step-by-step tutorials on our YouTube channel:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/hpgo3EMOArw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[![Watch Tutorials](https://img.youtube.com/vi/hpgo3EMOArw/0.jpg)](https://www.youtube.com/watch?v=hpgo3EMOArw)
 
 ---
 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+![Anti-Trust - War Machine](https://www.youtube.com/watch?v=3CM1_Ji6fJ8)

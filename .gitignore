@@ -90,3 +90,5 @@ examples/safety_t2i/
 examples/robustness_t2i/
 examples/privacy_t2i/
 examples/truthfulness_t2i/
+
+build/

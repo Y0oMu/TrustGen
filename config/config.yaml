@@ -1,3 +1,9 @@
+OPENAI:
+  OPENAI_API_KEY: ex
+  OPENAI_BASE_URL: exit
+YI:
+  YI_API_KEY: dawjidijwa
+  YI_BASE_URL: ijadidjaw
 openai_sdk_llms:
   Qwen/Qwen2.5-72B-Instruct: DEEPINFRA
   deepseek-chat: DEEPSEEK

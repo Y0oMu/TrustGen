@@ -7,7 +7,7 @@ from .src.saver import Saver
 from .src.report import report_pipeline as report_generator
 from .src.response_generator.lm_response import generate_responses
 from .src.response_generator.t2i_response import generate_images
-from .src.download import download_dataset
+from .src.download import download_metadata
 from .src.configuration import configuration
 from .src.evaluation import judge_responses, judge_images, lm_metric, t2i_metric
 
@@ -18,7 +18,7 @@ __all__ = [
     'generate_images',
     'Saver',
     'report_generator',
-    'download_dataset',
+    'download_metadata',
     'configuration',
     'judge_responses',
     'judge_images'

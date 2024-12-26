@@ -15,14 +15,14 @@ text_service = ModelService(
     request_type='llm',
     handler_type='api',
     model_name='gpt-4o',
-    config_path='src/config/config.yaml',
+    config_path=os.path.join(project_root, 'src/config/config.yaml'),
 )
 
 image_service = ModelService(
     request_type='t2i',
     handler_type='api',
     model_name='flux_schnell',
-    config_path='src/config/config.yaml',
+    config_path=os.path.join(project_root, 'src/config/config.yaml')
 )
 
 base_path = None
@@ -75,7 +75,7 @@ def MMSafetyBench(harmful_query, image_path, idx):
 def main(base_dir=None, initialize=False):
     global base_path
     base_path = base_dir
-    data = json.load(open(get_relative_path('generated_jailbreak_results.json'), 'r', encoding='utf-8'))
+    data = json.load(open(get_relative_path('generated_jailbreak_results.json'), 'r', encoding='utf-8'))[:2]
     ori_harmful_queries = []
     image_path = get_relative_path('Images/')
     os.makedirs(image_path, exist_ok=True)

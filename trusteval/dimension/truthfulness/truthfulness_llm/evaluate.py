@@ -247,6 +247,19 @@ def merge_results(data_folder):
         4,
     )
 
+    final_result["Truthfulness_ratio"] = final_result[[
+        "qa","qa_context","fc","persona_base","persona_syco",
+        "preconception_base","preconception_syco","self_doubt",
+        "internal","external","halu","syco"
+    ]].mean(axis=1)
+
+    final_result = final_result[[
+        "model","Truthfulness_ratio","qa","qa_context","fc",
+        "persona_base","persona_syco","preconception_base",
+        "preconception_syco","self_doubt","internal","external",
+        "halu","syco","delta_persona","delta_preconception"
+    ]]
+
     print(final_result)
     final_result.to_csv(
         os.path.join(data_folder, "truthfulness_results.csv"),
@@ -290,8 +303,3 @@ def run(folder_path):
             result = calulate_judge(os.path.join(folder_path, f))
             name = os.path.join(eval_result_dir, f.split("_responses_judge.json")[0] + ".csv")
             write_to_csv(result, name)
-
-
-# if __name__ == "__main__":
-    # run("D:\Paper\TrustAGI-code\examples/truthfulness_llm/final/")
-    # merge_results("D:\Paper\TrustAGI-code\examples/truthfulness_llm/final/")

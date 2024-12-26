@@ -9,7 +9,7 @@ def get_relative_path(file_path):
 def main(base_dir=None):
     global base_path
     base_path = base_dir
-    data = json.load(open(get_relative_path('generated_jailbreak_results.json'), 'r', encoding='utf-8'))
+    data = json.load(open(get_relative_path('generated_jailbreak_results.json'), 'r', encoding='utf-8'))[:2]
     harmful_dicts = []
     for i in range(len(data)):
         if 'unsafe' in data[i]['guard_label']:

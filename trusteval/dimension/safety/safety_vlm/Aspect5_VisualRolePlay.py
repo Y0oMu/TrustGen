@@ -22,7 +22,7 @@ text_service = ModelService(
 image_service = ModelService(
     request_type='t2i',
     handler_type='api',
-    model_name='flux_schnell',
+    model_name='dall-e-3',
     config_path=os.path.join(project_root, 'src/config/config.yaml'),
 )
 def description_prompt_split(output):
@@ -32,7 +32,7 @@ def description_prompt_split(output):
 
 def Visual_Roleplay(harmful_query, path_dir, idx):
     output = text_service.process(Visual_Roleplay_Character_Description_Gen_Prompt + harmful_query)
-    print(output)
+    # print(output)
     char_des, t2i_prompt = description_prompt_split(output)
     diffusion_image = image_service.process(t2i_prompt)
     formated_text, line_num = typo_format_text(char_des, font_size=60)
@@ -56,7 +56,7 @@ def Visual_Roleplay(harmful_query, path_dir, idx):
 def main(base_dir=None, initialize=False):
     global base_path
     base_path = base_dir
-    data = json.load(open(get_relative_path('generated_jailbreak_results.json'), 'r', encoding='utf-8'))[:2]
+    data = json.load(open(get_relative_path('generated_jailbreak_results.json'), 'r', encoding='utf-8'))[:3]
     ori_harmful_queries = []
     image_path_dir = get_relative_path('Images/')
     os.makedirs(image_path_dir, exist_ok=True)
@@ -74,12 +74,16 @@ def main(base_dir=None, initialize=False):
     if initialize:
         VisualRoleplay_json = []
     else:
-        VisualRoleplay_json = json.load(open(get_relative_path('VisualRoleplay.json'), 'r', encoding='utf-8'))
+        try:
+            VisualRoleplay_json = json.load(open(get_relative_path('VisualRoleplay.json'), 'r', encoding='utf-8'))
+        except:
+            VisualRoleplay_json = []
+            
     for i in range(len(ori_harmful_queries)):
         if not initialize:
             if os.path.exists(get_relative_path(os.path.join(image_path_dir, f'VisualRoleplay_{i}.png'))):
                 continue
-        print(i)
+        # print(i)
         try:
             img_path = Visual_Roleplay(ori_harmful_queries[i], image_path_dir, i)
             harmful_dict = {
@@ -92,5 +96,5 @@ def main(base_dir=None, initialize=False):
             VisualRoleplay_json.append(harmful_dicts[i])
             json.dump(VisualRoleplay_json, open(get_relative_path('final/VisualRoleplay.json'), 'w', encoding='utf-8'), indent=4)
         except Exception as e:
-            print(f"Error processing query {i}: {e}")
+            # print(f"Error processing query {i}: {e}")
             pass

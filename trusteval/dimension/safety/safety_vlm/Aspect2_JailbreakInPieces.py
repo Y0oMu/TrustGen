@@ -29,7 +29,7 @@ text_service = ModelService(
     request_type='llm',
     handler_type='api',
     model_name='gpt-4o',
-    config_path='src/config/config.yaml',
+    config_path=os.path.join(project_root, 'src/config/config.yaml'),
 )
 
 def extract_keywords(harmful_query):
@@ -145,7 +145,7 @@ def main(base_dir=None, initialize=False):
     global base_path
     base_path = base_dir
     data_path = get_relative_path('generated_jailbreak_results.json')
-    data = json.load(open(data_path, 'r', encoding='utf-8'))
+    data = json.load(open(data_path, 'r', encoding='utf-8'))[:2]
     ori_harmful_queries = []
     image_path_dir = get_relative_path('images')
     os.makedirs(image_path_dir, exist_ok=True)

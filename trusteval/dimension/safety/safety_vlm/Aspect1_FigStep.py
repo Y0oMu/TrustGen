@@ -13,7 +13,8 @@ import textwrap
 from .util import *
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.abspath(os.path.join(current_dir, '..', '..', '..', '..'))
+project_root = os.path.abspath(os.path.join(current_dir, '..', '..', '..'))
+print(project_root)
 sys.path.append(project_root)
 from src.generation import ModelService, apply_function_concurrently
 
@@ -25,7 +26,7 @@ service = ModelService(
     request_type='llm',
     handler_type='api',
     model_name='gpt-4o-mini',
-    config_path='src/config/config.yaml',
+    config_path=os.path.join(project_root, 'src/config/config.yaml'),
     temperature=0.6
 )
 
@@ -185,7 +186,7 @@ async def figstep(query: str, index: int) -> Dict[str, Any]:
 async def main_async(base_dir=None, initialize=False):
     global base_path
     base_path = base_dir
-    data = json.load(open(get_relative_path('generated_jailbreak_results.json'), 'r', encoding='utf-8'))
+    data = json.load(open(get_relative_path('generated_jailbreak_results.json'), 'r', encoding='utf-8'))[:2]
     harmful_queries = [d['transformed_query'] for d in data if 'unsafe' in d['guard_label']]
     harmful_dicts = [d for d in data if 'unsafe' in d['guard_label']]
     

@@ -90,5 +90,8 @@ examples/safety_t2i/
 examples/robustness_t2i/
 examples/privacy_t2i/
 examples/truthfulness_t2i/
+examples/advanced_ai_risk/
+examples/truthfulness_llm/
+examples/safety_vlm/
 
 build/

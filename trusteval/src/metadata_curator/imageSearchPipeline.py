@@ -5,13 +5,22 @@ import asyncio
 from datetime import datetime
 import pytz
 import requests
-from dotenv import load_dotenv
+import sys
+import yaml
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.append(PROJECT_ROOT)
 from src.metadata_curator.utils import get_azure_openai_text_response, get_search_keyword
 
-load_dotenv()
+def load_yaml(file_path):
+    with open(file_path, 'r') as file:
+        return yaml.safe_load(file)
+
+config_path = os.path.join(PROJECT_ROOT, 'src/config/config.yaml')
+config = load_yaml(config_path)
+
 
 class ImageWebSearchPipeline:
-    def __init__(self, instruction, basic_information, output_path="a.json", keyword_model="gpt-4o", include_access_time=True, direct_search_keyword=None):
+    def __init__(self, instruction, basic_information, output_path=None, keyword_model="gpt-4o", include_access_time=True, direct_search_keyword=None):
         self.instruction = instruction
         self.basic_information = '. '.join([f"{k} is {v}" for k, v in basic_information.items()])
         self.keyword_model = keyword_model
@@ -19,8 +28,8 @@ class ImageWebSearchPipeline:
         self.output_path = output_path or 'processed_image_results.json'
         self.direct_search_keyword = direct_search_keyword
 
-        self.subscription_key = os.getenv('BING_SEARCH_V7_SUBSCRIPTION_KEY')
-        self.endpoint = os.getenv('BING_SEARCH_V7_ENDPOINT') + "/v7.0/images/search"
+        self.subscription_key = config.get('BING_SEARCH_V7_SUBSCRIPTION_KEY')
+        self.endpoint = config.get('BING_SEARCH_V7_ENDPOINT') + "/v7.0/images/search"
 
         if not self.subscription_key:
             raise ValueError("Bing Search V7 subscription key is not provided and not found in environment variables.")
@@ -98,7 +107,8 @@ class ImageWebSearchPipeline:
         print("keywords:"+keywords)
         search_results = self.search_images(keywords)
         processed_data = self.process_results(search_results)
-        self.save_to_json(processed_data, self.output_path)
+        if self.output_path:
+            self.save_to_json(processed_data, self.output_path)
         print(f"Processed {len(processed_data)} results and saved to {self.output_path}")
         return processed_data
 

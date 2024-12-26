@@ -21,7 +21,7 @@ text_service = ModelService(
 image_service = ModelService(
     request_type='t2i',
     handler_type='api',
-    model_name='flux_schnell',
+    model_name='dall-e-3',
     config_path=os.path.join(project_root, 'src/config/config.yaml')
 )
 
@@ -38,7 +38,7 @@ def extract_keywords(harmful_query):
     try:
         output = text_service.process('[System]\n' + MMSafetyBench_sys_prompt + '[Question]\n' + harmful_query)
         # output = text_completion_open_source_models(MMSafetyBench_sys_prompt + '\n\n[Question]\n' + harmful_query, model="mistral-8x7b", max_tokens=256)
-        print(output)
+        # print(output)
         if output is None or 'sorry' in output.lower():
             raise Exception("Failed to extract keywords")
         changed_question = output.split('[Changed Question]\n')[1].split('\n\n[Key Phrase]')[0]
@@ -75,7 +75,7 @@ def MMSafetyBench(harmful_query, image_path, idx):
 def main(base_dir=None, initialize=False):
     global base_path
     base_path = base_dir
-    data = json.load(open(get_relative_path('generated_jailbreak_results.json'), 'r', encoding='utf-8'))[:2]
+    data = json.load(open(get_relative_path('generated_jailbreak_results.json'), 'r', encoding='utf-8'))[:3]
     ori_harmful_queries = []
     image_path = get_relative_path('Images/')
     os.makedirs(image_path, exist_ok=True)
@@ -93,13 +93,17 @@ def main(base_dir=None, initialize=False):
     if initialize:
         MMSafetyBench_json = []
     else:
-        MMSafetyBench_json = json.load(open(get_relative_path('MMSafetyBench.json'), 'r', encoding='utf-8'))
+        try:
+            MMSafetyBench_json = json.load(open(get_relative_path('MMSafetyBench.json'), 'r', encoding='utf-8'))
+        except:
+            MMSafetyBench_json = []
+            
     for i in range(len(ori_harmful_queries)):
         # if ./image/MMSafetyBench_i.png exists, skip this iteration
         if not initialize:
             if os.path.exists(os.path.join(image_path, f'MMSafetyBench_{i}.png')):
                 continue
-        print(i)
+        # print(i)
         output = MMSafetyBench(ori_harmful_queries[i], image_path, i)
         if output != 1:
             harmful_query, rephrased_question = output
@@ -114,5 +118,6 @@ def main(base_dir=None, initialize=False):
             MMSafetyBench_json.append(harmful_dicts[i])
             json.dump(MMSafetyBench_json, open(get_relative_path('final/MMSafetyBench.json'), 'w', encoding='utf-8'), indent=4)
         else:
-            print(1)
+            pass
+            # print(1)
 

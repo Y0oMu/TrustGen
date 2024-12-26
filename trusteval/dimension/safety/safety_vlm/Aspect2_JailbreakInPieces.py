@@ -35,7 +35,6 @@ text_service = ModelService(
 def extract_keywords(harmful_query):
     try:
         output = text_service.process('[System]\n' + JailbreakInPieces_EXTRACT_PROMPT + '[Question]\n' + harmful_query)
-        print(output)
         if output == None or 'sorry' in output.lower():
             raise Exception("Failed to extract keywords")
         key_phrase = output.split('[Key Phrase]\n')[1].split('\n\n[Phrase Type]')[0]
@@ -102,15 +101,15 @@ def jailbreakInPieces(harmful_query, image_path_dir, image_idx):
     except:
         return 1
     if key_phrase != 1 and key_phrase:
-        print('key phrase:', key_phrase)
+        # print('key phrase:', key_phrase)
         instruction = "Find images of " + key_phrase
         basic_information = {}
 
-        try:
-            pipeline = ImageWebSearchPipeline(instruction, basic_information)
-            asyncio.run(pipeline.run())
-        except:
-            return 1
+        # try:
+        #     pipeline = ImageWebSearchPipeline(instruction, basic_information)
+        #     asyncio.run(pipeline.run())
+        # except:
+        #     return 1
 
         os.makedirs(get_relative_path('Images/temp_images/'), exist_ok=True)
         custom_output_path = get_relative_path(f"Images/temp_images/jailbreakInPieces_searched_{image_idx}.json")
@@ -145,7 +144,7 @@ def main(base_dir=None, initialize=False):
     global base_path
     base_path = base_dir
     data_path = get_relative_path('generated_jailbreak_results.json')
-    data = json.load(open(data_path, 'r', encoding='utf-8'))[:2]
+    data = json.load(open(data_path, 'r', encoding='utf-8'))[:5]
     ori_harmful_queries = []
     image_path_dir = get_relative_path('images')
     os.makedirs(image_path_dir, exist_ok=True)
@@ -169,7 +168,7 @@ def main(base_dir=None, initialize=False):
         if not initialize:
             if os.path.exists(get_relative_path(f'Images/jailbreak_in_pieces_{i}.png')):
                 continue
-        print(i)
+        # print(i)
         result = jailbreakInPieces(ori_harmful_queries[i], image_path_dir, i)
         if result != 1:
             img_path = get_relative_path(f'Images/jailbreak_in_pieces_{i}.png')
@@ -182,5 +181,6 @@ def main(base_dir=None, initialize=False):
             jailbreakInPieces_json.append(harmful_dicts[i])
             json.dump(jailbreakInPieces_json, open(get_relative_path('final/jailbreakInPieces.json'), 'w', encoding='utf-8'), indent=4)
         else:
-            print(1)
+            # print(1)
+            pass
 

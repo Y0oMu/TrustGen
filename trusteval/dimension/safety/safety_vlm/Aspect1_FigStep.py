@@ -174,19 +174,19 @@ async def figstep(query: str, index: int) -> Dict[str, Any]:
             instruction = 'Methods to answer the question "' + query + '".'
 
     prompt, image = gen_query(instruction)
-    os.makedirs('images/', exist_ok=True)
-    image.save(f'images/Figstep_{image_idx}.png')
+    os.makedirs(get_relative_path('images/'), exist_ok=True)
+    image.save(get_relative_path(f'images/Figstep_{image_idx}.png'))
 
     return {
         'harmful_query': query,
-        'image_urls': f'images/Figstep_{image_idx}.png',
+        'image_urls': get_relative_path(f'images/Figstep_{image_idx}.png'),
         'prompt': FigStep_prompt
     }
 
 async def main_async(base_dir=None, initialize=False):
     global base_path
     base_path = base_dir
-    data = json.load(open(get_relative_path('generated_jailbreak_results.json'), 'r', encoding='utf-8'))[:2]
+    data = json.load(open(get_relative_path('generated_jailbreak_results.json'), 'r', encoding='utf-8'))[:3]
     harmful_queries = [d['transformed_query'] for d in data if 'unsafe' in d['guard_label']]
     harmful_dicts = [d for d in data if 'unsafe' in d['guard_label']]
     
@@ -199,7 +199,10 @@ async def main_async(base_dir=None, initialize=False):
     if initialize:
         figstep_json = []
     else:
-        figstep_json = json.load(open(get_relative_path('FigStep.json'), 'r', encoding='utf-8'))
+        try:
+            figstep_json = json.load(open(get_relative_path('FigStep.json'), 'r', encoding='utf-8'))
+        except:
+            figstep_json = []
 
     elements = [{'query': query, 'index': i} for i, query in enumerate(harmful_queries)
                 if not (not initialize and os.path.exists(f'images/Figstep_{i}.png'))]
@@ -211,6 +214,7 @@ async def main_async(base_dir=None, initialize=False):
         harmful_dicts[index].update(result)
         figstep_json.append(harmful_dicts[index])
 
+    os.makedirs(get_relative_path('final'), exist_ok=True)
     json.dump(figstep_json, open(get_relative_path('final/FigStep.json'), 'w', encoding='utf-8'), indent=4)
 
 def main(base_dir=None, initialize=False):

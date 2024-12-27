@@ -11,23 +11,34 @@
 
 
 
-## Table of Contents
+<details><summary>Table of Contents</summary>
 
-- [Overview](#overview)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-    - [Configure API Keys](#configure-api-keys)
-    - [Quick Start](#quick-start)
-- [Trustworthiness Report](#trustworthiness-report)
+- [TrustEval-toolkit](#trusteval-toolkit)
+  - [Overview](#overview)
+  - [Features](#features)
+  - [Installation](#installation)
+    - [**1. Clone the Repository**](#1-clone-the-repository)
+    - [**2. Set Up a Conda Environment**](#2-set-up-a-conda-environment)
+    - [**3. Install Dependencies**](#3-install-dependencies)
+  - [Usage](#usage)
+    - [**Configure API Keys**](#configure-api-keys)
+    - [**Quick Start**](#quick-start)
+      - [**Step 0: Set Your Project Base Directory**](#step-0-set-your-project-base-directory)
+      - [**Step 1: Download Metadata**](#step-1-download-metadata)
+      - [**Step 2: Generate Datasets Dynamically**](#step-2-generate-datasets-dynamically)
+      - [**Step 3: Apply Contextual Variations**](#step-3-apply-contextual-variations)
+      - [**Step 4: Generate Model Responses**](#step-4-generate-model-responses)
+      - [**Step 5: Evaluate and Generate Reports**](#step-5-evaluate-and-generate-reports)
+  - [Trustworthiness Report](#trustworthiness-report)
     - [Test Model Results](#test-model-results)
     - [Model Performance Summary](#model-performance-summary)
     - [Error Case Study](#error-case-study)
     - [Leaderboard](#leaderboard)
-- [Contributing](#contributing)
-- [Video Tutorial](#video-tutorials)
-- [License](#license)
+  - [Contributing](#contributing)
+  - [Video Tutorials](#video-tutorials)
+  - [License](#license)
 
+</details>
 
 
 ## Overview

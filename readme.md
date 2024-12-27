@@ -5,7 +5,7 @@
 </p>
 <p align="center"><h1 align="center">TrustEval</h1></p>
 <p align="center">
-	<em>A Dynamic Evaluation Toolkit on the Trustworthiness of Generative Foundation Models</em>
+	<em>A modular and extensible toolkit for comprehensive trust evaluation of generative foundation models (GenFMs)</em>
 </p>
 
 <p align="center">
@@ -15,14 +15,18 @@
 	<img src="https://img.shields.io/badge/Video_Tutorial-YouTube-red?style=flat-square&logo=YouTube&logoColor=white" alt="YouTube Tutorial">
 </p>
 
-*A modular and extensible toolkit for comprehensive trust evaluation of generative foundation models (GenFMs).*
+## Video Tutorials
 
-![Overview](images/overview.jpg)
+Watch step-by-step tutorials on our YouTube channel:
+
+[![Watch Tutorials](https://img.youtube.com/vi/hpgo3EMOArw/0.jpg)](https://www.youtube.com/watch?v=hpgo3EMOArw)
+
 
 
 
 <summary>Table of Contents</summary>
 
+- [Video Tutorials](#video-tutorials)
 - [📍 Overview](#-overview)
 - [👾 Features](#-features)
 - [🚀 Getting Started](#-getting-started)
@@ -45,7 +49,6 @@
   - [Error Case Study](#error-case-study)
   - [Leaderboard](#leaderboard)
 - [Contributing](#contributing)
-- [Video Tutorials](#video-tutorials)
 - [License](#license)
 
 
@@ -54,6 +57,8 @@
 ## 📍 Overview
 
 **TrustEval-toolkit** is a dynamic and comprehensive framework for evaluating the trustworthiness of Generative Foundation Models (GenFMs) across dimensions such as safety, fairness, robustness, privacy, and more.
+
+![Overview](images/overview.jpg)
 
 
 ## 👾 Features
@@ -246,11 +251,6 @@ We welcome contributions from the community! To contribute:
 5. Open a pull request.
 
 
-## Video Tutorials
-
-Watch step-by-step tutorials on our YouTube channel:
-
-[![Watch Tutorials](https://img.youtube.com/vi/hpgo3EMOArw/0.jpg)](https://www.youtube.com/watch?v=hpgo3EMOArw)
 
 
 

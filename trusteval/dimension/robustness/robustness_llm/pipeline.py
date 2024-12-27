@@ -34,8 +34,8 @@ async def pipeline(base_dir=None):
     open_question_data = await process_open_question()
     #combined_data = ground_truth_data + open_question_data
 
-    file_name1 = os.path.join(dataset_dir, 'open_ended_data.json')
-    file_name2 = os.path.join(dataset_dir, 'ground_truth_data.json')
+    file_name1 = os.path.join(dataset_dir, 'open_ended_dataset.json')
+    file_name2 = os.path.join(dataset_dir, 'ground_truth_dataset.json')
     remove_duplicate_originals(ground_truth_data)
     remove_duplicate_originals(open_question_data)
     with open(file_name1, 'w', encoding='utf-8') as f:

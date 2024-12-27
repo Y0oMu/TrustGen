@@ -72,7 +72,9 @@ with_groundtruth_original:
     "ground_truth": "ground_truth"
     "model_answer": "original_responses"
     "judgment_key": "is_correct"
-
+  information:
+    "goal": True
+    
 with_groundtruth_robustness:
   prompt: |
     [Systems]

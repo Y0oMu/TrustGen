@@ -680,8 +680,8 @@ def metric_generation(base_dir=None, aspect=None, model_list=[]):
     # Define the mapping of aspects to their respective JSON data files
     aspect_dict = {
         'robustness_llm': [
-            f'{base_dir}/ground_truth_data_responses_judge.json',  
-            f'{base_dir}/open_ended_data_responses_judge.json'
+            f'{base_dir}/ground_truth_dataset_responses_judge.json',  
+            f'{base_dir}/open_ended_dataset_responses_judge.json'
         ],
         'robustness_vlm': [
             f'{base_dir}/ms_coco_data_responses_judge.json',  
@@ -1024,13 +1024,13 @@ def metric_generation(base_dir=None, aspect=None, model_list=[]):
                 ground_truth_tie_ratio = ground_truth_ori_win_ratio = ground_truth_adv_win_ratio = 0
             robustness_llm_ratio = round((ground_truth_tie_ratio + ground_truth_tie_ratio) / 2, 2)
             row.update({
+                'robustness_llm_ratio':robustness_llm_ratio,
                 'open_ended_tie_ratio': open_ended_tie_ratio,
                 'open_ended_ori_win_ratio': open_ended_ori_win_ratio,
                 'open_ended_adv_win_ratio': open_ended_adv_win_ratio,
-                'ground_truth_consistency_ratio': ground_truth_tie_ratio,
+                'ground_truth_tie_ratio': ground_truth_tie_ratio,
                 'ground_truth_ori_win_ratio': ground_truth_ori_win_ratio,
-                'ground_truth_adv_win_ratio': ground_truth_adv_win_ratio,
-                'robustness_llm_ratio':robustness_llm_ratio
+                'ground_truth_adv_win_ratio': ground_truth_adv_win_ratio
             })
             
 
@@ -1149,7 +1149,7 @@ def metric_generation(base_dir=None, aspect=None, model_list=[]):
             'model', 
             'robustness_llm_ratio',
             'open_ended_tie_ratio', 'open_ended_ori_win_ratio', 'open_ended_adv_win_ratio',
-            'ground_truth_ratio', 'ground_truth_ori_win_ratio', 'ground_truth_adv_win_ratio'
+            'ground_truth_tie_ratio', 'ground_truth_ori_win_ratio', 'ground_truth_adv_win_ratio'
         ]
     elif aspect == 'robustness_vlm':
         fieldnames = [

@@ -1,54 +1,62 @@
-# TrustEval-toolkit
+
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" align="center" width="30%">
+</p>
+<p align="center"><h1 align="center">TrustEval</h1></p>
+<p align="center">
+	<em>A Dynamic Evaluation Toolkit on the Trustworthiness of Generative Foundation Models</em>
+</p>
 
 <p align="center">
 	<img src="https://img.shields.io/github/stars/nauyisu022/TrustEval-toolkit?style=flat-square&logo=GitHub&logoColor=white" alt="GitHub Repo stars">
-	<img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square&logo=Open-Source-Initiative&logoColor=white" alt="License: MIT">
-	<img src="https://img.shields.io/badge/Docs-Website-blue?style=flat-square&logo=ReadMe&logoColor=white" alt="Documentation">
+	<img src="https://img.shields.io/badge/License-MIT-green.svg?style=flat-square&logo=Open-Source-Initiative&logoColor=white" alt="License: MIT">
+	<img src="https://img.shields.io/badge/Docs-Website-00ADD8?style=flat-square&logo=ReadMe&logoColor=white" alt="Documentation">
 	<img src="https://img.shields.io/badge/Video_Tutorial-YouTube-red?style=flat-square&logo=YouTube&logoColor=white" alt="YouTube Tutorial">
 </p>
+
 *A modular and extensible toolkit for comprehensive trust evaluation of generative foundation models (GenFMs).*
 
 ![Overview](images/overview.jpg)
 
 
 
-<details><summary>Table of Contents</summary>
+<summary>Table of Contents</summary>
 
-- [TrustEval-toolkit](#trusteval-toolkit)
-  - [Overview](#overview)
-  - [Features](#features)
-  - [Installation](#installation)
+- [📍 Overview](#-overview)
+- [👾 Features](#-features)
+- [🚀 Getting Started](#-getting-started)
+  - [⚙️ Installation](#️-installation)
     - [**1. Clone the Repository**](#1-clone-the-repository)
     - [**2. Set Up a Conda Environment**](#2-set-up-a-conda-environment)
     - [**3. Install Dependencies**](#3-install-dependencies)
-  - [Usage](#usage)
+  - [🤖 Usage](#-usage)
     - [**Configure API Keys**](#configure-api-keys)
     - [**Quick Start**](#quick-start)
-      - [**Step 0: Set Your Project Base Directory**](#step-0-set-your-project-base-directory)
+    - [**Step 0: Set Your Project Base Directory**](#step-0-set-your-project-base-directory)
       - [**Step 1: Download Metadata**](#step-1-download-metadata)
       - [**Step 2: Generate Datasets Dynamically**](#step-2-generate-datasets-dynamically)
       - [**Step 3: Apply Contextual Variations**](#step-3-apply-contextual-variations)
       - [**Step 4: Generate Model Responses**](#step-4-generate-model-responses)
       - [**Step 5: Evaluate and Generate Reports**](#step-5-evaluate-and-generate-reports)
-  - [Trustworthiness Report](#trustworthiness-report)
-    - [Test Model Results](#test-model-results)
-    - [Model Performance Summary](#model-performance-summary)
-    - [Error Case Study](#error-case-study)
-    - [Leaderboard](#leaderboard)
-  - [Contributing](#contributing)
-  - [Video Tutorials](#video-tutorials)
-  - [License](#license)
-
-</details>
+- [Trustworthiness Report](#trustworthiness-report)
+  - [Test Model Results](#test-model-results)
+  - [Model Performance Summary](#model-performance-summary)
+  - [Error Case Study](#error-case-study)
+  - [Leaderboard](#leaderboard)
+- [Contributing](#contributing)
+- [Video Tutorials](#video-tutorials)
+- [License](#license)
 
 
-## Overview
+
+
+## 📍 Overview
 
 **TrustEval-toolkit** is a dynamic and comprehensive framework for evaluating the trustworthiness of Generative Foundation Models (GenFMs) across dimensions such as safety, fairness, robustness, privacy, and more.
 
 
-
-## Features
+## 👾 Features
 
 - **Dynamic Dataset Generation**: Automatically generate datasets tailored for evaluation tasks.
 - **Multi-Model Compatibility**: Evaluate LLMs, VLMs, T2I models, and more.
@@ -58,20 +66,22 @@
 - **Optimized Inference**: Faster evaluations with optimized inference pipelines.
 - **Detailed Reports**: Generate interactive, easy-to-interpret evaluation reports.
 
+---
 
+## 🚀 Getting Started
 
-## Installation
+### ⚙️ Installation
 
 To install the **TrustEval-toolkit**, follow these steps:
 
-### **1. Clone the Repository**
+#### **1. Clone the Repository**
 
 ```bash
 git clone https://github.com/nauyisu022/TrustEval-toolkit.git
 cd TrustEval-toolkit
 ```
 
-### **2. Set Up a Conda Environment**
+#### **2. Set Up a Conda Environment**
 
 Create and activate a new environment with Python 3.10:
 
@@ -80,7 +90,7 @@ conda create -n trusteval_env python=3.10
 conda activate trusteval_env
 ```
 
-### **3. Install Dependencies**
+#### **3. Install Dependencies**
 
 Install the package and its dependencies:
 
@@ -90,9 +100,9 @@ pip install .
 
 
 
-## Usage
+### 🤖 Usage
 
-### **Configure API Keys**
+#### **Configure API Keys**
 
 Run the configuration script to set up your API keys:
 
@@ -101,7 +111,7 @@ python trusteval/src/configuration.py
 ```
 ![image](images/api_config.png)
 
-### **Quick Start**
+#### **Quick Start**
 
 > *The following example demonstrates an **Advanced AI Risk Evaluation** workflow.*
 
@@ -111,7 +121,7 @@ import os
 base_dir = os.getcwd() + '/advanced_ai_risk'
 ```
 
-#### **Step 1: Download Metadata**
+##### **Step 1: Download Metadata**
 ```python
 from trusteval import download_metadata
 
@@ -121,7 +131,7 @@ download_metadata(
 )
 ```
 
-#### **Step 2: Generate Datasets Dynamically**
+##### **Step 2: Generate Datasets Dynamically**
 ```python
 from trusteval.dimension.ai_risk import dynamic_dataset_generator
 
@@ -130,7 +140,7 @@ dynamic_dataset_generator(
 )
 ```
 
-#### **Step 3: Apply Contextual Variations**
+##### **Step 3: Apply Contextual Variations**
 ```python
 from trusteval import contextual_variator_cli
 
@@ -139,7 +149,7 @@ contextual_variator_cli(
 )
 ```
 
-#### **Step 4: Generate Model Responses**
+##### **Step 4: Generate Model Responses**
 ```python
 from trusteval import generate_responses
 
@@ -155,7 +165,7 @@ await generate_responses(
 )
 ```
 
-#### **Step 5: Evaluate and Generate Reports**
+##### **Step 5: Evaluate and Generate Reports**
 
 1. **Judge the Responses**
     ```python

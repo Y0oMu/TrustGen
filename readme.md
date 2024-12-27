@@ -1,10 +1,11 @@
 # TrustEval-toolkit
 
-[![GitHub Repo stars](https://img.shields.io/github/stars/nauyisu022/TrustEval-toolkit?style=social)](https://github.com/nauyisu022/TrustEval-toolkit/stargazers)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Documentation](https://img.shields.io/badge/Docs-Website-blue)](https://trustgen.github.io/trustgen_docs/)
-[![YouTube Tutorial](https://img.shields.io/badge/Video_Tutorial-YouTube-red)](https://www.youtube.com/@TrustEval)
-
+<p align="center">
+	<img src="https://img.shields.io/github/stars/nauyisu022/TrustEval-toolkit?style=flat-square&logo=GitHub&logoColor=white" alt="GitHub Repo stars">
+	<img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square&logo=Open-Source-Initiative&logoColor=white" alt="License: MIT">
+	<img src="https://img.shields.io/badge/Docs-Website-blue?style=flat-square&logo=ReadMe&logoColor=white" alt="Documentation">
+	<img src="https://img.shields.io/badge/Video_Tutorial-YouTube-red?style=flat-square&logo=YouTube&logoColor=white" alt="YouTube Tutorial">
+</p>
 *A modular and extensible toolkit for comprehensive trust evaluation of generative foundation models (GenFMs).*
 
 ![Overview](images/overview.jpg)

@@ -96,7 +96,7 @@ async def process_dataset(adv_function_name, params, all_data):
 emoji_search = EmojiSearch()
 
 async def process_open_question():
-    num = 400
+    num = 10
     datasets_paths = {
         'eli5': "sentence-transformers/eli5",
         'cnn_dailymail': 'cnn_dailymail'

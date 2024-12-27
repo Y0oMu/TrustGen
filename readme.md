@@ -3,7 +3,7 @@
 <p align="center">
     <img src="images/logo.png" align="center" width="30%">
 </p>
-<p align="center"><h1 align="center">TrustEval A modular and extensible toolkit for comprehensive trust evaluation of generative foundation models (GenFMs)</h1></p>
+<p align="center"><h1 align="center">TrustEval </h1></p>
 <p align="center">
 	<em>A modular and extensible toolkit for comprehensive trust evaluation of generative foundation models (GenFMs)</em>
 </p>
@@ -18,10 +18,11 @@
 ## Video Tutorials
 
 Watch step-by-step tutorials on our YouTube channel:
-
-[![Watch Tutorials](https://img.youtube.com/vi/hpgo3EMOArw/0.jpg)](https://www.youtube.com/watch?v=hpgo3EMOArw)
-
-
+<iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/hpgo3EMOArw" 
+        frameborder="0" 
+        allowfullscreen>
+</iframe>
 
 
 <summary>Table of Contents</summary>

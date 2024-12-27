@@ -1,7 +1,7 @@
 
 
 <p align="center">
-    <img src="1.png" align="center" width="30%">
+    <img src="images/1.png" align="center" width="30%">
 </p>
 <p align="center"><h1 align="center">TrustEval</h1></p>
 <p align="center">

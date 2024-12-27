@@ -179,7 +179,7 @@ emoji_search = EmojiSearch()
 project_root = os.environ.get('PROJECT_ROOT', '.')
 
 async def process_ground_truth():
-    num = 10
+    num = 400
     dataset_dir = os.environ['DATASET_DIR']  
 
     datasets_paths = {

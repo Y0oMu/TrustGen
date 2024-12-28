@@ -20,7 +20,8 @@ openai_sdk_llms:
   mistralai/Mistral-7B-Instruct-v0.3: DEEPINFRA
   mistralai/Mixtral-8x22B-Instruct-v0.1: DEEPINFRA
   mistralai/Mixtral-8x7B-Instruct-v0.1: DEEPINFRA
-  qwen-vl-max-0809: QWEN
+  mistralai/Mixtral-8x7B-Instruct-v0.1: DEEPINFRA
+  Qwen/QwQ-32B-Preview: DEEPINFRA
   qwen/qwen-2-vl-72b-instruct: OPENROUTER
   text-embedding-ada-002: OPENAI
   yi-lightning: YI

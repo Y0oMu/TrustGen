@@ -9,7 +9,7 @@ import sys
 import yaml
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.append(PROJECT_ROOT)
-from src.metadata_curator.utils import get_azure_openai_text_response, get_search_keyword
+from src.metadata_curator.metadata_utils import get_azure_openai_text_response, get_search_keyword
 
 def load_yaml(file_path):
     with open(file_path, 'r') as file:

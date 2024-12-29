@@ -12,10 +12,12 @@ except ImportError:
 from .factories import ModelRequestFactory, RequestHandlerFactory
 from tqdm.asyncio import tqdm_asyncio
 import asyncio
+import yaml
 from .utils.tools import retry_on_failure,retry_on_failure_async
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.append(PROJECT_ROOT)
+
 
 MODEL_NAME_MAPPINGS = {
     'gpt-4o': 'gpt-4o',
@@ -66,10 +68,17 @@ MODEL_NAME_MAPPINGS = {
     'HunyuanDiT': 'HunyuanDiT',
 }
 
+def load_config(config_file):
+    with open(config_file, 'r', encoding='utf-8') as f:
+        config = yaml.safe_load(f)
+    return config
+
 class ModelService:
     def __init__(self, request_type='llm', handler_type='api', model_name=None, config_path=os.path.join(PROJECT_ROOT, 'src/config/config.yaml'), **kwargs):
         self.request_type = request_type
         self.handler_type = handler_type
+        config=load_config(config_path)
+        MODEL_NAME_MAPPINGS=config['MODEL_NAME_MAPPINGS']
         self.model_name = MODEL_NAME_MAPPINGS.get(model_name, model_name)
         self.config_path = config_path
         self.request_factory = ModelRequestFactory()

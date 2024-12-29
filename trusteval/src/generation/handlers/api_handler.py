@@ -32,7 +32,7 @@ class OpenAISDKHandler(RequestHandler):
             "INTERN": [OpenAI, AsyncOpenAI]
         }
         sdk_type = self.config['openai_sdk_llms'][model_name]
-        sdk_config = self.config[sdk_type]
+        sdk_config = sdk_mapping[sdk_type]
 
         # Choose the appropriate client class (sync or async)
         ClientClass = sdk_mapping[sdk_type][1 if is_async else 0]
@@ -45,8 +45,8 @@ class OpenAISDKHandler(RequestHandler):
             )
         else:
             return ClientClass(
-                api_key=sdk_config[f'{sdk_type}_API_KEY'],
-                base_url=sdk_config[f'{sdk_type}_BASE_URL']
+                api_key=self.config[sdk_type][f'{sdk_type}_API_KEY'],
+                base_url=self.config[sdk_type][f'{sdk_type}_BASE_URL']
             )
 
     def prepare_parameters(self, request, client):

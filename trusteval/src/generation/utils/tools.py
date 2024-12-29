@@ -23,13 +23,13 @@ def retry_on_failure(max_retries=2, delay=2, backoff=1.1):
                         return result
                 except openai.BadRequestError as e:
                     print(f"OpenAI BadRequestError: {e}")
-                    return None
+                    return "Policy Error"
                 except zhipuai.core._errors.APIRequestFailedError as e:
                     print(f"ZhipuAI APIRequestFailedError: {e}")
-                    return None
+                    return "Policy Error"
                 except replicate.exceptions.ModelError as e:
                     print(f"Replicate ModelError: {e}")
-                    return None
+                    return "Policy Error"
                 except Exception as e:
                     print(traceback.format_exc())
                 
@@ -53,6 +53,15 @@ def retry_on_failure_async(max_retries=2, delay=1, backoff=1.1):
                     result = await func(*args, **kwargs)
                     if result is not None:
                         return result
+                except openai.BadRequestError as e:
+                    print(f"OpenAI BadRequestError: {e}")
+                    return "Policy Error"
+                except zhipuai.core._errors.APIRequestFailedError as e:
+                    print(f"ZhipuAI APIRequestFailedError: {e}")
+                    return "Policy Error"
+                except replicate.exceptions.ModelError as e:
+                    print(f"Replicate ModelError: {e}")
+                    return "Policy Error"
                 except Exception as e:
                     print(f"Model {args[0].model_name} failed with error: {e}")
                     print(traceback.format_exc())

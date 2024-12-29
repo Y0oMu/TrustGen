@@ -58,7 +58,7 @@ class ResponseProcessor:
                 handler_type='api',
                 model_name=model,
                 config_path=os.path.join(PROJECT_ROOT, 'src/config/config.yaml'),
-                temperature=temperature
+                #temperature=temperature
             )
             for model in async_list or []
         ]
@@ -69,7 +69,7 @@ class ResponseProcessor:
                 handler_type='local',
                 model_name=model,
                 config_path=os.path.join(PROJECT_ROOT, 'src/config/config.yaml'),
-                temperature=temperature
+                #temperature=temperature
             )
             for model in sync_list or []
         ]

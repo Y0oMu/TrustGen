@@ -24,6 +24,7 @@ MODEL_NAME_MAPPINGS = {
     "gpt-3.5-turbo":"gpt-3.5-turbo",
     "o1":"o1",
     "o1-mini":"o1-mini",
+    'o1-preview': 'o1-preview',
     'text-embedding-ada-002': 'text-embedding-ada-002',
     'glm-4': 'glm-4',
     'glm-4v': 'glm-4v',

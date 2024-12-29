@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 import sys
 current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(current_dir)
-from .utils import (
+from metadata_utils import (
     bing_search,
     get_openai_text_response,
     get_azure_openai_text_response,

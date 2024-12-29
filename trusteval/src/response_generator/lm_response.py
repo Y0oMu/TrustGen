@@ -39,7 +39,8 @@ class ResponseProcessor:
         request_type: str,
         async_list: Optional[List[str]] = None,
         sync_list: Optional[List[str]] = None,
-        save_path: Optional[str] = None
+        save_path: Optional[str] = None,
+        **kwargs
     ) -> None:
         """
         Initializes the ResponseProcessor.
@@ -50,23 +51,25 @@ class ResponseProcessor:
         :param save_path: Path to save the processed responses.
         """
         self.request_type = request_type
+        temperature = kwargs.get('temperature', 0.0)
         self.async_service_list = [
             ModelService(
                 request_type=request_type,
                 handler_type='api',
                 model_name=model,
                 config_path=os.path.join(PROJECT_ROOT, 'src/config/config.yaml'),
-                temperature=0.0
+                temperature=temperature
             )
             for model in async_list or []
         ]
+        
         self.sync_service_list = [
             ModelService(
                 request_type=request_type,
                 handler_type='local',
                 model_name=model,
                 config_path=os.path.join(PROJECT_ROOT, 'src/config/config.yaml'),
-                temperature=0.0
+                temperature=temperature
             )
             for model in sync_list or []
         ]
@@ -81,7 +84,8 @@ class ResponseProcessor:
         service: ModelService,
         model_name: str,
         prompt: str,
-        image_urls: Optional[List[str]]
+        image_urls: Optional[List[str]],
+        **kwargs
     ) -> Dict[str, Any]:
         """
         Processes an asynchronous service request.
@@ -94,9 +98,9 @@ class ResponseProcessor:
         """
         try:
             if self.request_type == 'llm':
-                response = await service.process_async(prompt)
+                response = await service.process_async(prompt,**kwargs)
             elif self.request_type == 'vlm':
-                response = await service.process_async(prompt, image_urls=image_urls)
+                response = await service.process_async(prompt, image_urls=image_urls,**kwargs)
             else:
                 logger.warning(f"Unknown request type: {self.request_type}")
                 response = None
@@ -140,7 +144,8 @@ class ResponseProcessor:
         prompt_key: str = 'enhanced_prompt',
         result_key: str = 'responses',
         base_path: str = '',
-        image_key: Optional[str] = None
+        image_key: Optional[str] = None,
+        **kwargs
     ) -> Dict[str, Any]:
         """
         Fetches a single response for an item from all applicable models.
@@ -167,7 +172,7 @@ class ResponseProcessor:
 
         # Prepare async tasks
         async_tasks = [
-            self.process_async_service(service, model, prompt, image_urls)
+            self.process_async_service(service, model, prompt, image_urls,**kwargs)
             for service, model in zip(self.async_service_list, self.async_model_list)
             if item.get(result_key, {}).get(model) is None
         ]
@@ -189,7 +194,8 @@ class ResponseProcessor:
                             services,
                             models,
                             [prompt] * len(models),
-                            [image_urls] * len(models)
+                            [image_urls] * len(models),
+                            **kwargs
                         )
                     )
                 )
@@ -218,7 +224,8 @@ class ResponseProcessor:
         result_key: str = 'responses',
         image_key: Optional[str] = None,
         max_concurrent_tasks: int = 5,
-        base_path: str = ''
+        base_path: str = '',
+        **kwargs
     ) -> None:
         """
         Processes all data items to fetch responses from models.
@@ -239,7 +246,8 @@ class ResponseProcessor:
                     prompt_key=prompt_key,
                     result_key=result_key,
                     base_path=base_path,
-                    image_key=image_key
+                    image_key=image_key,
+                    **kwargs
                 )
                 data[index] = updated_item
                 self._save_data(data)  # Pass the data explicitly here
@@ -329,7 +337,8 @@ class MultiProcessor:
         async_list: Optional[List[str]] = None,
         sync_list: Optional[List[str]] = None,
         max_concurrent_tasks: int = 5,
-        file_name_extension: str = ''
+        file_name_extension: str = '',
+        **kwargs
     ) -> None:
         """
         Initializes the MultiProcessor.
@@ -354,7 +363,7 @@ class MultiProcessor:
         self.max_concurrent_tasks = max_concurrent_tasks
         self.file_name_extension = file_name_extension
         self.save_path = self._construct_save_path()
-        self.processors = self._create_processors()
+        self.processors = self._create_processors(kwargs)  # Pass kwargs here
         self._data = []
 
     def _construct_save_path(self) -> str:
@@ -366,7 +375,7 @@ class MultiProcessor:
         base, ext = os.path.splitext(self.data_path)
         return f"{base}{self.file_name_extension}{ext}"
 
-    def _create_processors(self) -> List[ResponseProcessor]:
+    def _create_processors(self, kwargs) -> List[ResponseProcessor]:
         """
         Creates a list of ResponseProcessor instances based on request types.
 
@@ -378,7 +387,8 @@ class MultiProcessor:
                 request_type=request_type,
                 async_list=self.async_list,
                 sync_list=self.sync_list,
-                save_path=self.save_path
+                save_path=self.save_path,
+                **kwargs  # Ensure kwargs is passed here
             )
             processors.append(processor)
         return processors
@@ -394,7 +404,7 @@ class MultiProcessor:
             data = processor.load_existing_responses(data)
         return data
 
-    async def process_all(self, analyze_only: bool = False) -> None:
+    async def process_all(self, analyze_only: bool = False, **kwargs) -> None:
         """
         Processes all data items, optionally only analyzing invalid responses.
 
@@ -425,7 +435,8 @@ class MultiProcessor:
                         result_key=result_key,
                         image_key=image_key,
                         max_concurrent_tasks=self.max_concurrent_tasks,
-                        base_path=os.path.dirname(self.data_path)
+                        base_path=os.path.dirname(self.data_path),
+                        **kwargs  # Ensure kwargs is passed here
                     )
                 )
             await asyncio.gather(*tasks)
@@ -446,7 +457,8 @@ async def generate_responses(
     prompt_key: List[str]='enhanced_prompt',
     result_key: List[str]='responses',
     file_name_extension: str='_responses',
-    image_key: Optional[List[Optional[str]]] = None
+    image_key: Optional[List[Optional[str]]] = None,
+    **kwargs
 ) -> None:
     """
     Processes all data files in a specified directory.
@@ -490,9 +502,11 @@ async def generate_responses(
                 async_list=async_list,
                 sync_list=sync_list,
                 max_concurrent_tasks=20,
-                file_name_extension=file_name_extension
+                file_name_extension=file_name_extension,
+                **kwargs
+
             )
-            await processor.process_all(analyze_only=False)
+            await processor.process_all(analyze_only=False,)
         except Exception as e:
             logger.error(f"Failed to process file {data_file}: {e}", exc_info=True)
 

@@ -275,7 +275,8 @@ def run(folder_path):
     if not os.path.exists(eval_result_dir):
         os.makedirs(eval_result_dir)
 
-    with open(folder_path + "file_config.json", "r") as f:
+
+    with open(os.path.join(folder_path, "file_config.json"), "r") as f:
         file_config = json.load(f)
 
     for f in file_config:

@@ -373,6 +373,8 @@ class MultiProcessor:
         :return: Save path string.
         """
         base, ext = os.path.splitext(self.data_path)
+        if base.endswith(self.file_name_extension):
+            return f"{base}{ext}"
         return f"{base}{self.file_name_extension}{ext}"
 
     def _create_processors(self, kwargs) -> List[ResponseProcessor]:
@@ -488,9 +490,13 @@ async def generate_responses(
         
         if os.path.exists(os.path.join(data_folder, data_file.replace('.json', f'_enhanced.json'))):
             data_path = os.path.join(data_folder, data_file.replace('.json', f'_enhanced.json'))
+        elif os.path.exists(os.path.join(data_folder, data_file.replace('.json', f'_enhanced{file_name_extension}.json'))):
+            data_path = os.path.join(data_folder, data_file.replace('.json', f'_enhanced{file_name_extension}.json'))
+        elif os.path.exists(os.path.join(data_folder, data_file.replace('.json', f'{file_name_extension}.json'))):
+            data_path = os.path.join(data_folder, data_file.replace('.json', f'{file_name_extension}.json'))
         else:
             data_path = os.path.join(data_folder, data_file)
-        logger.info(f"Processing file: {data_file} -> {data_path}")
+        print(f"Processing file: {data_file} -> {data_path}")
 
         try:
             processor = MultiProcessor(
@@ -509,31 +515,3 @@ async def generate_responses(
             await processor.process_all(analyze_only=False,)
         except Exception as e:
             logger.error(f"Failed to process file {data_file}: {e}", exc_info=True)
-
-if __name__ == '__main__':
-
-    request_type = ['llm',]
-
-    folder_path='D:\Paper\TrustAGI-code\examples/truthfulness_llm/final'
-    # async_list = ['gpt-4o', 'gpt-4o-mini', 
-    #                       'glm-4v-plus','llama-3.2-90B-V',
-    #                       'claude-3.5-sonnet','qwen-2-vl-72B', 'gemini-1.5-pro',
-    #                        ]
-    # async_list=['gpt-4o', 'gpt-4o-mini',"gpt-3.5-turbo",
-    #               'claude-3.5-sonnet', 'claude-3-haiku',
-    #             'gemini-1.5-pro', 'gemini-1.5-flash', 'gemma-2-27B',
-    #               'llama-3.1-70B','llama-3.1-8B',
-    #               'glm-4-plus', 'qwen-2.5-72B', 
-    #               'mistral-8x7B' ,"mistral-8x22B", 
-    #               "yi-lightning", 'deepseek-chat']
-    async_list = ['llama-3.1-8B']
-    sync_list=[]
-
-    prompt_key = ['prompt',]
-    result_key = ['responses',]
-    image_key = ['image_urls']
-    file_name_extension = '_responses'
-
-    for request_type, prompt_key, result_key in zip(request_type, prompt_key, result_key):
-        asyncio.get_event_loop().run_until_complete(process_data_folder(folder_path, request_type, async_list, sync_list, prompt_key, result_key, file_name_extension, image_key=image_key))
-    print("All files processed.")

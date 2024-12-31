@@ -21,32 +21,13 @@ with open(os.path.join(project_root, "src/config/config.yaml")) as file:
 
 client = AsyncOpenAI(api_key=config["OPENAI"]["OPENAI_API_KEY"])
 
-TRUSTGEN_MODELS = [
-    # "gpt-4o",
-    "gpt-4o-mini",
-    # "gpt-3.5-turbo",
-    # "claude-3.5-sonnet",
-    # "claude-3-haiku",
-    # "gemini-1.5-pro",
-    # "gemini-1.5-flash",
-    # "gemma-2-27B",
-    # "llama-3.1-70B",
-    "llama-3.1-8B",
-    # "glm-4-plus",
-    # "qwen-2.5-72B",
-    # "mistral-8x7B",
-    # "mistral-8x22B",
-    # "yi-lightning",
-    # "deepseek-chat",
-]  # NOTE: Corresponds to order in paper; Subject to Change
 
-
-def calulate_judge(file_name):
+def calulate_judge(file_name, target_models):
     with open(file_name, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     final_result = []
-    for model in TRUSTGEN_MODELS:
+    for model in target_models:
         model_res = []
         num_err = 0
         for line in data:
@@ -76,12 +57,12 @@ def write_to_csv(result, file_name):
         dict_writer.writerows(result)
 
 
-def eval_trustllm_halu(file_name):
+def eval_trustllm_halu(file_name, target_models):
     with open(file_name, encoding="utf-8") as f:
         data = json.load(f)
 
     final_result = []
-    for model in TRUSTGEN_MODELS:
+    for model in target_models:
         num_correct, num_invalid = 0, 0
         for line in data:
             if line["source"] == "mc":
@@ -135,12 +116,12 @@ async def process_line(line, model):
         return 0
 
 
-async def eval_trustllm_syco(file_name):
+async def eval_trustllm_syco(file_name, target_models):
     with open(file_name, encoding="utf-8") as f:
         data = json.load(f)
 
     final_result = []
-    for model in TRUSTGEN_MODELS:
+    for model in target_models:
         sim_list = []
         num_err = 0
         tasks = []
@@ -160,7 +141,7 @@ import pandas as pd
 import os
 
 
-def merge_results(data_folder):
+def merge_results(data_folder, target_models):
     # All paths now use os.path.join with data_folder
     qa = pd.read_csv(
         os.path.join(data_folder, "Eval_Result", "qa_enhanced.csv")
@@ -204,7 +185,7 @@ def merge_results(data_folder):
     final_result = pd.DataFrame(
         list(
             zip(
-                TRUSTGEN_MODELS,
+                target_models,
                 qa,
                 qa_context,
                 fc,
@@ -268,7 +249,7 @@ def merge_results(data_folder):
     )
 
 
-def run(folder_path):
+def run(folder_path, target_models):
     os.chdir(folder_path)
 
     eval_result_dir = os.path.join(folder_path, "Eval_Result")
@@ -285,13 +266,13 @@ def run(folder_path):
             pass
         elif "trustllm_hallucination" in f:
             f = f.replace(".json", "_responses.json")
-            result = eval_trustllm_halu(os.path.join(folder_path, f))
+            result = eval_trustllm_halu(os.path.join(folder_path, f), target_models)
             name = os.path.join(eval_result_dir, f.split("_responses.json")[0] + ".csv")
             write_to_csv(result, name)
         elif "trustllm_sycophancy" in f:
             f = f.replace(".json", "_responses.json")
             result = asyncio.get_event_loop().run_until_complete(
-                eval_trustllm_syco(os.path.join(folder_path, f))
+                eval_trustllm_syco(os.path.join(folder_path, f), target_models)
             )
             name = os.path.join(eval_result_dir, f.split("_responses.json")[0] + ".csv")
             write_to_csv(result, name)
@@ -301,6 +282,6 @@ def run(folder_path):
             f = f.replace(".json", "_enhanced_responses_judge.json")
             if not os.path.exists(os.path.join(folder_path, f)):
                 f = f.replace("_enhanced_responses_judge.json", "_responses_judge.json")
-            result = calulate_judge(os.path.join(folder_path, f))
+            result = calulate_judge(os.path.join(folder_path, f), target_models)
             name = os.path.join(eval_result_dir, f.split("_responses_judge.json")[0] + ".csv")
             write_to_csv(result, name)

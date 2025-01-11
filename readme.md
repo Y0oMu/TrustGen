@@ -1,8 +1,8 @@
 
 
-<p align="center">
+<!-- <p align="center">
     <img src="images/logo.png" align="center" width="30%">
-</p>
+</p> -->
 <p align="center"><h1 align="center">TrustEval </h1></p>
 <p align="center">
 	<em>A modular and extensible toolkit for comprehensive trust evaluation of generative foundation models (GenFMs)</em>

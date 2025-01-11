@@ -171,18 +171,19 @@ class ResponseProcessor:
                 image_urls = [os.path.join(base_path, url) for url in image_list]
 
         # Prepare async tasks
-        async_tasks = [
-            self.process_async_service(service, model, prompt, image_urls,**kwargs)
-            for service, model in zip(self.async_service_list, self.async_model_list)
-            if item.get(result_key, {}).get(model) is None
-        ]
+        async_tasks = []
+        for service, model in zip(self.async_service_list, self.async_model_list):
+            if item.get(result_key, {}).get(model) is not None:
+                continue
+            async_tasks.append(self.process_async_service(service, model, prompt, image_urls, **kwargs))
 
         # Prepare sync tasks
-        sync_services_and_models = [
-            (service, model)
-            for service, model in zip(self.sync_service_list, self.sync_model_list)
-            if item.get(result_key, {}).get(model) is None
-        ]
+        sync_services_and_models = []
+        for service, model in zip(self.sync_service_list, self.sync_model_list):
+            if item.get(result_key, {}).get(model) is not None:
+                continue
+            sync_services_and_models.append((service, model))
+
         sync_tasks = []
         if sync_services_and_models:
             services, models = zip(*sync_services_and_models)
@@ -250,7 +251,6 @@ class ResponseProcessor:
                     **kwargs
                 )
                 data[index] = updated_item
-                self._save_data(data)  # Pass the data explicitly here
 
         async def main():
             tasks = [
@@ -259,6 +259,7 @@ class ResponseProcessor:
             ]
             for future in tqdm_asyncio.as_completed(tasks, desc="Processing items"):
                 await future
+            self._save_data(data)  # Save once all items are processed
 
         await main()
 
@@ -483,7 +484,7 @@ async def generate_responses(
         logger.error(f"Failed to load file_config.json: {e}")
         return
 
-    for data_file in tqdm_asyncio(files, desc="Processing files"):
+    for data_file in files:
         if not data_file.endswith('.json'):
             logger.warning(f"Skipping non-JSON file: {data_file}")
             continue

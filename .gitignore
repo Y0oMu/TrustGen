@@ -92,6 +92,8 @@ examples/privacy_t2i/
 examples/truthfulness_t2i/
 examples/advanced_ai_risk/
 examples/truthfulness_llm/
+examples/truthfulness_vlm/
 examples/safety_vlm/
 examples_copy
 build/
+docs/build/

@@ -11,7 +11,7 @@ sys.path.append(script_dir)
 def read_json(file_path):
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
-            return json.load(f)
+            return json.load(f)[:10]
     except (IOError, json.JSONDecodeError) as e:
         print(f"Error reading JSON file {file_path}: {e}")
         return None

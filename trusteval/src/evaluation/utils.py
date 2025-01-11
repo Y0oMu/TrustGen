@@ -232,3 +232,5 @@ def tifa_score(image_path=None, objects=[]):
                     score += 1
 
     return score / total if total > 0 else None
+
+

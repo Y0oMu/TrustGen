@@ -16,7 +16,13 @@ release = '0.1.1'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = [] 
+extensions = [
+    'sphinx.ext.autodoc',  # 自动生成文档
+    'sphinx.ext.napoleon',  # 支持 Google 和 NumPy 风格的文档字符串
+    'sphinx.ext.viewcode',  # 添加源代码链接
+    'sphinx.ext.coverage',  # 检查文档覆盖率
+    'sphinx.ext.intersphinx',  # 链接到其他项目的文档
+]
 
 templates_path = ['_templates']
 exclude_patterns = []

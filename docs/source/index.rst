@@ -23,7 +23,7 @@ If you find TrustEval useful, please consider starring our GitHub repository!
 
 .. toctree::
    :maxdepth: 1
-   :caption: Quick Start
+   :caption: Getting Started
 
    getting_started/configuration
    getting_started/quick_start

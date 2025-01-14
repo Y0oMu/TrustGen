@@ -18,6 +18,7 @@ BingWebSearchPipeline
 The ``BingWebSearchPipeline`` automates the process of web searching and result processing. It extracts keywords from user input, performs a Bing search, and processes the results into JSON format.
 
 :Parameters:
+
 - :param **instruction**: (:type:`str`) A string that specifies the user's instruction for what to find on the web pages.
 - :param **basic information**: (:type:`dict`) A dictionary that defines the specific information for the search.
 - :param **need_azure**: (:type:`bool`) A boolean that indicates whether to use the Azure API for generating responses.
@@ -38,6 +39,7 @@ BingImageSearchPipeline
 The ``BingImageSearchPipeline`` automates the process of extracting keywords from user input, performing a Bing image search, and processing the results into JSON format.
 
 :Parameters:
+
 - :param **instruction**: (:type:`str`) A string that specifies the user's instruction for what kind of images to find.
 - :param **basic_information**: (:type:`dict`) A dictionary that defines the specific information for the search (e.g., breed of dog, age, etc.).
 - :param **output_path**: (:type:`str`, optional) A string that specifies the name of the output file where the results will be saved. Defaults to "processed_image_results.json".

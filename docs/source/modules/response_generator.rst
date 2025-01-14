@@ -240,5 +240,3 @@ process_data
 - **base_dir** (:type:`str`, optional) Base directory for output
 - **process_type** (:type:`str`) Type of processing ('local' or 'api')
 - **aspect** (:type:`str`, optional) Evaluation aspect
-
----

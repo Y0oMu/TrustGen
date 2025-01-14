@@ -5,7 +5,8 @@ Contributions to this repository are welcome!
 
 If you have any questions or issues, please open an issue in the repository.
 
-### How to Submit a Pull Request (PR)
+How to Submit a Pull Request (PR)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Fork the repository and clone it to your local machine.
 2. Create a new branch for your changes: `git checkout -b your-branch-name`.

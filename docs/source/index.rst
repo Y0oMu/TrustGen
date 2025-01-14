@@ -33,6 +33,7 @@ If you find TrustEval useful, please consider starring our GitHub repository!
    :caption: Modules
 
    modules/model_service
+   modules/metadata_curator
    modules/contextual_variator
    modules/response_generator
    modules/judgement_processor

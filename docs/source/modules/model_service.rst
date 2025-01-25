@@ -95,22 +95,22 @@ The `ModelService` supports a wide range of models for text, vision, and text-to
      - `api`
    * - **LLM**
      - `llama-3-8B`
-     - `api`
+     - `api/local`
    * - **LLM**
      - `llama-3.1-70B`
-     - `api`
+     - `api/local`
    * - **LLM**
      - `llama-3.1-8B`
-     - `api`
+     - `api/local`
    * - **LLM**
      - `qwen-2.5-72B`
-     - `api`
+     - `api/local`
    * - **LLM**
      - `mistral-7B`
-     - `api`
+     - `api/local`
    * - **LLM**
      - `mistral-8x7B`
-     - `api`
+     - `api/local`
    * - **LLM**
      - `claude-3.5-sonnet`
      - `api`
@@ -131,10 +131,10 @@ The `ModelService` supports a wide range of models for text, vision, and text-to
      - `api`
    * - **LLM**
      - `gemma-2-27B`
-     - `api`
+     - `api/local`
    * - **LLM**
      - `deepseek-chat`
-     - `api`
+     - `api/local`
    * - **LLM**
      - `yi-lightning`
      - `api`
@@ -146,19 +146,19 @@ The `ModelService` supports a wide range of models for text, vision, and text-to
      - `api`
    * - **VLM**
      - `llama-3.2-90B-V`
-     - `api`
+     - `api/local`
    * - **VLM**
      - `llama-3.2-11B-V`
-     - `api`
+     - `api/local`
    * - **VLM**
      - `qwen-vl-max-0809`
      - `api`
    * - **VLM**
      - `qwen-2-vl-72B`
-     - `api`
+     - `api/local`
    * - **VLM**
      - `internLM-72B`
-     - `api`
+     - `api/local`
    * - **VLM**
      - `claude-3-haiku`
      - `api`

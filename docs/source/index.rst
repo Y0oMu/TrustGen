@@ -63,18 +63,3 @@ If you find `TrustEval` useful, please consider starring our GitHub repository!
 .. For more details, please refer to the **Quick Start** section or explore the **Modules** for specific functionality.
 
 
-Citing TrustEval
-=================
-
-If you use TrustEval in your work, please cite our project:
-
-.. code-block:: bibtex
-
-   @article{trusteval2025,
-      title={TrustEval: A Toolkit for Trustworthiness Evaluation of Generative Models},
-      author = {Yanbo Wang and Jiayi Ye and Siyuan Wu and Chujie Gao and Yue Huang and Xiuying Chen and Yue Zhao and Xiangliang Zhang},
-      journal={},
-      year={2025},
-      url={https://github.com/TrustGen/TrustEval-toolkit}
-   }
-

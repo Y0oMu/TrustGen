@@ -19,8 +19,8 @@ If you find `TrustEval` useful, please consider starring our GitHub repository!
 .. image:: https://img.shields.io/github/stars/nauyisu022/TrustEval-toolkit?style=flat-square&logo=GitHub&logoColor=white
    :target: https://github.com/nauyisu022/TrustEval-toolkit
 .. image:: https://img.shields.io/badge/License-MIT-green.svg?style=flat-square&logo=Open-Source-Initiative&logoColor=white
-.. image:: https://img.shields.io/badge/Docs-Website-00ADD8?style=flat-square&logo=ReadMe&logoColor=white
 .. image:: https://img.shields.io/badge/Video_Tutorial-YouTube-red?style=flat-square&logo=YouTube&logoColor=white
+   :target: https://www.youtube.com/watch?v=hpgo3EMOArw
 
 .. toctree::
    :maxdepth: 1

@@ -231,11 +231,11 @@ Displays the evaluation scores for each model, with a breakdown of average score
 
 ### Model Performance Summary
 Summarizes the model's performance in the evaluated dimension using LLM-generated summaries, highlighting comparisons with other models.
-![Model Performance Summary](images/model_performance_summary.png)
+![Model Performance Summary](images/model_performance.png)
 
 ### Error Case Study
 Presents error cases for the evaluated dimension, including input/output examples and detailed judgments.
-![Error Case Study](images/error_case_study.png)
+![Error Case Study](images/case_study.png)
 
 ### Leaderboard
 Shows the evaluation results for all models, along with visualized comparisons to previous versions (e.g., our v1.0 results).

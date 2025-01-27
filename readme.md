@@ -227,7 +227,7 @@ A detailed trustworthiness evaluation report is generated for each dimension. Th
 
 ### Test Model Results
 Displays the evaluation scores for each model, with a breakdown of average scores across evaluation dimensions.
-![Test Model Results](images/test_model_results.png)
+![Test Model Results](images/result.png)
 
 ### Model Performance Summary
 Summarizes the model's performance in the evaluated dimension using LLM-generated summaries, highlighting comparisons with other models.

@@ -16,7 +16,7 @@
 </p>
 
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=296BA7&center=true&multiline=true&width=435&lines=A+Dynamic+Evaluation+Toolkit++on+Trustworthiness+of+GenFMs)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=296BA7&center=true&vCenter=true&width=1000&height=152&lines=TrustEval%3A+A+Dynamic+Evaluation+Toolkit++on+Trustworthiness+of+GenFMs)](https://git.io/typing-svg)
 
 
 ## Video Tutorials

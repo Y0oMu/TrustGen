@@ -15,6 +15,8 @@
     <a href="https://www.youtube.com/watch?v=hpgo3EMOArw"><img src="https://img.shields.io/badge/Video_Tutorial-YouTube-red?style=flat-square&logo=YouTube&logoColor=white" alt="YouTube Tutorial"></a>
 </p>
 
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=296BA7&multiline=true&width=435&lines=A+Dynamic+Evaluation+Toolkit;+on+Trustworthiness+of+GenFMs)](https://git.io/typing-svg)
+
 ## Video Tutorials
 
 Watch step-by-step tutorials on our YouTube channel:
@@ -260,3 +262,6 @@ We welcome contributions from the community! To contribute:
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=110&section=footer" width="100%">

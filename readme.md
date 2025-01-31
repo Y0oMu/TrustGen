@@ -15,7 +15,9 @@
     <a href="https://www.youtube.com/watch?v=hpgo3EMOArw"><img src="https://img.shields.io/badge/Video_Tutorial-YouTube-red?style=flat-square&logo=YouTube&logoColor=white" alt="YouTube Tutorial"></a>
 </p>
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=296BA7&multiline=true&width=435&lines=A+Dynamic+Evaluation+Toolkit;+on+Trustworthiness+of+GenFMs)](https://git.io/typing-svg)
+<p align="center">
+	[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=296BA7&multiline=true&width=435&lines=A+Dynamic+Evaluation+Toolkit++on+Trustworthiness+of+GenFMs)](https://git.io/typing-svg)
+</p>
 
 ## Video Tutorials
 

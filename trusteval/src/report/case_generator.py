@@ -35,6 +35,9 @@ return_dict = {
     'hunyuan-dit'.lower(): 'Hunyuan-DiT',
     'kolors'.lower(): 'Kolors',
     'cogview-3-plus'.lower(): 'CogView-3-Plus',
+    'qwq-32B'.lower(): 'QWQ-32B',
+    'o1-mini'.lower(): 'o1-mini',
+    'o1-preview'.lower(): 'o1-preview',
 }
 
 

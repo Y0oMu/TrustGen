@@ -65,7 +65,7 @@ https://github.com/user-attachments/assets/489501b9-69ae-467f-9be3-e4a02a7f9019
 
 **TrustEval-toolkit** is a dynamic and comprehensive framework for evaluating the trustworthiness of Generative Foundation Models (GenFMs) across dimensions such as safety, fairness, robustness, privacy, and more.
 
-![Overview](images/overview.jpg)
+![Overview](images/overview.png)
 
 
 ## 👾 Features
@@ -182,12 +182,12 @@ await generate_responses(
 1. **Judge the Responses**
     ```python
     from trusteval import judge_responses
-
+    
     target_models = ['your_target_model1', 'your_target_model2']
     judge_type = 'llm'  # Options: 'llm', 'vlm', 't2i'
     judge_key = 'your_judge_key'
     async_judge_model = ['your_async_model']
-
+    
     await judge_responses(
         data_folder=base_dir,
         async_judge_model=async_judge_model,
@@ -199,7 +199,7 @@ await generate_responses(
 2. **Generate Evaluation Metrics**
     ```python
     from trusteval import lm_metric
-
+    
     lm_metric(
         base_dir=base_dir,
         aspect='ai_risk',
@@ -210,7 +210,7 @@ await generate_responses(
 3. **Generate Final Report**
     ```python
     from trusteval import report_generator
-
+    
     report_generator(
         base_dir=base_dir,
         aspect='ai_risk',

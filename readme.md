@@ -1,10 +1,10 @@
 
 
 
-<p align="center"><h1 align="center">TrustEval </h1></p>
+<!-- <p align="center"><h1 align="center">TrustEval </h1></p>
 <p align="center">
 	<em>A modular and extensible toolkit for comprehensive trust evaluation of generative foundation models (GenFMs)</em>
-</p>
+</p> -->
 <p align="center">
     <img src="images/logo-banner.png" align="center" width="90%">
 </p>

@@ -6,7 +6,7 @@
 	<em>A modular and extensible toolkit for comprehensive trust evaluation of generative foundation models (GenFMs)</em>
 </p> -->
 <p align="center">
-    <img src="images/logo-banner.png" align="center" width="100%">
+    <img src="images/logo-banner1.png" align="center" width="100%">
 </p>
 
 

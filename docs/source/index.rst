@@ -14,7 +14,7 @@ TrustEval Documentation
 
 If you find `TrustEval` useful, please consider starring our GitHub repository!  
 
-:Github URL: https://github.com/nauyisu022/TrustEval-toolkit
+:Github URL: https://github.com/TrustGen/TrustEval-toolkit
 
 .. image:: https://img.shields.io/github/stars/nauyisu022/TrustEval-toolkit?style=flat-square&logo=GitHub&logoColor=white
    :target: https://github.com/nauyisu022/TrustEval-toolkit

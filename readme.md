@@ -15,10 +15,10 @@
     <img src="https://img.shields.io/badge/License-MIT-green.svg?style=flat-square&logo=Open-Source-Initiative&logoColor=white" alt="License: MIT">
     <a href="https://trusteval-docs.readthedocs.io/en/latest/"><img src="https://img.shields.io/badge/Docs-Website-00ADD8?style=flat-square&logo=ReadMe&logoColor=white" alt="Documentation"></a>
     <a href="https://www.youtube.com/watch?v=hpgo3EMOArw"><img src="https://img.shields.io/badge/Video_Tutorial-YouTube-red?style=flat-square&logo=YouTube&logoColor=white" alt="YouTube Tutorial"></a>
-    <img src="https://img.shields.io/github/actions/workflow/status/nauyisu022/TrustEval-toolkit/ci.yml?branch=master&style=flat-square&logo=github-actions&logoColor=white" alt="GitHub Actions">
+    <!-- <img src="https://img.shields.io/github/actions/workflow/status/nauyisu022/TrustEval-toolkit/ci.yml?branch=master&style=flat-square&logo=github-actions&logoColor=white" alt="GitHub Actions">
     <img src="https://img.shields.io/codecov/c/github/nauyisu022/TrustEval-toolkit?style=flat-square&logo=codecov&logoColor=white" alt="Codecov">
     <img src="https://img.shields.io/pypi/dm/trusteval-toolkit?style=flat-square&logo=pypi&logoColor=white" alt="PyPI Downloads">
-    <img src="https://img.shields.io/github/v/release/nauyisu022/TrustEval-toolkit?style=flat-square&logo=github&logoColor=white" alt="Latest Version">
+    <img src="https://img.shields.io/github/v/release/nauyisu022/TrustEval-toolkit?style=flat-square&logo=github&logoColor=white" alt="Latest Version"> -->
     <img src="https://img.shields.io/github/contributors/nauyisu022/TrustEval-toolkit?style=flat-square&logo=github&logoColor=white" alt="Contributors">
     <img src="https://img.shields.io/github/issues/nauyisu022/TrustEval-toolkit?style=flat-square&logo=github&logoColor=white" alt="GitHub Issues">
 </p>

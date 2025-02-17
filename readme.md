@@ -19,10 +19,7 @@
     <img src="https://img.shields.io/github/issues/nauyisu022/TrustEval-toolkit?style=flat-square&logo=github&logoColor=white" alt="GitHub Issues">
 </p>
 
-    <!-- <img src="https://img.shields.io/github/actions/workflow/status/nauyisu022/TrustEval-toolkit/ci.yml?branch=master&style=flat-square&logo=github-actions&logoColor=white" alt="GitHub Actions">
-    <img src="https://img.shields.io/codecov/c/github/nauyisu022/TrustEval-toolkit?style=flat-square&logo=codecov&logoColor=white" alt="Codecov">
-    <img src="https://img.shields.io/pypi/dm/trusteval-toolkit?style=flat-square&logo=pypi&logoColor=white" alt="PyPI Downloads">
-    <img src="https://img.shields.io/github/v/release/nauyisu022/TrustEval-toolkit?style=flat-square&logo=github&logoColor=white" alt="Latest Version"> -->
+
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=296BA7&center=true&vCenter=true&width=1000&height=152&lines=TrustEval%3A+A+Dynamic+Evaluation+Toolkit++on+Trustworthiness+of+GenFMs)](https://git.io/typing-svg)
 

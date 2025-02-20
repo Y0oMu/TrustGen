@@ -29,10 +29,6 @@ from src.evaluation.metrics_utils import (
     analyze_model_performance
 )
 
-# Set proxy environment variables
-os.environ['http_proxy'] = "http://127.0.0.1:7890"
-os.environ['https_proxy'] = "http://127.0.0.1:7890"
-
 
 class JudgeProcessor:
     """

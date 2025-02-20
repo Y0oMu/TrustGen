@@ -10,8 +10,7 @@ from PIL import Image
 from transformers import CLIPProcessor, CLIPModel
 from .utils import tifa_score
 
-os.environ['http_proxy'] = "http://127.0.0.1:7890"
-os.environ['https_proxy'] = "http://127.0.0.1:7890"
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, '..', '..'))
 sys.path.append(project_root)

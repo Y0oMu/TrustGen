@@ -15,6 +15,7 @@
     <img src="https://img.shields.io/badge/License-MIT-green.svg?style=flat-square&logo=Open-Source-Initiative&logoColor=white" alt="License: MIT">
     <a href="https://trusteval-docs.readthedocs.io/en/latest/"><img src="https://img.shields.io/badge/Docs-Website-00ADD8?style=flat-square&logo=ReadMe&logoColor=white" alt="Documentation"></a>
     <a href="https://www.youtube.com/watch?v=hpgo3EMOArw"><img src="https://img.shields.io/badge/Video_Tutorial-YouTube-red?style=flat-square&logo=YouTube&logoColor=white" alt="YouTube Tutorial"></a>
+    <a href="https://arxiv.org/abs/2502.14296"><img src="https://img.shields.io/badge/Paper-ArXiv-B31B1B?style=flat-square&logo=arXiv&logoColor=white" alt="Paper"></a>
     <img src="https://img.shields.io/github/contributors/nauyisu022/TrustEval-toolkit?style=flat-square&logo=github&logoColor=white" alt="Contributors">
     <img src="https://img.shields.io/github/issues/nauyisu022/TrustEval-toolkit?style=flat-square&logo=github&logoColor=white" alt="GitHub Issues">
 </p>
@@ -61,6 +62,7 @@ https://github.com/user-attachments/assets/489501b9-69ae-467f-9be3-e4a02a7f9019
   - [Error Case Study](#error-case-study)
   - [Leaderboard](#leaderboard)
 - [Contributing](#contributing)
+- [Citation](#citation)
 - [License](#license)
 
 
@@ -262,9 +264,11 @@ We welcome contributions from the community! To contribute:
 4. Push to your branch (`git push origin feature-name`).
 5. Open a pull request.
 
+## Citation
+```bibtex
 
 
-
+```
 
 ## License
 

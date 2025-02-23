@@ -1,1 +1,1 @@
-from .generation import main as dynamic_dataset_generator
+from .generation import main as pipeline

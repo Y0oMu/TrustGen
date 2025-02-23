@@ -14,7 +14,8 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, '..', '..', '..'))
 sys.path.append(project_root)
 from src.saver import Saver
-from utils import APIService
+from .utils import APIService
+import concurrent.futures
 
 
         
@@ -273,7 +274,6 @@ class JailbreakMethodHandler:
         res = self.api_service.get_response(prompt)
         return replace_and_check(res, [('[query]', query)])
     
-import concurrent.futures
 
 class Test_Case_Builder:
     def __init__(self,base_path,save_path):

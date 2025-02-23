@@ -12,7 +12,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from tqdm.asyncio import tqdm_asyncio
 
-from src.contextual_variator.clean_json import clean_json
+from src.clean_json import clean_json
 from src.evaluation.utils import toxicity_score
 from src.generation import ModelService
 

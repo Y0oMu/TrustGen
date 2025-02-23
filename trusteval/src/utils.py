@@ -104,5 +104,3 @@ def compress_images_in_folder(folder_path, output_folder, quality=85, max_size_k
                 future.result()
             except Exception as exc:
                 print(f"An image compression task generated an exception: {exc}")
-
-compress_image('/Users/admin/Documents/GitHub/TrustGen.github.io/assets/img/background/37.jpg', '/Users/admin/Documents/GitHub/TrustGen.github.io/assets/img/background/37.jpg', quality=85, max_size_kb=100)

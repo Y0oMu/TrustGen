@@ -2,7 +2,7 @@ from tenacity import retry, wait_random_exponential, stop_after_attempt
 import requests
 import os,sys,yaml
 from tqdm import tqdm
-import concurrent.futures
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import os
 from PIL import Image
 

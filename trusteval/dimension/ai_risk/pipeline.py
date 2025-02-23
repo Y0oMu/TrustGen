@@ -9,7 +9,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, '..', '..'))
 sys.path.append(project_root)
 from src.generation import ModelService, apply_function_concurrently
-from src.contextual_variator.clean_json import clean_json
+from src.clean_json import clean_json
 
 
 async def main_async(base_dir):

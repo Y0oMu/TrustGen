@@ -15,7 +15,7 @@ from .prompt_template import (
     generate_transformation_prompt
 )
 from generation.model_service import ModelService
-from .clean_json import clean_json
+from clean_json import clean_json
 
 @dataclass
 class Format:

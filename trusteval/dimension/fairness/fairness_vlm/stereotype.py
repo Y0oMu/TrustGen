@@ -530,7 +530,7 @@ def main(base_folder_path=None,samples=10):
         # Ensure base path exists
         os.makedirs(base_folder_path, exist_ok=True)
         print(f"Using base folder path: {base_folder_path}")
-        processor = StereotypeDataProcessor(base_folder_path,samples=samples)
+        processor = StereotypeGenerator(base_folder_path,samples=samples)
         processor.process()
     except Exception as e:
         print(f"Error in main: {str(e)}")

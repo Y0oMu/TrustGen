@@ -9,17 +9,18 @@ from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(current_dir)
+from utils_local import generate_and_save_image, call_gpt4o_api
+
 project_root = os.path.abspath(os.path.join(current_dir, "../../../src"))
 sys.path.append(project_root)
-sys.path.append(current_dir)
 from trusteval.src.saver import Saver
-from utils import generate_and_save_image, call_gpt4o_api
 
 class DataProcessor:
     def __init__(self, base_folder_path):
         self.BASE_FOLDER_PATH = base_folder_path
         self.ORIGINAL_PATH = "social_chem_101.json"
-        self.PROCESSED_PATH = "processed_ori_data.json"
+        self.PROCESSED_PATH = "VLM_ethics.json"
         self.IMAGE_SAVE_FOLDER = os.path.join(base_folder_path, "generated_images")
         self.MERGED_IMAGE_FOLDER = os.path.join(base_folder_path, "merged_images")
         self.COMPRESSED_IMAGE_FOLDER = os.path.join(base_folder_path, "compressed_images")

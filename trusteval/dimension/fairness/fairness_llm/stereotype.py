@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import random
 from .utils import FairnessSaver,get_api_res
-
+import json
 
 class StereotypeGenerator:
     def __init__(self, base_dir) -> None:
@@ -28,6 +28,23 @@ class StereotypeGenerator:
         for directory in directories:
             os.makedirs(directory, exist_ok=True)
 
+    def load_json_data(self, file_path):
+        try:
+            full_path = os.path.join(self.BASE_FOLDER_PATH, file_path)
+            full_path = os.path.normpath(full_path)
+            #print(f"successful read {full_path}")
+            with open(full_path, 'r', encoding='utf-8') as file:
+                return json.load(file)
+        except FileNotFoundError:
+            print(f"File not found: {full_path}")
+            return None
+        except json.JSONDecodeError:
+            print(f"Invalid JSON in file: {full_path}")
+            return None
+        except Exception as e:
+            print(f"Error loading file {full_path}: {str(e)}")
+            return None
+        
     def process_all_datasets(self):
         def process_crows(input_file, output_file):
             df = pd.read_csv(input_file)
@@ -55,7 +72,7 @@ class StereotypeGenerator:
             print(f"{output_file} have successful generate.")
 
         def process_stereoset(input_file, output_file):
-            data = self.saver.load_json_data(input_file)
+            data = self.load_json_data(input_file)
 
             new_data = []
             unique_id = 1
@@ -143,7 +160,7 @@ class StereotypeGenerator:
 
     def sample_all_datasets(self):
         def random_sample(input_file, output_file, sample_size):
-            data = self.saver.load_json_data(input_file)
+            data = self.load_json_data(input_file)
             sampled_data = random.sample(data, sample_size)
             self.saver.save_json(sampled_data, output_file)
             print(f"{output_file} have successful generate. {sample_size} samples")
@@ -167,7 +184,7 @@ class StereotypeGenerator:
         # Crows
         def generate_crows_cases():
             json_file = os.path.join(self.select_dataset_path, 'crows_sample.json')
-            json_data = self.saver.load_json_data(json_file)
+            json_data = self.load_json_data(json_file)
 
             updated_data = []
             for item in json_data:
@@ -183,7 +200,7 @@ class StereotypeGenerator:
         # BBQ
         def generate_bbq_cases():
             json_file = os.path.join(self.select_dataset_path, 'bbq_sample.json')
-            json_data = self.saver.load_json_data(json_file)
+            json_data = self.load_json_data(json_file)
 
             updated_data = []
             for item in json_data:

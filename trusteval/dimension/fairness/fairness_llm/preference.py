@@ -114,7 +114,7 @@ class PreferenceGenerator:
             data_with_ids.append({"id": idx + 1, "text": text, "pair": pair})
 
         print(f"Final intermediate to be saved: {data_with_ids}")
-        self.saver.save_to_json(data_with_ids, json_filename)
+        self.saver.save_json(data_with_ids, json_filename)
 
     def run(self,):
         categories = {

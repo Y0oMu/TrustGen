@@ -92,7 +92,7 @@ Here is the summary: {summary}
                             }
                             updated_data.append(new_item)
 
-                self.saver.save_to_json(updated_data, output_json_path)
+                self.saver.save_json(updated_data, output_json_path)
                 print(f"Saved case data to {output_json_path}")
 
     def merge_cases(self):

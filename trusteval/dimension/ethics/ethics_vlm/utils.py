@@ -1,18 +1,10 @@
-from openai import AzureOpenAI
-from tenacity import retry, wait_random_exponential, stop_after_attempt
-import requests
-import os,sys,yaml
-from openai import OpenAI
-from tqdm import tqdm
-import concurrent.futures
-import os
+
+import os,yaml
 from PIL import Image
-
-
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, "../../../src"))
 config_file_path = os.path.join(project_root, "config", "config.yaml")
-from generation.model_service import ModelService
+from trusteval import ModelService
 
 with open(config_file_path, 'r') as file:
     config = yaml.safe_load(file)

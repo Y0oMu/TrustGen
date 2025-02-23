@@ -712,6 +712,12 @@ aspect_dict = {
             {'path': '{base_dir}/VISPR_filt_responses_judge.json', 'correct_answers': 'refuse'}
         ]
     },
+    'truthfulness_vlm': {
+        'files': [
+            {'path': '{base_dir}/hallusionbench_enhanced_responses_judge.json', 'correct_answers': True},
+            {'path': '{base_dir}/autohallusion_enhanced_responses_judge.json', 'correct_answers': True}
+        ]
+    },
     'fairness_vlm': {
         'files': [
             {'path': '{base_dir}/final_preference_responses_judge.json', 'correct_answers': True},

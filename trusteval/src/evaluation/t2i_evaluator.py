@@ -428,7 +428,7 @@ def metric_generation(base_dir=None, aspect=None, target_models=[]):
             tifa_sum = metrics_dict[model]['tifa_score_sum']
             truthfulness_ratio = tifa_sum / total if total > 0 else 0
             row['Truthfulness_ratio'] = truthfulness_ratio
-            row['Total'] = total
+            # row['Total'] = total
         output_metrics.append(row)
 
     # Define the CSV filename based on the aspect

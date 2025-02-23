@@ -81,39 +81,104 @@ class AnnotationApp:
         st.subheader("Item Data:")
         st.write({key: item.get(key, None) for key in selected_keys})
 
-        if show_image and 'image_urls' in item:
-            image_urls = item['image_urls']
-            if image_urls:
-                cols = st.columns(len(image_urls))
-                for i, image_url in enumerate(image_urls):
-                    image_path = os.path.join('data', st.session_state.dataset_name, image_url)
+        def display_images_in_grid(item, image_keys=None, image_paths=None, columns_per_row=3):
+            """
+            Display images in a 3-column grid layout.
+            
+            Args:
+                item: The current item from the dataset containing image paths (not used for image_paths list).
+                image_keys: List of keys containing the image paths in `item` (for when keys are provided).
+                image_paths: List of image paths to display (for when direct paths are provided).
+                columns_per_row: Number of columns to display per row (default is 3).
+            """
+            if image_keys:
+                # Collect the image paths from the item using image_keys
+                image_paths = []
+                for image_key in image_keys:
+                    if image_key in item:
+                        image_path = item[image_key]
+                        image_paths.append((image_key, image_path))  # Store both key and path
+            elif image_paths is not None:
+                # When image_paths is provided directly, no need to collect from item
+                image_paths = [(str(idx+1), path) for idx, path in enumerate(image_paths)]  # Add numbered captions (1, 2, 3...)
+            else:
+                st.warning("No image data provided!")
+                return
+
+            # Determine how many rows of images are needed
+            num_images = len(image_paths)
+            num_rows = (num_images + columns_per_row - 1) // columns_per_row  # Ceiling division to calculate rows
+            
+            # Display images in the specified column grid layout
+            for row_idx in range(num_rows):
+                # Create a row with specified columns
+                cols = st.columns(columns_per_row)
+                
+                # Determine which images belong in this row
+                start_idx = row_idx * columns_per_row
+                end_idx = min(start_idx + columns_per_row, num_images)
+                
+                # Display images in the columns for this row
+                for idx in range(start_idx, end_idx):
+                    image_caption, image_path = image_paths[idx]
                     if os.path.exists(image_path):
-                        with cols[i]:
-                            st.markdown(
-                                f'<img src="data:image/jpeg;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" '
-                                f'style="width:100%;" alt="{image_url}">',
-                                unsafe_allow_html=True
-                            )
+                        with cols[idx - start_idx]:  # Use the appropriate column in the row
+                            st.image(image_path, caption=image_caption, use_container_width=True)
                     else:
-                        st.warning(f"Image not found: {image_path}")
+                        with cols[idx - start_idx]:
+                            st.warning(f"Image not found: {image_path}")
 
-        columns = st.columns(len(self.config))
-        for idx, (list_name, options) in enumerate(self.config.items()):
-            with columns[idx]:
-                def update_choice(list_name=list_name):
-                    st.session_state[f"{list_name}_{current_index}"] = st.session_state[f"{list_name}_radio_{current_index}"]
-                    data[current_index][list_name] = st.session_state[f"{list_name}_radio_{current_index}"]
-                    self.save_annotations(data, st.session_state.annotation_filepath)
 
-                st.markdown(f"### {list_name}")
-                st.radio(
-                    list_name,
-                    options,
-                    index=None,
-                    key=f"{list_name}_radio_{current_index}",
-                    on_change=update_choice,
-                    label_visibility="collapsed",
-                )
+        def display_options_in_grid(data, current_index, columns_per_row=3):
+            """
+            Display options in a 3-column grid layout based on the configuration.
+            
+            Args:
+                self: The instance of the class containing the configuration.
+                data: The data being annotated.
+                current_index: The index of the current item being annotated.
+                columns_per_row: The number of columns to display per row (default is 3).
+            """
+            total_columns = len(self.config)
+
+            # Calculate the number of rows needed
+            num_rows = (total_columns + columns_per_row - 1) // columns_per_row  # Ceiling division
+
+            # Create a list of columns with the specified number of columns per row
+            for row_idx in range(num_rows):
+                # Create columns for this row, adjusting for the number of remaining columns
+                cols = st.columns(columns_per_row)
+                
+                # Determine the start and end indices for the current row
+                start_idx = row_idx * columns_per_row
+                end_idx = min(start_idx + columns_per_row, total_columns)
+                
+                for idx in range(start_idx, end_idx):
+                    list_name, options = list(self.config.items())[idx]
+                    with cols[idx - start_idx]:  # Use the column for the current element
+                        def update_choice(list_name=list_name):
+                            st.session_state[f"{list_name}_{current_index}"] = st.session_state[f"{list_name}_radio_{current_index}"]
+                            data[current_index][list_name] = st.session_state[f"{list_name}_radio_{current_index}"]
+                            self.save_annotations(data, st.session_state.annotation_filepath)
+
+                        # Title and radio button inside the current column
+                        st.markdown(f"#### {list_name}")
+                        st.radio(
+                            list_name,
+                            options,
+                            index=None,
+                            key=f"{list_name}_radio_{current_index}",
+                            on_change=update_choice,
+                            label_visibility="collapsed",
+                        )                 
+        image_urls = item['image_urls']
+                                                
+        if show_image:
+
+            display_images_in_grid(item,image_urls = item['image_urls'])
+            display_options_in_grid(data, current_index)
+            
+            
 
         feedback_col, status_col = st.columns(2)
         with feedback_col:

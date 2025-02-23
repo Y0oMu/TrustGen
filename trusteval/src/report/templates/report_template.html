@@ -67,11 +67,24 @@
 
     <div class="container my-5">
         <!-- Title -->
-        <header class="text-center mb-5">
-            <h1 class="display-4">Trustworthiness Evaluation Report</h1> <!-- Updated main title -->
-            <p class="lead">Comprehensive Analysis of Model's {{ aspect }}</p> <!-- Updated subtitle -->
-        </header>
-
+        <div class="d-flex align-items-center gap-4 mb-5">
+            <!-- LOGO (10%宽度) -->
+            <div class="logo-wrapper align-self-start" style="width: 10%;">
+                <img src="https://github.com/TrustGen/TrustEval-toolkit/raw/main/images/head.png" alt="Report Logo" class="img-fluid">
+            </div>
+            
+            <!-- 标题框 (90%宽度) -->
+            <header class="title-box" style="
+                width: 90%;
+                background: var(--primary-gradient);
+                padding: 2.5rem 1rem;
+                border-radius: 30px;
+                box-shadow: var(--card-shadow);
+            ">
+                <h1 class="display-5 fw-bold mb-2">Trustworthiness Evaluation Report</h1>
+                <p class="lead mb-0">Comprehensive Analysis of Model's {{ aspect }}</p>
+            </header>
+        </div>
         <!-- Test Models Results -->
         <section id="test-model-results" class="mb-5">
             <div class="card shadow-sm">

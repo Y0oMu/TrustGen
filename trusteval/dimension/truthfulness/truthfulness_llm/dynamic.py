@@ -18,7 +18,7 @@ service = ModelService(
     request_type='llm',
     handler_type='api',
     model_name='gpt-4o',
-    config_path='src/config/config.yaml',
+    config_path=os.path.join(project_root, 'src', 'config', 'config.yaml'),
     temperature=0.6
 )
 

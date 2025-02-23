@@ -9,7 +9,6 @@ import base64
 from urllib.parse import quote
 from tenacity import retry, stop_after_attempt, wait_fixed
 
-
 # Adjust the sys.path before importing local modules
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, '..', '..', '..'))
@@ -333,8 +332,8 @@ class Test_Case_Builder:
         return sampled_entries
 
 if __name__ == '__main__':
-    # generator = HarmfulQueryGenerator(base_path='section/safety')
-    # generator.harmful_query_generation('metadata/harmful_queries_1.json', 'metadata/generated_raw_data/safety', max_workers=10)
+    generator = HarmfulQueryGenerator(base_path='section/safety')
+    generator.harmful_query_generation('metadata/harmful_queries_1.json', 'metadata/generated_raw_data/safety', max_workers=10)
 
     generator = Test_Case_Builder(base_path='section/safety', save_path='llm_safety/all_jailbreak_prompts.json')
     generator.jailbreak_add_attack(jailbreak_method='ALL', number_for_each_topic=1, save_to_file=True)

@@ -1,5 +1,6 @@
 openai_sdk_llms:
   Qwen/Qwen2.5-72B-Instruct: DEEPINFRA
+  Qwen/QwQ-32B-Preview: DEEPINFRA
   deepseek-chat: DEEPSEEK
   glm-4: ZHIPU
   glm-4-plus: ZHIPU

@@ -12,3 +12,5 @@ def main(base_dir=None, mode='dataset_pool'):
     elif mode == 'dynamic':
         print("Running dynamic...")
         run_dynamic(base_dir=base_dir)
+        
+        run_honesty()

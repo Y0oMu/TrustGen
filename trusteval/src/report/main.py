@@ -125,6 +125,27 @@ def load_model_info():
             'creator': 'Qwen',
             'version': 'instruct'
         },
+        'qwq-32b': {
+            'model_name': 'QWQ-32B',
+            'model_size': '32B',
+            'open_weight': True,
+            'creator': 'Qwen',
+            'version': 'instruct'
+        },
+        'o1-mini':{
+            'model_name': 'o1-mini',
+            'model_size': 'N/A',
+            'open_weight': False,
+            'creator': 'OpenAI',
+            'version': '2024-09-12'
+        },
+        'o1-preview':{
+            'model_name': 'o1-preview',
+            'model_size': 'N/A',
+            'open_weight': False,
+            'creator': 'OpenAI',
+            'version': '2024-09-12'
+        },
         'deepseek': {
             'model_name': 'Deepseek',
             'model_size': '236B',

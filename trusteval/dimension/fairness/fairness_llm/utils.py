@@ -3,13 +3,15 @@ import os,sys
 import csv
 import json
 import re
-from tenacity import retry, wait_random_exponential, stop_after_attempt
+import csv
+from typing import Union, List, Dict
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, "..", "..", ".."))
 sys.path.append(project_root)
 print(project_root)
 from src.metadata_curator.pipeline import TextWebSearchPipeline
 from src.generation import ModelService
+from src.saver import Saver
 
 service = ModelService(
     request_type='llm',
@@ -56,49 +58,17 @@ async def run_pipeline(instruction, basic_information, output_path):
     await extractor.run(output_file=output_path)
     
 
-class FairnessSaver:
+
+class FairnessSaver(Saver):
     def __init__(self, base_directory=None):
         """
         Initialize the FairnessSaver with an optional base directory.
         All files will be saved in this directory.
         """
-        self.base_directory = base_directory or os.getcwd()
+        super().__init__(base_directory)
 
-    def _get_full_path(self, filename):
-        """Helper method to get the full path of the file."""
-        return filename #os.path.join(self.base_directory, filename)
-
-    def create_output_directory(self, directory_name):
-        """
-        Create the output directory if it doesn't exist.
-        """
-        full_path = self._get_full_path(directory_name)
-        if not os.path.exists(full_path):
-            os.makedirs(full_path)
-            print(f"Created directory: {full_path}")
-        else:
-            print(f"Directory already exists: {full_path}")
-
-    def save_to_csv(self, data:dict, filename:str):
-        full_path = self._get_full_path(filename)
-        file_exists = os.path.isfile(full_path)
-        with open(full_path, mode='a', newline='', encoding='utf-8') as file:
-            writer = csv.writer(file)
-            if not file_exists:
-                writer.writerow(['Response'])
-            writer.writerow([data])
-
-    def save_to_json(self, data:dict, filename:str):
-        full_path = self._get_full_path(filename)
-        with open(full_path, 'w', encoding='utf-8') as file:
-            json.dump(data, file, ensure_ascii=False, indent=4)
-
-    def load_json_data(self, json_path:str):
-        full_path = self._get_full_path(json_path)
-        with open(full_path, 'r', encoding='utf-8') as file:
-            return json.load(file)
-
-    def process_csv(self, filename):
+    def process_csv(self, filename: str) -> None:
+        """Process CSV to clean up unwanted digits at the start of the cells."""
         directory, base_filename = os.path.split(filename)
         temp_filename = os.path.join(directory, 'temp_' + base_filename)
         with open(filename, mode='r', encoding='utf-8') as infile, open(temp_filename, mode='w', newline='', encoding='utf-8') as outfile:
@@ -111,7 +81,8 @@ class FairnessSaver:
                 writer.writerow(processed_row)
         os.replace(temp_filename, filename)
 
-    def merge_json_files(self, folder_path, output_file):
+    def merge_json_files(self, folder_path: str, output_file: str) -> None:
+        """Merge multiple JSON files into one JSON file, adding metadata."""
         merged_data = []
         current_id = 1
         for filename in os.listdir(folder_path):
@@ -125,19 +96,7 @@ class FairnessSaver:
                         obj['category'] = category_name
                         merged_data.append(obj)
                         current_id += 1
-        with open(output_file, 'w', encoding='utf-8') as outfile:
-            json.dump(merged_data, outfile, ensure_ascii=False, indent=4)
+        self.save_json(merged_data, output_file)
 
-    def load_jsonl_data(self, jsonl_file):
-        """
-        Load intermediate from a JSONL file where each line is a valid JSON object.
-        :param jsonl_file: Path to the JSONL file
-        :return: List of JSON objects
-        """
-        full_path = self._get_full_path(jsonl_file)
-        data = []
-        with open(full_path, 'r', encoding='utf-8') as file:
-            for line in file:
-                data.append(json.loads(line.strip()))  
-        return data
+
     

@@ -1,7 +1,7 @@
 import json
 import os
 import shutil
-import time, sys
+import sys
 import asyncio
 from tqdm.asyncio import tqdm_asyncio
 from typing import Dict, List, Any, Callable

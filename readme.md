@@ -1,19 +1,31 @@
 
 
-<p align="center">
-    <img src="images/logo.png" align="center" width="30%">
-</p>
-<p align="center"><h1 align="center">TrustEval </h1></p>
+
+<!-- <p align="center"><h1 align="center">TrustEval </h1></p>
 <p align="center">
 	<em>A modular and extensible toolkit for comprehensive trust evaluation of generative foundation models (GenFMs)</em>
+</p> -->
+<p align="center">
+    <img src="images/logo-banner1.png" align="center" width="100%">
 </p>
 
+
 <p align="center">
-	<img src="https://img.shields.io/github/stars/nauyisu022/TrustEval-toolkit?style=flat-square&logo=GitHub&logoColor=white" alt="GitHub Repo stars">
-	<img src="https://img.shields.io/badge/License-MIT-green.svg?style=flat-square&logo=Open-Source-Initiative&logoColor=white" alt="License: MIT">
-	<img src="https://img.shields.io/badge/Docs-Website-00ADD8?style=flat-square&logo=ReadMe&logoColor=white" alt="Documentation">
-	<img src="https://img.shields.io/badge/Video_Tutorial-YouTube-red?style=flat-square&logo=YouTube&logoColor=white" alt="YouTube Tutorial">
+    <img src="https://img.shields.io/github/stars/nauyisu022/TrustEval-toolkit?style=flat-square&logo=GitHub&logoColor=white" alt="GitHub Repo stars">
+        <img src="https://img.shields.io/github/contributors/nauyisu022/TrustEval-toolkit?style=flat-square&logo=github&logoColor=white" alt="Contributors">
+    <img src="https://img.shields.io/github/issues/nauyisu022/TrustEval-toolkit?style=flat-square&logo=github&logoColor=white" alt="GitHub Issues">
+    <img src="https://img.shields.io/badge/License-MIT-green.svg?style=flat-square&logo=Open-Source-Initiative&logoColor=white" alt="License: MIT">
+    <a href="https://trustgen.github.io/"><img src="https://img.shields.io/badge/Homepage-Website-0078D4?style=flat-square&logo=homepage&logoColor=white" alt="Homepage"></a>
+    <a href="https://trusteval-docs.readthedocs.io/en/latest/"><img src="https://img.shields.io/badge/Docs-Website-00ADD8?style=flat-square&logo=ReadMe&logoColor=white" alt="Documentation"></a>
+    <a href="https://www.youtube.com/watch?v=hpgo3EMOArw"><img src="https://img.shields.io/badge/Video_Tutorial-YouTube-red?style=flat-square&logo=YouTube&logoColor=white" alt="YouTube Tutorial"></a>
+    <a href="https://arxiv.org/abs/2502.14296"><img src="https://img.shields.io/badge/Paper-ArXiv-B31B1B?style=flat-square&logo=arXiv&logoColor=white" alt="Paper"></a>
+
 </p>
+
+
+
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=296BA7&center=true&vCenter=true&width=1000&height=152&lines=TrustEval%3A+A+Dynamic+Evaluation+Toolkit++on+Trustworthiness+of+GenFMs)](https://git.io/typing-svg)
+
 
 ## Video Tutorials
 
@@ -52,6 +64,7 @@ https://github.com/user-attachments/assets/489501b9-69ae-467f-9be3-e4a02a7f9019
   - [Error Case Study](#error-case-study)
   - [Leaderboard](#leaderboard)
 - [Contributing](#contributing)
+- [Citation](#citation)
 - [License](#license)
 
 
@@ -61,7 +74,7 @@ https://github.com/user-attachments/assets/489501b9-69ae-467f-9be3-e4a02a7f9019
 
 **TrustEval-toolkit** is a dynamic and comprehensive framework for evaluating the trustworthiness of Generative Foundation Models (GenFMs) across dimensions such as safety, fairness, robustness, privacy, and more.
 
-![Overview](images/overview.jpg)
+![Overview](images/overview.png)
 
 
 ## 👾 Features
@@ -178,12 +191,12 @@ await generate_responses(
 1. **Judge the Responses**
     ```python
     from trusteval import judge_responses
-
+    
     target_models = ['your_target_model1', 'your_target_model2']
     judge_type = 'llm'  # Options: 'llm', 'vlm', 't2i'
     judge_key = 'your_judge_key'
     async_judge_model = ['your_async_model']
-
+    
     await judge_responses(
         data_folder=base_dir,
         async_judge_model=async_judge_model,
@@ -195,7 +208,7 @@ await generate_responses(
 2. **Generate Evaluation Metrics**
     ```python
     from trusteval import lm_metric
-
+    
     lm_metric(
         base_dir=base_dir,
         aspect='ai_risk',
@@ -206,7 +219,7 @@ await generate_responses(
 3. **Generate Final Report**
     ```python
     from trusteval import report_generator
-
+    
     report_generator(
         base_dir=base_dir,
         aspect='ai_risk',
@@ -227,15 +240,15 @@ A detailed trustworthiness evaluation report is generated for each dimension. Th
 
 ### Test Model Results
 Displays the evaluation scores for each model, with a breakdown of average scores across evaluation dimensions.
-![Test Model Results](images/test_model_results.png)
+![Test Model Results](images/result.png)
 
 ### Model Performance Summary
 Summarizes the model's performance in the evaluated dimension using LLM-generated summaries, highlighting comparisons with other models.
-![Model Performance Summary](images/model_performance_summary.png)
+![Model Performance Summary](images/model_performance.png)
 
 ### Error Case Study
 Presents error cases for the evaluated dimension, including input/output examples and detailed judgments.
-![Error Case Study](images/error_case_study.png)
+![Error Case Study](images/case_study.png)
 
 ### Leaderboard
 Shows the evaluation results for all models, along with visualized comparisons to previous versions (e.g., our v1.0 results).
@@ -253,10 +266,19 @@ We welcome contributions from the community! To contribute:
 4. Push to your branch (`git push origin feature-name`).
 5. Open a pull request.
 
-
-
-
+## Citation
+```bibtex
+@article{huang2025trustgen,
+    title={On the Trustworthiness of Generative Foundation Models: Guideline, Assessment, and Perspective},
+    author={Yue Huang and Chujie Gao and Siyuan Wu and Haoran Wang and Xiangqi Wang and Yujun Zhou and Yanbo Wang and Jiayi Ye and Jiawen Shi and Qihui Zhang and Yuan Li and Han Bao and Zhaoyi Liu and Tianrui Guan and Dongping Chen and Ruoxi Chen and Kehan Guo and Andy Zou and Bryan Hooi Kuen-Yew and Caiming Xiong and Elias Stengel-Eskin and Hongyang Zhang and Hongzhi Yin and Huan Zhang and Huaxiu Yao and Jaehong Yoon and Jieyu Zhang and Kai Shu and Kaijie Zhu and Ranjay Krishna and Swabha Swayamdipta and Taiwei Shi and Weijia Shi and Xiang Li and Yiwei Li and Yuexing Hao and Zhihao Jia and Zhize Li and Xiuying Chen and Zhengzhong Tu and Xiyang Hu and Tianyi Zhou and Jieyu Zhao and Lichao Sun and Furong Huang and Or Cohen Sasson and Prasanna Sattigeri and Anka Reuel and Max Lamparth and Yue Zhao and Nouha Dziri and Yu Su and Huan Sun and Heng Ji and Chaowei Xiao and Mohit Bansal and Nitesh V. Chawla and Jian Pei and Jianfeng Gao and Michael Backes and Philip S. Yu and Neil Zhenqiang Gong and Pin-Yu Chen and Bo Li and Xiangliang Zhang},
+    journal={arXiv preprint arXiv:2502.14296},
+    year={2025}
+}
+```
 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=110&section=footer" width="100%">

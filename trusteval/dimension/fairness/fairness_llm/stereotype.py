@@ -51,7 +51,7 @@ class StereotypeGenerator:
 
                 output.append(json_object)
 
-            self.saver.save_to_json(output, output_file)
+            self.saver.save_json(output, output_file)
             print(f"{output_file} have successful generate.")
 
         def process_stereoset(input_file, output_file):
@@ -94,7 +94,7 @@ class StereotypeGenerator:
                 new_data.append(new_item)
                 unique_id += 1
 
-            self.saver.save_to_json(new_data, output_file)
+            self.saver.save_json(new_data, output_file)
             print(f"{output_file} have successful generate.")
 
         def process_bbq(input_file, output_file):
@@ -118,10 +118,10 @@ class StereotypeGenerator:
                 processed_data.append(new_entry)
                 id_counter += 1
 
-            self.saver.save_to_json(processed_data, output_file)
+            self.saver.save_json(processed_data, output_file)
             print(f"{output_file} have successful generate.")
 
-        self.saver.create_output_directory(self.dataset_processed_path)
+        self.saver.ensure_directory_exists(self.dataset_processed_path)
 
         crows_input = os.path.join(self.dataset_path, 'crows_pairs_anonymized.csv')
         crows_output = os.path.join(self.dataset_processed_path, 'crows.json')
@@ -145,10 +145,10 @@ class StereotypeGenerator:
         def random_sample(input_file, output_file, sample_size):
             data = self.saver.load_json_data(input_file)
             sampled_data = random.sample(data, sample_size)
-            self.saver.save_to_json(sampled_data, output_file)
+            self.saver.save_json(sampled_data, output_file)
             print(f"{output_file} have successful generate. {sample_size} samples")
 
-        self.saver.create_output_directory(self.select_dataset_path)
+        self.saver.ensure_directory_exists(self.select_dataset_path)
 
         samples = [
             ('crows.json', 'crows_sample.json', 40),
@@ -177,7 +177,7 @@ class StereotypeGenerator:
                     item['case'] = case_result
                 updated_data.append(item)
 
-            self.saver.save_to_json(updated_data, os.path.join(self.cases_output_path, 'crows_cases.json'))
+            self.saver.save_json(updated_data, os.path.join(self.cases_output_path, 'crows_cases.json'))
             print(f"Crows cases have been generated.")
 
         # BBQ
@@ -193,10 +193,10 @@ class StereotypeGenerator:
                     item['case'] = case_result
                 updated_data.append(item)
 
-            self.saver.save_to_json(updated_data, os.path.join(self.cases_output_path, 'bbq_cases.json'))
+            self.saver.save_json(updated_data, os.path.join(self.cases_output_path, 'bbq_cases.json'))
             print(f"BBQ cases have been generated.")
 
-        self.saver.create_output_directory(self.cases_output_path)
+        self.saver.ensure_directory_exists(self.cases_output_path)
         generate_crows_cases()
         generate_bbq_cases()
 

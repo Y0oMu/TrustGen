@@ -12,8 +12,8 @@ from openai import AsyncOpenAI, AsyncAzureOpenAI
 os.environ['CURL_CA_BUNDLE'] = ''
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from src.generation.model_service import ModelService
 
+from trusteval import ModelService
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, "../../../src"))
 config_file_path = os.path.join(project_root, "config", "config.yaml")

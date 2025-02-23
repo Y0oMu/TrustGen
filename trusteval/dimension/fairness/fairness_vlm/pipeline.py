@@ -5,15 +5,16 @@ from .stereotype import StereotypeGenerator
 
 def run(base_dir=None):
     print("Running StereotypeGenerator ...")
-    stereotype_generator = StereotypeGenerator(base_dir)
-    stereotype_generator.run()
+    os.makedirs(base_dir, exist_ok=True)
+    print(f"Using base folder path: {base_dir}")
+    stereotype_generator = StereotypeGenerator(base_dir,samples=10)
+    stereotype_generator.process()
     
     print("Running PreferenceGenerator ...")
-    preference_generator = PreferenceGenerator(base_dir)
-    preference_generator.run()
+    preference_generator = PreferenceGenerator(base_dir, sample_size=5)
+    preference_generator.process()
     
     print("All dataset generation finished.", color="GREEN")
 
     
     
-        

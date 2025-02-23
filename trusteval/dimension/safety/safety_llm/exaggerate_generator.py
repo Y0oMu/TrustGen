@@ -8,7 +8,7 @@ from src.metadata_curator.utils.clean_json import *
 import random
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from metadata_curator.utils.clean_json import clean_json_string
+from src.metadata_curator.utils.clean_json import clean_json_string
 from tqdm import tqdm
 from utils import APIService
 

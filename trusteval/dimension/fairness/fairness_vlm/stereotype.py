@@ -10,8 +10,7 @@ from .utils import call_gpt4o_api,generate_and_save_image
 from trusteval.src.saver import Saver
 
 
-
-class StereotypeProcessor:
+class StereotypeGenerator:
     def __init__(self, base_folder_path, samples=10):
         self.BASE_FOLDER_PATH = base_folder_path
 

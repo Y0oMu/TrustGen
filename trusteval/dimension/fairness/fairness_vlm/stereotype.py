@@ -11,7 +11,7 @@ from trusteval.src.saver import Saver
 
 
 
-class StereotypeDataProcessor:
+class StereotypeProcessor:
     def __init__(self, base_folder_path, samples=10):
         self.BASE_FOLDER_PATH = base_folder_path
 

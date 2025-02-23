@@ -220,7 +220,7 @@ def tifa_score(image_path=None, objects=[]):
         request_type='vlm',
         handler_type='api',
         model_name='gpt-4o-mini',
-        config_path='src/config/config.yaml',
+        config_path=os.path.join(PROJECT_ROOT, 'src/config/config.yaml'),
         image_urls=[image_path]
     )
     

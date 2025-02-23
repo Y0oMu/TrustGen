@@ -206,7 +206,7 @@ def process_data(data_path=None, model_name=None, base_dir=None, process_type='l
             output_paths.append(full_output_path)
 
         elif aspect == 'truthfulness':
-            prompt = item.get('llm_rephrased_prompt', '')
+            prompt = item.get('modified_description', '')['1']
             output_path = f'images/{model_name}/{item["id"]}.jpg'
             full_output_path = os.path.join(base_dir, output_path)
 

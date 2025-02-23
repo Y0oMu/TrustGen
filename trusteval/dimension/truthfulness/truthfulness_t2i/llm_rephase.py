@@ -1,6 +1,18 @@
-import json
-from openai import AzureOpenAI
 import time
+import os
+import sys
+import yaml
+import json
+from openai import OpenAI
+
+PROJECT_ROOT = os.path.abspath(os.path.join(
+    os.path.dirname(__file__),
+    '../../../'
+))
+sys.path.append(PROJECT_ROOT)
+
+with open(os.path.join(PROJECT_ROOT, 'src/config/config.yaml'), 'r') as f:
+    config = yaml.safe_load(f)
 
 _prompt="""Generate natural language captions or prompts for a list of keywords or phrases based on the following guidelines:
     
@@ -26,17 +38,14 @@ Here is the input:
 """
 
 def call_llm(input):
-    client = AzureOpenAI(
-        api_key='',  # replace with your actual API key
-        api_version='2023-12-01-preview',
-        azure_endpoint='' # replace with your actual endpoint
-    )
+    api_key = config['OPENAI']['OPENAI_API_KEY']
+    client = OpenAI(api_key=api_key)
     success = False
     attempt = 0
     while not success and attempt < 3:
         try:
             chat_completion = client.chat.completions.create(
-                model='', # replace with your actual model name
+                model='gpt-4o-mini', # replace with your actual model name
                 response_format={ "type": "json_object" },
                 messages=[
                     {"role": "system", "content": "You are a helpful assistant. Please follow user's instructions strictly and output in JSON format."},

@@ -189,6 +189,8 @@ with_groundtruth_VLM:
     "model_answer": "responses"
     "judgment_key": "is_correct"
     "image_key": "image_urls"
+  information:
+    "goal": True
 
 
 RQ:
@@ -244,7 +246,6 @@ RQ_VLM:
     "question": "prompt"
     "solution": "responses"
     "judgment_key": "judgment"
-
 
 
 RQ_over:

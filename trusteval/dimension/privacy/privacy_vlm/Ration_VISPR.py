@@ -22,7 +22,7 @@ with open(config_file_path, 'r') as file:
     config = yaml.safe_load(file)
 
 sys.path.append(project_root)
-from generation.model_service import ModelService
+from trusteval import ModelService
 sys.path.append(current_dir)
 
 BATCH_SIZE = 10

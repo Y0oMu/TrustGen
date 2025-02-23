@@ -7,7 +7,7 @@ from .disparagement import DisparagementGenerator
 
 
 
-def main(base_dir=None, ):
+def run(base_dir=None, ):
     print("Running StereotypeGenerator ...")
     
     stereotype_generator=StereotypeGenerator(base_dir)

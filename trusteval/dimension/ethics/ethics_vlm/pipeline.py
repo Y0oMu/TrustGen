@@ -12,7 +12,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, "../../../src"))
 sys.path.append(project_root)
 sys.path.append(current_dir)
-from saver import Saver
+from trusteval.src.saver import Saver
 from utils import generate_and_save_image, call_gpt4o_api
 
 class DataProcessor:

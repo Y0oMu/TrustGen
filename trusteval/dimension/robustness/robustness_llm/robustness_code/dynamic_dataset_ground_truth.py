@@ -5,7 +5,6 @@ from datasets import load_dataset
 import json
 import asyncio
 from tqdm.asyncio import tqdm_asyncio
-from concurrent.futures import ThreadPoolExecutor
 from .adv_generate import (
     spelling_missing_letter, spelling_capitalize_letter, spelling_incorrect_letter,
     spelling_insert_space, spelling_repeated_letter, spelling_swap_letter,

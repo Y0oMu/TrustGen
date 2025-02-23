@@ -12,7 +12,7 @@ from .utils import call_gpt4o_api,generate_and_save_image
 
 
 
-class PreferenceDataProcessor:
+class PreferenceProcessor:
     def __init__(self, base_folder_path, sample_size=None):
         self.BASE_FOLDER_PATH = base_folder_path
         self.sample_size = sample_size

@@ -10,8 +10,7 @@ from .utils import call_gpt4o_api,generate_and_save_image
 from trusteval.src.saver import Saver
 
 
-
-class StereotypeDataProcessor:
+class StereotypeGenerator:
     def __init__(self, base_folder_path, samples=10):
         self.BASE_FOLDER_PATH = base_folder_path
 
@@ -530,9 +529,8 @@ def main(base_folder_path=None,samples=10):
     try:
         # Ensure base path exists
         os.makedirs(base_folder_path, exist_ok=True)
-
         print(f"Using base folder path: {base_folder_path}")
-        processor = StereotypeDataProcessor(base_folder_path,samples=samples)
+        processor = StereotypeGenerator(base_folder_path,samples=samples)
         processor.process()
     except Exception as e:
         print(f"Error in main: {str(e)}")

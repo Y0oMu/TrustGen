@@ -8,18 +8,17 @@ import os, sys, json
 # sys.path.append(project_root)
 from tqdm import tqdm
 from trusteval.src.saver import Saver
-from .utils import call_gpt4o_api,generate_and_save_image
+from .utils import call_gpt4o_api, generate_and_save_image, compress_image, compress_images_in_folder, merge_images
 
 
-
-class PreferenceDataProcessor:
+class PreferenceGenerator:
     def __init__(self, base_folder_path, sample_size=None):
         self.BASE_FOLDER_PATH = base_folder_path
         self.sample_size = sample_size
         # Configure relative paths
         self.DATA_DIR = os.path.join(base_folder_path, "original_dataset_preference")
         self.PREFERENCE_FILE = os.path.join(self.DATA_DIR, "preference_all.json")
-        self.PROCESSED_FILE = os.path.join(self.DATA_DIR, "1008_preference_all.json")
+        self.PROCESSED_FILE = os.path.join(self.DATA_DIR, "processed_preference_all.json")
 
         # Image-related folder path configuration
         self.IMAGE_SAVE_FOLDER = os.path.join(self.BASE_FOLDER_PATH, "generated_images_preference")
@@ -160,60 +159,6 @@ class PreferenceDataProcessor:
 
         print("All images have been saved")
 
-    def compress_image(self, input_path, output_path, quality=85, max_size_kb=100):
-        with Image.open(input_path) as img:
-            # Convert to RGB because JPEG does not support alpha (transparency)
-            if img.mode in ("RGBA", "P"):
-                img = img.convert("RGB")
-
-            # Save the image as JPEG with initial quality
-            output_jpeg_path = os.path.splitext(output_path)[0] + ".jpg"
-            img.save(output_jpeg_path, "JPEG", quality=quality)
-
-        # Check the file size and adjust the quality if necessary
-        while os.path.getsize(output_jpeg_path) > max_size_kb * 1024:
-            quality -= 5
-            if quality < 5:
-                break
-            with Image.open(input_path) as img:
-                if img.mode in ("RGBA", "P"):
-                    img = img.convert("RGB")
-                img.save(output_jpeg_path, "JPEG", quality=quality)
-
-        # print(f"Compressed and converted to JPEG: {output_jpeg_path}")
-
-    def compress_images_in_folder(self, folder_path, output_folder, quality=95, max_size_kb=300):
-        # Ensure the output folder exists
-        if not os.path.exists(output_folder):
-            os.makedirs(output_folder)
-
-        # Iterate over all files in the folder
-        for filename in os.listdir(folder_path):
-            # Only process PNG files
-            if filename.lower().endswith('.png'):
-                input_path = os.path.join(folder_path, filename)
-                output_path = os.path.join(output_folder, filename)
-
-                # Compress each image
-                self.compress_image(input_path, output_path, quality=quality, max_size_kb=max_size_kb)
-                # print(f"Compressed and converted {filename} to JPEG and saved to {output_path}")
-
-    def merge_images(self, image_paths, output_path):
-        images = [Image.open(path).convert('RGB') for path in image_paths]
-        widths, heights = zip(*(i.size for i in images))
-
-        total_width = sum(widths)
-        max_height = max(heights)
-
-        new_im = Image.new('RGB', (total_width, max_height))
-
-        x_offset = 0
-        for im in images:
-            new_im.paste(im, (x_offset, 0))
-            x_offset += im.size[0]
-
-        new_im.save(output_path)
-
     def merge_and_compress(self):
         json_data = self.load_json_data("original_dataset_preference/1008_preference_all.json")
 
@@ -224,16 +169,14 @@ class PreferenceDataProcessor:
 
             if all(os.path.exists(path) for path in img_paths):
                 output_path = os.path.join(self.MERGED_IMAGE_FOLDER, f"{item['id']}.png")
-                self.merge_images(img_paths, output_path)
+                merge_images(img_paths, output_path)
                 item['merged_image'] = f"{item['id']}.png"
-                # print(f"Merged image saved to {output_path}")
             else:
                 print(f"Skipping item {item['id']} due to missing images")
 
         self.saver.save_json(json_data, "original_dataset_preference/1008_preference_all.json")
-        # print("Merging done!")
 
-        self.compress_images_in_folder(
+        compress_images_in_folder(
             folder_path=self.MERGED_IMAGE_FOLDER,
             output_folder=self.COMPRESS_IMAGE_FOLDER
         )
@@ -281,7 +224,7 @@ def main(base_folder_path=None, sample_size=5):
     try:
         print(f"Using base folder path: {base_folder_path}")
         # print(f"Sample size: {sample_size if sample_size else 'All'}")
-        processor = PreferenceDataProcessor(base_folder_path, sample_size)
+        processor = PreferenceGenerator(base_folder_path, sample_size)
         processor.process()
     except Exception as e:
         print(f"Error in main: {str(e)}")

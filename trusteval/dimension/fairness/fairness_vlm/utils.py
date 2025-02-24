@@ -1,9 +1,8 @@
-
 from tenacity import retry, wait_random_exponential, stop_after_attempt
 import requests
 import os,sys,yaml
 from tqdm import tqdm
-import concurrent.futures
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import os
 from PIL import Image
 
@@ -89,3 +88,76 @@ def generate_and_save_image(prompt, img_id, save_path):
     except Exception as e:
         print(f"Image save failed: {str(e)}")
         return False
+    
+import os
+from PIL import Image
+
+def compress_image(input_path, output_path, quality=85, max_size_kb=100, max_attempts=20):
+    """Compress a single image to JPG format with size limit"""
+    try:
+        with Image.open(input_path) as img:
+            # Convert RGBA, P or other modes to RGB
+            if img.mode not in ("RGB", "L"):
+                img = img.convert("RGB")
+
+            output_path = os.path.splitext(output_path)[0] + '.jpg'
+
+            for attempt in range(max_attempts):
+                img.save(output_path, "JPEG", quality=quality)
+
+                if os.path.getsize(output_path) <= max_size_kb * 1024:
+                    print(f"Image compressed successfully to JPG in {attempt + 1} attempts: {output_path}")
+                    break
+
+                quality -= 5
+                if quality < 20:
+                    print(f"Cannot compress {input_path} to desired size. Saving with minimum quality.")
+                    img.save(output_path, "JPEG", quality=20)
+                    break
+            else:
+                print(f"Image could not be compressed to {max_size_kb}KB after {max_attempts} attempts: {output_path}")
+
+    except IOError:
+        print(f"Cannot open image file: {input_path}")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+
+def compress_images_in_folder(folder_path, output_folder, quality=85, max_size_kb=100, max_workers=4):
+    """Compress all images in a folder using multithreading and save them in the specified output folder."""
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
+    images_to_compress = [
+        (os.path.join(folder_path, filename), os.path.join(output_folder, filename))
+        for filename in os.listdir(folder_path)
+        if os.path.isfile(os.path.join(folder_path, filename)) and filename.lower().endswith(('.png', '.jpg', '.jpeg', '.webp'))
+    ]
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [
+            executor.submit(compress_image, input_path, output_path, quality, max_size_kb)
+            for input_path, output_path in images_to_compress
+        ]
+
+        for future in as_completed(futures):
+            try:
+                future.result()
+            except Exception as exc:
+                print(f"An image compression task generated an exception: {exc}")
+
+def merge_images(image_paths, output_path):
+    """Merge multiple images horizontally into one image"""
+    images = [Image.open(path).convert('RGB') for path in image_paths]
+    widths, heights = zip(*(i.size for i in images))
+
+    total_width = sum(widths)
+    max_height = max(heights)
+
+    new_im = Image.new('RGB', (total_width, max_height))
+
+    x_offset = 0
+    for im in images:
+        new_im.paste(im, (x_offset, 0))
+        x_offset += im.size[0]
+
+    new_im.save(output_path)

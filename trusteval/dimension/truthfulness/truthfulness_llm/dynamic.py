@@ -12,7 +12,7 @@ sys.path.append(project_root)
 from src.metadata_curator.pipeline import TextWebSearchPipeline
 from src.saver import Saver
 from src.generation import ModelService
-
+from trusteval import ModelService
 
 service = ModelService(
     request_type='llm',

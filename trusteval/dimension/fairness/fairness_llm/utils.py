@@ -10,7 +10,7 @@ project_root = os.path.abspath(os.path.join(current_dir, "..", "..", ".."))
 sys.path.append(project_root)
 print(project_root)
 from src.metadata_curator.pipeline import TextWebSearchPipeline
-from src.generation import ModelService
+from trusteval import ModelService
 from src.saver import Saver
 
 service = ModelService(

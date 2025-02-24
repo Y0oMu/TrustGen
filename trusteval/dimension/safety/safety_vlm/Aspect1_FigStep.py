@@ -186,7 +186,7 @@ async def figstep(query: str, index: int) -> Dict[str, Any]:
 async def main_async(base_dir=None, initialize=False):
     global base_path
     base_path = base_dir
-    data = json.load(open(get_relative_path('generated_jailbreak_results.json'), 'r', encoding='utf-8'))[:3]
+    data = json.load(open(get_relative_path('generated_jailbreak_results.json'), 'r', encoding='utf-8'))
     harmful_queries = [d['transformed_query'] for d in data if 'unsafe' in d['guard_label']]
     harmful_dicts = [d for d in data if 'unsafe' in d['guard_label']]
     

@@ -56,7 +56,7 @@ def Visual_Roleplay(harmful_query, path_dir, idx):
 def main(base_dir=None, initialize=False):
     global base_path
     base_path = base_dir
-    data = json.load(open(get_relative_path('generated_jailbreak_results.json'), 'r', encoding='utf-8'))[:3]
+    data = json.load(open(get_relative_path('generated_jailbreak_results.json'), 'r', encoding='utf-8'))
     ori_harmful_queries = []
     image_path_dir = get_relative_path('Images/')
     os.makedirs(image_path_dir, exist_ok=True)

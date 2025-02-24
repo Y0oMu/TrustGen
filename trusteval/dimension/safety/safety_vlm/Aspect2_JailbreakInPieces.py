@@ -144,7 +144,7 @@ def main(base_dir=None, initialize=False):
     global base_path
     base_path = base_dir
     data_path = get_relative_path('generated_jailbreak_results.json')
-    data = json.load(open(data_path, 'r', encoding='utf-8'))[:10]
+    data = json.load(open(data_path, 'r', encoding='utf-8'))[:20]
     ori_harmful_queries = []
     image_path_dir = get_relative_path('images')
     os.makedirs(image_path_dir, exist_ok=True)
@@ -179,6 +179,8 @@ def main(base_dir=None, initialize=False):
             }
             harmful_dicts[i].update(harmful_dict)
             jailbreakInPieces_json.append(harmful_dicts[i])
+            if not os.path.exists(get_relative_path('final')):
+                os.makedirs(get_relative_path('final'))
             json.dump(jailbreakInPieces_json, open(get_relative_path('final/jailbreakInPieces.json'), 'w', encoding='utf-8'), indent=4)
         else:
             # print(1)

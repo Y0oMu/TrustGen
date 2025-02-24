@@ -242,7 +242,7 @@ RQ_VLM:
       "judgment": "comply/refuse"
     }
   mapping:
-    "image_key": "image_path"
+    "image_key": "image_urls"
     "question": "prompt"
     "solution": "responses"
     "judgment_key": "judgment"

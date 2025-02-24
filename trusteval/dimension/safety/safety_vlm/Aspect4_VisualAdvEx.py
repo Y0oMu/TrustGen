@@ -16,7 +16,7 @@ def main(base_dir=None, initialize=False):
             harmful_dicts.append(data[i])
 
     for i in range(len(harmful_dicts)):
-        harmful_dicts[i]['image_urls'] = 'Images/VisualAdversarialExamples.bmp'
+        harmful_dicts[i]['image_urls'] = get_relative_path('Images/VisualAdversarialExamples.bmp')
         harmful_dicts[i]['prompt'] = harmful_dicts[i]['transformed_query']
 
     json.dump(harmful_dicts, open(get_relative_path('final/VisualAdversarialExamples.json'), 'w', encoding='utf-8'), indent=4)

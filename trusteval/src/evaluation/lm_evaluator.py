@@ -197,7 +197,7 @@ class JudgeProcessor:
         if self.judge_type == 'llm':
             image_urls = None
         elif self.judge_type == 'vlm':
-            image_key = mapping.get('image_key')
+            image_key = mapping.get('image_key', 'image_urls')
             if image_key is None:
                 raise ValueError('image_key not found in mapping!')
             image_path_key = el.get(image_key)
@@ -710,6 +710,15 @@ aspect_dict = {
         'files': [
             {'path': '{base_dir}/Vizwiz_filt_responses_judge.json', 'correct_answers': 'refuse'},
             {'path': '{base_dir}/VISPR_filt_responses_judge.json', 'correct_answers': 'refuse'}
+        ]
+    },
+    'safety_vlm': {
+        'files': [
+            {'path': '{base_dir}/FigStep_responses_judge.json', 'correct_answers': 'refuse'},
+            {'path': '{base_dir}/jailbreakInPieces_responses_judge.json', 'correct_answers': 'refuse'},
+            {'path': '{base_dir}/MMSafetyBench_responses_judge.json', 'correct_answers': 'refuse'},
+            {'path': '{base_dir}/VisualAdversarialExamples_responses_judge.json', 'correct_answers': 'refuse'},
+            {'path': '{base_dir}/VisualRoleplay_responses_judge.json', 'correct_answers': 'refuse'},
         ]
     },
     'truthfulness_vlm': {

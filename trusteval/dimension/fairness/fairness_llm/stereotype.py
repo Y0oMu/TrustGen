@@ -52,13 +52,15 @@ class StereotypeGenerator:
                 output.append(json_object)
 
             self.saver.save_json(output, output_file)
-            print(f"{output_file} have successful generate.")
+            rel_path = os.path.relpath(output_file, self.base_dir)
+            print(f"{rel_path} have successful generate.")
 
         def process_stereoset(input_file, output_file):
             # Read the file content with the read_file method
             data = self.saver.read_file(input_file)
             if not data:
-                print(f"Failed to read file: {input_file}")
+                rel_path = os.path.relpath(input_file, self.base_dir)
+                print(f"Failed to read file: {rel_path}")
                 return
 
             new_data = []
@@ -99,19 +101,19 @@ class StereotypeGenerator:
                 unique_id += 1
 
             self.saver.save_json(new_data, output_file)
-            print(f"{output_file} have successful generate.")
+            rel_path = os.path.relpath(output_file, self.base_dir)
+            print(f"{rel_path} have successful generate.")
 
         def process_bbq(input_file, output_file):
             processed_data = []
             id_counter = 1
 
-            # Read the JSONL file with the new read_file method and process each line
-            jsonl_content = self.saver.read_file(input_file)
-            if jsonl_content:
-                # Process each line in the JSONL file
-                for line in jsonl_content.strip().split('\n'):
+            # Read the JSONL file with the read_file method
+            jsonl_data = self.saver.read_file(input_file)
+            if jsonl_data:
+                # For JSONL files, read_file already returns a list of parsed JSON objects
+                for line_data in jsonl_data:
                     try:
-                        line_data = json.loads(line)
                         new_entry = {
                             "id": id_counter,
                             "category": line_data["category"],
@@ -126,15 +128,15 @@ class StereotypeGenerator:
                         }
                         processed_data.append(new_entry)
                         id_counter += 1
-                    except json.JSONDecodeError as e:
-                        print(f"Error decoding JSON from line: {line}. Error: {e}")
                     except KeyError as e:
                         print(f"Missing key in JSON data: {e}")
             else:
-                print(f"Failed to read file: {input_file}")
+                rel_path = os.path.relpath(input_file, self.base_dir)
+                print(f"Failed to read file: {rel_path}")
 
             self.saver.save_json(processed_data, output_file)
-            print(f"{output_file} have successful generate.")
+            rel_path = os.path.relpath(output_file, self.base_dir)
+            print(f"{rel_path} have successful generate.")
 
         self.saver.ensure_directory_exists(self.dataset_processed_path)
 
@@ -161,19 +163,22 @@ class StereotypeGenerator:
             # Read the file content with the new read_file method
             file_content = self.saver.read_file(input_file)
             if not file_content:
-                print(f"Failed to read file: {input_file}")
+                rel_path = os.path.relpath(input_file, self.base_dir)
+                print(f"Failed to read file: {rel_path}")
                 return
                 
-            # Parse the JSON content
+            # Parse the JSON content if it's not already a list
             try:
-                data = json.loads(file_content)
+                data = file_content if isinstance(file_content, list) else json.loads(file_content)
             except json.JSONDecodeError as e:
-                print(f"Error parsing JSON from {input_file}: {e}")
+                rel_path = os.path.relpath(input_file, self.base_dir)
+                print(f"Error parsing JSON from {rel_path}: {e}")
                 return
                 
             sampled_data = random.sample(data, min(sample_size, len(data)))
             self.saver.save_json(sampled_data, output_file)
-            print(f"{output_file} have successful generate. {len(sampled_data)} samples")
+            rel_path = os.path.relpath(output_file, self.base_dir)
+            print(f"{rel_path} have successful generate. {len(sampled_data)} samples")
 
         self.saver.ensure_directory_exists(self.select_dataset_path)
 
@@ -197,14 +202,16 @@ class StereotypeGenerator:
             # Read the file content with the new read_file method
             file_content = self.saver.read_file(json_file)
             if not file_content:
-                print(f"Failed to read file: {json_file}")
+                rel_path = os.path.relpath(json_file, self.base_dir)
+                print(f"Failed to read file: {rel_path}")
                 return
                 
-            # Parse the JSON content
+            # Parse the JSON content if it's not already a list
             try:
-                json_data = json.loads(file_content)
+                json_data = file_content if isinstance(file_content, list) else json.loads(file_content)
             except json.JSONDecodeError as e:
-                print(f"Error parsing JSON from {json_file}: {e}")
+                rel_path = os.path.relpath(json_file, self.base_dir)
+                print(f"Error parsing JSON from {rel_path}: {e}")
                 return
 
             updated_data = []
@@ -215,7 +222,8 @@ class StereotypeGenerator:
                     item['case'] = case_result
                 updated_data.append(item)
 
-            self.saver.save_json(updated_data, os.path.join(self.cases_output_path, 'crows_cases.json'))
+            output_file = os.path.join(self.cases_output_path, 'crows_cases.json')
+            self.saver.save_json(updated_data, output_file)
             print(f"Crows cases have been generated.")
 
         # BBQ
@@ -224,14 +232,16 @@ class StereotypeGenerator:
             # Read the file content with the new read_file method
             file_content = self.saver.read_file(json_file)
             if not file_content:
-                print(f"Failed to read file: {json_file}")
+                rel_path = os.path.relpath(json_file, self.base_dir)
+                print(f"Failed to read file: {rel_path}")
                 return
                 
-            # Parse the JSON content
+            # Parse the JSON content if it's not already a list
             try:
-                json_data = json.loads(file_content)
+                json_data = file_content if isinstance(file_content, list) else json.loads(file_content)
             except json.JSONDecodeError as e:
-                print(f"Error parsing JSON from {json_file}: {e}")
+                rel_path = os.path.relpath(json_file, self.base_dir)
+                print(f"Error parsing JSON from {rel_path}: {e}")
                 return
 
             updated_data = []
@@ -242,7 +252,8 @@ class StereotypeGenerator:
                     item['case'] = case_result
                 updated_data.append(item)
 
-            self.saver.save_json(updated_data, os.path.join(self.cases_output_path, 'bbq_cases.json'))
+            output_file = os.path.join(self.cases_output_path, 'bbq_cases.json')
+            self.saver.save_json(updated_data, output_file)
             print(f"BBQ cases have been generated.")
 
         self.saver.ensure_directory_exists(self.cases_output_path)

@@ -8,14 +8,14 @@ from .disparagement import DisparagementGenerator
 
 
 def run(base_dir=None):
-    print("Running StereotypeGenerator ...")
+    # print("Running StereotypeGenerator ...")
     
-    stereotype_generator=StereotypeGenerator(base_dir)
-    stereotype_generator.run()
+    # stereotype_generator=StereotypeGenerator(base_dir)
+    # stereotype_generator.run()
     
-    print("Running PreferenceGenerator ...")
-    preference_generator=PreferenceGenerator(base_dir)
-    preference_generator.run()
+    # print("Running PreferenceGenerator ...")
+    # preference_generator=PreferenceGenerator(base_dir)
+    # preference_generator.run()
     
     
     print("Running DisparagementGenerator ...")

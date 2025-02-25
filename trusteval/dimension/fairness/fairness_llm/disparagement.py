@@ -26,7 +26,12 @@ class DisparagementGenerator:
         self._ensure_directories()
 
     def _ensure_directories(self):
-        directories = [self.output_directory, self.case_output_path, os.path.dirname(self.merged_output_file)]
+        directories = [
+            self.dataset_path,
+            self.output_directory,
+            self.case_output_path,
+            os.path.dirname(self.merged_output_file)
+        ]
         for directory in directories:
             os.makedirs(directory, exist_ok=True)
 

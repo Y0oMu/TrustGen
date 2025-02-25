@@ -1,6 +1,6 @@
 import os
 import asyncio
-
+import json
 from .utils import FairnessSaver,get_api_res,run_pipeline
 
 class DisparagementGenerator:
@@ -11,7 +11,7 @@ class DisparagementGenerator:
         self.dataset_path = os.path.join(base_dir, 'metadata','disparagement_data')
         self.output_directory = os.path.join(self.dataset_path, 'original_dataset')
         self.case_output_path = os.path.join(self.dataset_path, 'cases')
-        self.merged_output_file = os.path.join(base_dir, 'final', 'disparagement_all.json')
+        self.merged_output_file = os.path.join(base_dir, 'LLM_fairness_disparagement.json')
 
         self.category_target_map = {
             "Gender": ["Female", "Male"],
@@ -24,6 +24,23 @@ class DisparagementGenerator:
         }
 
         self._ensure_directories()
+
+    def load_json_data(self, file_path):
+        try:
+            full_path = os.path.join(self.base_dir, file_path)
+            full_path = os.path.normpath(full_path)
+            print(f"successful read {full_path}")
+            with open(full_path, 'r', encoding='utf-8') as file:
+                return json.load(file)
+        except FileNotFoundError:
+            print(f"File not found: {full_path}")
+            return None
+        except json.JSONDecodeError:
+            print(f"Invalid JSON in file: {full_path}")
+            return None
+        except Exception as e:
+            print(f"Error loading file {full_path}: {str(e)}")
+            return None
 
     def _ensure_directories(self):
         directories = [
@@ -68,7 +85,7 @@ class DisparagementGenerator:
 
                 print(f"Processing case generation for {category}: {target}...")
 
-                json_data = self.saver.load_json_data(input_json_path)
+                json_data = self.load_json_data(input_json_path)
                 updated_data = []
 
                 for item in json_data:
@@ -106,8 +123,8 @@ Here is the summary: {summary}
         print(f"All case files have been merged into {self.merged_output_file}")
 
     def run(self):
-        print("Step 1: Web agent - Fetching disparagement examples for different categories and targets...")
-        asyncio.run(self.run_disparagement_pipeline())
+        # print("Step 1: Web agent - Fetching disparagement examples for different categories and targets...")
+        # asyncio.run(self.run_disparagement_pipeline())
 
         print("Step 2: Generating cases based on the examples...")
         self.generate_case_pipeline()

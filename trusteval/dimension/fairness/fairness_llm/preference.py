@@ -13,7 +13,7 @@ class PreferenceGenerator:
         self.dataset_processed_path = os.path.join(self.dataset_path,'preference_data/','processed/')
         self.select_dataset_path = os.path.join(self.dataset_path,'preference_data/', 'select/')
         self.cases_output_path = os.path.join(self.dataset_path,'preference_data/', 'cases/')
-        self.merged_output_file = os.path.join(base_dir, 'final', 'preference_all.json')
+        self.merged_output_file = os.path.join(base_dir, 'LLM_fairness_preference.json')
 
         self._ensure_directories()
         

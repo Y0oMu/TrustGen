@@ -13,7 +13,7 @@ class StereotypeGenerator:
         self.dataset_processed_path = os.path.join(self.dataset_path, 'stereotype_data', 'processed')
         self.select_dataset_path = os.path.join(self.dataset_path, 'stereotype_data', 'select')
         self.cases_output_path = os.path.join(self.dataset_path, 'stereotype_data', 'cases')
-        self.merged_output_file = os.path.join(base_dir, 'final', 'stereotype.json')
+        self.merged_output_file = os.path.join(base_dir, 'LLM_fairness_stereotype.json')
 
         self._ensure_directories()
 

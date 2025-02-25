@@ -146,17 +146,10 @@ class Saver:
                 return list(csv.reader(f))
             elif ext in ('.yaml', '.yml'):
                 return yaml.safe_load(f)
+            elif ext == '.jsonl':
+                return [json.loads(line.strip()) for line in f]
             else:
                 raise ValueError(f"Unsupported file extension: {ext}")
-            
-    def load_jsonl_data(self, jsonl_file: str) -> List[dict]:
-        """Load data from a JSONL file (each line is a JSON object)."""
-        full_path = self._get_full_path(jsonl_file)
-        data = []
-        with open(full_path, 'r', encoding='utf-8') as file:
-            for line in file:
-                data.append(json.loads(line.strip()))
-        return data
     
     def copy_file(self, source_file_path: str, target_file_path: str) -> None:
         """

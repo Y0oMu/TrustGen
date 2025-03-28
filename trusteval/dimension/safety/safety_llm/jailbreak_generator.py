@@ -3,7 +3,6 @@ import os,sys
 from typing import List, Tuple
 import concurrent.futures
 from concurrent.futures import ThreadPoolExecutor
-import concurrent.futures
 import random
 import base64
 from urllib.parse import quote
@@ -15,7 +14,6 @@ project_root = os.path.abspath(os.path.join(current_dir, '..', '..', '..'))
 sys.path.append(project_root)
 from src.saver import Saver
 from .utils import APIService
-import concurrent.futures
 
 
         

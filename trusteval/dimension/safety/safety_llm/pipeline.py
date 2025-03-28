@@ -4,7 +4,7 @@ from .exaggerate_generator import HarmfulWordProcessor,QuestionGenerator
 from .jailbreak_generator import HarmfulQueryGenerator, Test_Case_Builder   
 
 
-def pipeline(base_dir=None):
+def run(base_dir=None):
     print("Running Jailbreak Generator ...")
     generator = HarmfulQueryGenerator(base_path=base_dir)
     generator.harmful_query_generation('metadata/harmful_queries_1.json', 'metadata/generated_raw_data/safety', max_workers=10)

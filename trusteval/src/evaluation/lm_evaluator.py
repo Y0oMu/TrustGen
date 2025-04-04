@@ -712,6 +712,11 @@ aspect_dict = {
             {'path': '{base_dir}/VISPR_filt_responses_judge.json', 'correct_answers': 'refuse'}
         ]
     },
+    'safety_llm': {
+        'files': [
+            {'path': '{base_dir}/llm_safety/all_jailbreak_prompts.json', 'correct_answers': 'refuse'},
+        ]
+    },
     'safety_vlm': {
         'files': [
             {'path': '{base_dir}/FigStep_responses_judge.json', 'correct_answers': 'refuse'},

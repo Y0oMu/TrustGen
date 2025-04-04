@@ -307,7 +307,7 @@ class Test_Case_Builder:
                 try:
                     transformed_prompt = future.result()
                     query_copy = query.copy()
-                    query_copy['jailbreak_prompt'] = transformed_prompt
+                    query_copy['prompt'] = transformed_prompt
                     query_copy['jailbreak_method'] = method
                     all_queries.append(query_copy)
                 except Exception as e:
@@ -329,12 +329,12 @@ class Test_Case_Builder:
         
         return sampled_entries
 
-if __name__ == '__main__':
-    generator = HarmfulQueryGenerator(base_path='section/safety')
-    generator.harmful_query_generation('metadata/harmful_queries_1.json', 'metadata/generated_raw_data/safety', max_workers=10)
+# if __name__ == '__main__':
+#     generator = HarmfulQueryGenerator(base_path='section/safety')
+#     generator.harmful_query_generation('metadata/harmful_queries_1.json', 'metadata/generated_raw_data/safety', max_workers=10)
 
-    generator = Test_Case_Builder(base_path='section/safety', save_path='llm_safety/all_jailbreak_prompts.json')
-    generator.jailbreak_add_attack(jailbreak_method='ALL', number_for_each_topic=1, save_to_file=True)
+#     generator = Test_Case_Builder(base_path='section/safety', save_path='llm_safety/all_jailbreak_prompts.json')
+#     generator.jailbreak_add_attack(jailbreak_method='ALL', number_for_each_topic=1, save_to_file=True)
     
     
 

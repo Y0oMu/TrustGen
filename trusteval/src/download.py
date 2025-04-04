@@ -9,6 +9,7 @@ url_mapping = {
     'fairness_llm' : "https://drive.google.com/uc?id=1tgJcwTOtC-1B7KKB_SrOzJhaTAULzM9u",
     'ethics_llm':"https://drive.google.com/uc?id=1TEodgspBBPDhPifPInqS3vmABV0n2FlX",
     'safety_llm':"https://drive.google.com/uc?id=1xYn51Xn4wWwmQhLnaOlj6ZWg9A630wOu",
+    
     'advanced_ai_risk': 'https://drive.google.com/uc?id=118l7-vheNQljF3TfULmwMVaoWdDYRZSC',
     
     'fairness_t2i': 'https://drive.google.com/uc?id=1YrfzkHmqLsIJjeCg3mu2auf3lzqnU3nO',

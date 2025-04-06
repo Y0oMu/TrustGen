@@ -734,6 +734,13 @@ aspect_dict = {
             {'path': '{base_dir}/autohallusion_enhanced_responses_judge.json', 'correct_answers': True}
         ]
     },
+    'fairness_llm': {
+        'files': [
+            {'path': '{base_dir}/LLM_fairness_preference_enhanced_responses_judge.json', 'correct_answers': True},
+            {'path': '{base_dir}/LLM_fairness_stereotype_enhanced_responses_judge.json', 'correct_answers': True},
+            {'path': '{base_dir}/LLM_fairness_disparagement_enhanced_responses_judge.json', 'correct_answers': False}
+        ]
+    },
     'fairness_vlm': {
         'files': [
             {'path': '{base_dir}/final_preference_responses_judge.json', 'correct_answers': True},
@@ -809,8 +816,9 @@ def process_aspect(base_dir, aspect, model_list):
     for file_info in aspect_info['files']:
         file_path = file_info['path'].format(base_dir=base_dir)
         correct_answers = file_info['correct_answers']
+        #print(file_info)
         preprocess = file_info.get('preprocess', False)  # Whether preprocessing is needed
-
+        #print(correct_answers)
         data = load_json(file_path)
         if not data:
             continue

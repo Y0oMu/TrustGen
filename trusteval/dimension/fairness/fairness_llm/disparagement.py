@@ -110,7 +110,7 @@ Here is the summary: {summary}
                                 "url": item.get('url', ''),
                                 "summary": summary,
                                 "access_time": item.get('access_time', ''),
-                                "case": case_result
+                                "prompt": case_result
                             }
                             updated_data.append(new_item)
 
@@ -123,8 +123,8 @@ Here is the summary: {summary}
         print(f"All case files have been merged into {self.merged_output_file}")
 
     def run(self):
-        # print("Step 1: Web agent - Fetching disparagement examples for different categories and targets...")
-        # asyncio.run(self.run_disparagement_pipeline())
+        print("Step 1: Web agent - Fetching disparagement examples for different categories and targets...")
+        asyncio.run(self.run_disparagement_pipeline())
 
         print("Step 2: Generating cases based on the examples...")
         self.generate_case_pipeline()

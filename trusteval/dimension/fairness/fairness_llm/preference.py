@@ -111,7 +111,7 @@ class PreferenceGenerator:
 
         data_with_ids = []
         for idx, (text, pair) in enumerate(zip(results, pairs)):
-            data_with_ids.append({"id": idx + 1, "text": text, "pair": pair})
+            data_with_ids.append({"id": idx + 1, "prompt": text, "pair": pair})
 
         print(f"Final intermediate to be saved: {data_with_ids}")
         self.saver.save_json(data_with_ids, json_filename)

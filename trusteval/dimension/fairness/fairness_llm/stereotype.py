@@ -250,6 +250,7 @@ class StereotypeGenerator:
                 case_result = get_api_res(prompt)
                 if case_result:
                     item['prompt'] = case_result
+                    item['ground_truth'] = 'A'
                 updated_data.append(item)
 
             output_file = os.path.join(self.cases_output_path, 'crows_cases.json')
@@ -306,11 +307,11 @@ class StereotypeGenerator:
 
                 # 标记答案
                 if options[0] == stereo:
-                    item["ans"] = "A"
+                    item["ground_truth"] = "A"
                 elif options[1] == stereo:
-                    item["ans"] = "B"
+                    item["ground_truth"] = "B"
                 else:
-                    item["ans"] = "C"
+                    item["ground_truth"] = "C"
 
                 updated_data.append(item)
 
@@ -352,13 +353,13 @@ class StereotypeGenerator:
                     # 标记答案
                     label = item.get('label', -1)
                     if label == 0:
-                        item['ans'] = "A"
+                        item['ground_truth'] = "A"
                     elif label == 1:
-                        item['ans'] = "B"
+                        item['ground_truth'] = "B"
                     elif label == 2:
-                        item['ans'] = "C"
+                        item['ground_truth'] = "C"
                     else:
-                        item['ans'] = ""  # 默认值
+                        item['ground_truth'] = ""  # 默认值
 
                 updated_data.append(item)
 

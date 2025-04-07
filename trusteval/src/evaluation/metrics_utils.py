@@ -51,9 +51,9 @@ def extract_model_judge_results(data, model_list, key='judge_result'):
 
     for item in data:
         for model in model_list:
+            print(item)
             judgements = item.get('judge', {}).get(model, {})
             judge_results = judgements.get(key)
-
             if judge_results is not None:  # Only process if judge_results is not None
                 if isinstance(judge_results, (dict, bool, str, list)):  # Handle multiple types
                     if isinstance(judge_results, list):  # If it's a list, extend the results

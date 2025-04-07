@@ -45,6 +45,7 @@ MODEL_NAME_MAPPINGS:
   sd-3.5-large-turbo: sd-3.5-large-turbo
   text-embedding-ada-002: text-embedding-ada-002
   yi-lightning: yi-lightning
+
 local_openai_sdk_llms:
   meta-llama/Llama-2-13b-chat-hf: LOCAL
 openai_sdk_llms:

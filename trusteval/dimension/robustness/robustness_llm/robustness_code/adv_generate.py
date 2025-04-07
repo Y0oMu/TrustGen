@@ -25,10 +25,12 @@ kw_model = KeyBERT(model=model)
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, "../../../../src"))
-config_file_path = os.path.join(project_root, "config", "config.yaml")
+# config_file_path = os.path.join(project_root, "config", "config.yaml")
 
 EMBED_FILE = os.path.join(current_dir, '..', 'repo_tool', 'emoji-embeddings.jsonl.gz')
 print(EMBED_FILE)
+if not os.path.exists(EMBED_FILE):
+    raise FileNotFoundError(f"File not found: {EMBED_FILE}")
 
 with open(config_file_path, 'r') as file:
     config = yaml.safe_load(file)

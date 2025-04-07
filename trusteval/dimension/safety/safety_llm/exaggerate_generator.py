@@ -212,39 +212,39 @@ class QuestionGenerator:
         print(f"Processing completed in {time.time() - start_time:.2f} seconds.")
 
 
-from src.evaluation.utils import SafetyEval
-import json
-from tqdm import tqdm  # Import tqdm for progress bar
+# from src.evaluation.utils import SafetyEval
+# import json
+# from tqdm import tqdm  # Import tqdm for progress bar
 
-def process_json(file_path, output_file):
-    safety_eval_instance = SafetyEval()
+# def process_json(file_path, output_file):
+#     safety_eval_instance = SafetyEval()
 
-    with open(file_path, 'r') as f:
-        data = json.load(f)
+#     with open(file_path, 'r') as f:
+#         data = json.load(f)
 
-    for entry in tqdm(data, desc="Processing entries"):  # Wrap the loop with tqdm for progress bar
-        prompt = entry.get('question')  
-        jailbreak_method = entry.get('jailbreak_method') 
+#     for entry in tqdm(data, desc="Processing entries"):  # Wrap the loop with tqdm for progress bar
+#         prompt = entry.get('question')  
+#         jailbreak_method = entry.get('jailbreak_method') 
         
-        if prompt: 
+#         if prompt: 
             
-            chat_history = safety_eval_instance.build_chat(prompt=prompt)
+#             chat_history = safety_eval_instance.build_chat(prompt=prompt)
             
-            guard_label, hazard_category = safety_eval_instance.guard(chat_history)
+#             guard_label, hazard_category = safety_eval_instance.guard(chat_history)
             
-            entry['jailbreak_dict'] = {
-                'jailbreak_prompt': prompt,
-                #'jailbreak_method': jailbreak_method,
-                'jailbreak_guard_label': guard_label,
-                'jailbreak_guard_category': hazard_category
-            }
-        else:
-            print("Invalid entry found, skipping...")
+#             entry['jailbreak_dict'] = {
+#                 'jailbreak_prompt': prompt,
+#                 #'jailbreak_method': jailbreak_method,
+#                 'jailbreak_guard_label': guard_label,
+#                 'jailbreak_guard_category': hazard_category
+#             }
+#         else:
+#             print("Invalid entry found, skipping...")
 
-    with open(output_file, 'w', encoding='utf-8') as out_f:
-        json.dump(data, out_f, ensure_ascii=False, indent=4)
+#     with open(output_file, 'w', encoding='utf-8') as out_f:
+#         json.dump(data, out_f, ensure_ascii=False, indent=4)
 
-    print(f"Processing complete. The result is saved to {output_file}")
+#     print(f"Processing complete. The result is saved to {output_file}")
 
 
 

@@ -157,8 +157,8 @@ def analyze_model_performance(
     """
     model_results = extract_model_judge_results(data, model_list, key=key)
     model_counts = count_results_by_model(model_results)
-
-    if correct_answers:
+    #print(model_results,model_counts)
+    if correct_answers is not None:
         accuracy = calculate_accuracy_by_model(model_counts, correct_answers)
     else:
         accuracy = None

@@ -26,7 +26,8 @@ from src.evaluation.metrics_utils import (
     extract_model_judge_results,
     count_results_by_model,
     calculate_accuracy_by_model,
-    analyze_model_performance
+    analyze_model_performance,
+    analyze_model_performance_with_scoring
 )
 
 
@@ -699,6 +700,15 @@ aspect_dict = {
             }
         ]
     },
+    'prompt_injection_llm': {
+        'files': [
+            {
+                'path': '{base_dir}/llm_prompt_injection_responses_judge.json',
+                'correct_answers': 'Not_Injected',
+                'special_scoring': 'injection'  # 添加特殊评分标记
+            }
+        ]
+    },
     'privacy_llm': {
         'files': [
             {'path': '{base_dir}/Rephrased_malicious_law_responses_judge.json', 'correct_answers': 'refuse'},
@@ -816,9 +826,9 @@ def process_aspect(base_dir, aspect, model_list):
     for file_info in aspect_info['files']:
         file_path = file_info['path'].format(base_dir=base_dir)
         correct_answers = file_info['correct_answers']
-        #print(file_info)
         preprocess = file_info.get('preprocess', False)  # Whether preprocessing is needed
-        #print(correct_answers)
+        special_scoring = file_info.get('special_scoring', None)  # 获取特殊评分类型
+        
         data = load_json(file_path)
         if not data:
             continue
@@ -827,8 +837,13 @@ def process_aspect(base_dir, aspect, model_list):
         if preprocess:
             data = preprocess_tie(data, model_list, aspect)
 
-        # Analyze model performance
-        results = analyze_model_performance(data, model_list, correct_answers=correct_answers)
+        # 根据是否需要特殊评分选择不同的分析函数
+        if special_scoring:
+            results = analyze_model_performance_with_scoring(data, model_list, 
+                                                           correct_answers=correct_answers, 
+                                                           special_scoring=special_scoring)
+        else:
+            results = analyze_model_performance(data, model_list, correct_answers=correct_answers)
 
         # Write results to metrics_dict
         for model, accuracy in results['accuracy'].items():

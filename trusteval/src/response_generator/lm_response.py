@@ -145,6 +145,7 @@ class ResponseProcessor:
         result_key: str = 'responses',
         base_path: str = '',
         image_key: Optional[str] = None,
+        system_prompt_key: Optional[str] = None,
         **kwargs
     ) -> Dict[str, Any]:
         """
@@ -155,12 +156,19 @@ class ResponseProcessor:
         :param result_key: Key under which to store the responses.
         :param base_path: Base path for resolving image URLs.
         :param image_key: Key to extract image URLs from the item.
+        :param system_prompt_key: Key to extract system prompt from the item.
         :return: The updated item with responses.
         """
         prompt = item.get(prompt_key, item.get('prompt')) if prompt_key == 'enhanced_prompt'  else item.get(prompt_key)
         if not prompt:
             logger.debug("No prompt found; skipping item.")
             return item
+
+        # 获取系统提示（如果有）
+        system_prompt = None
+        if system_prompt_key and system_prompt_key in item:
+            system_prompt = item[system_prompt_key]
+            kwargs['system_prompt'] = system_prompt
 
         image_urls = None
         if self.request_type == 'vlm' and image_key:
@@ -224,6 +232,7 @@ class ResponseProcessor:
         prompt_key: str = 'prompt',
         result_key: str = 'responses',
         image_key: Optional[str] = None,
+        system_prompt_key: Optional[str] = None,
         max_concurrent_tasks: int = 5,
         base_path: str = '',
         **kwargs
@@ -235,6 +244,7 @@ class ResponseProcessor:
         :param prompt_key: Key to extract the prompt from each item.
         :param result_key: Key under which to store the responses.
         :param image_key: Key to extract image URLs from each item.
+        :param system_prompt_key: Key to extract system prompt from each item.
         :param max_concurrent_tasks: Maximum number of concurrent tasks.
         :param base_path: Base path for resolving image URLs.
         """
@@ -248,6 +258,7 @@ class ResponseProcessor:
                     result_key=result_key,
                     base_path=base_path,
                     image_key=image_key,
+                    system_prompt_key=system_prompt_key,
                     **kwargs
                 )
                 data[index] = updated_item
@@ -335,6 +346,7 @@ class MultiProcessor:
         prompt_keys: List[str],
         result_keys: List[str],
         image_keys: Optional[List[Optional[str]]] = None,
+        system_prompt_keys: Optional[List[Optional[str]]] = None,
         async_list: Optional[List[str]] = None,
         sync_list: Optional[List[str]] = None,
         max_concurrent_tasks: int = 5,
@@ -349,6 +361,7 @@ class MultiProcessor:
         :param prompt_keys: List of prompt keys corresponding to processors.
         :param result_keys: List of result keys corresponding to processors.
         :param image_keys: List of image keys corresponding to processors.
+        :param system_prompt_keys: List of system prompt keys corresponding to processors.
         :param async_list: List of asynchronous model names.
         :param sync_list: List of synchronous model names.
         :param max_concurrent_tasks: Maximum number of concurrent tasks.
@@ -359,6 +372,7 @@ class MultiProcessor:
         self.prompt_keys = prompt_keys
         self.result_keys = result_keys
         self.image_keys = image_keys or [None] * len(request_types)
+        self.system_prompt_keys = system_prompt_keys or [None] * len(request_types)
         self.async_list = async_list or []
         self.sync_list = sync_list or []
         self.max_concurrent_tasks = max_concurrent_tasks
@@ -425,11 +439,12 @@ class MultiProcessor:
 
         if not analyze_only:
             tasks = []
-            for processor, prompt_key, result_key, image_key in zip(
+            for processor, prompt_key, result_key, image_key, system_prompt_key in zip(
                 self.processors,
                 self.prompt_keys,
                 self.result_keys,
-                self.image_keys
+                self.image_keys,
+                self.system_prompt_keys
             ):
                 tasks.append(
                     processor.get_responses(
@@ -437,6 +452,7 @@ class MultiProcessor:
                         prompt_key=prompt_key,
                         result_key=result_key,
                         image_key=image_key,
+                        system_prompt_key=system_prompt_key,
                         max_concurrent_tasks=self.max_concurrent_tasks,
                         base_path=os.path.dirname(self.data_path),
                         **kwargs  # Ensure kwargs is passed here
@@ -461,6 +477,7 @@ async def generate_responses(
     result_key: List[str]='responses',
     file_name_extension: str='_responses',
     image_key: Optional[List[Optional[str]]] = None,
+    system_prompt_key: Optional[List[Optional[str]]] = None,
     **kwargs
 ) -> None:
     """
@@ -474,6 +491,7 @@ async def generate_responses(
     :param result_key: List of result keys.
     :param file_name_extension: Extension to append to output file names.
     :param image_key: List of image keys.
+    :param system_prompt_key: List of system prompt keys.
     """
     try:
         with open(os.path.join(data_folder, 'file_config.json'), 'r', encoding='utf-8') as f:
@@ -506,6 +524,7 @@ async def generate_responses(
                 prompt_keys=prompt_key if isinstance(prompt_key, list) else [prompt_key],
                 result_keys=result_key if isinstance(result_key, list) else [result_key],
                 image_keys=image_key if isinstance(image_key, list) else [image_key],
+                system_prompt_keys=system_prompt_key if isinstance(system_prompt_key, list) else [system_prompt_key],
                 async_list=async_list,
                 sync_list=sync_list,
                 max_concurrent_tasks=20,

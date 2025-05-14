@@ -1,0 +1,457 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contextual Variator &mdash; TrustEval Docs 0.1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=718a2b65" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a58bc63e"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Response Generator" href="response_generator.html" />
+    <link rel="prev" title="Metadata Curator" href="metadata_curator.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TrustEval Docs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quick_start.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="model_service.html">ModelService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata_curator.html">Metadata Curator</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contextual Variator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operations">Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#enhance-diversity-method">enhance_diversity method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#paraphrase-sentence-method">paraphrase_sentence method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modify-sentence-length-method">modify_sentence_length method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transform-question-format-method">transform_question_format method</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-usage">Example Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">enhance_diversity method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">paraphrase_sentence method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">modify_sentence_length method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">transform_question_format method</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#recommended-usage-batch-file-processing">Recommended Usage: Batch File Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multi-turn-dialogue-support">Multi-turn Dialogue Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="response_generator.html">Response Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="judgement_processor.html">Judgement Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="report_generator.html">Report Generator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notes/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TrustEval Docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Contextual Variator</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/contextual_variator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="contextual-variator">
+<h1>Contextual Variator<a class="headerlink" href="#contextual-variator" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Contextual Variator is designed to enhance text diversity through various methods. It supports operations for both fixed-format questions (multiple choice, open-ended, or true/false) and non-format-specific text.</p>
+</section>
+<section id="operations">
+<h2>Operations<a class="headerlink" href="#operations" title="Link to this heading"></a></h2>
+<section id="enhance-diversity-method">
+<h3>enhance_diversity method<a class="headerlink" href="#enhance-diversity-method" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">enhance_diversity</span></code> method parameters depend on the operations you specified when initializing ContextualVariator. If you included the fixed format operations <code class="docutils literal notranslate"><span class="pre">[&quot;transform_to_multiple_choice&quot;,&quot;transform_to_true_false&quot;,&quot;transform_to_open_ended&quot;]</span></code>, you must specify both <strong>current_format</strong> and <strong>answer</strong> parameters. Otherwise, it will only use the general enhance methods <code class="docutils literal notranslate"><span class="pre">&quot;paraphrase_sentence&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;modify_sentence_length&quot;</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">keep_original</span></code> parameter defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>. When <code class="docutils literal notranslate"><span class="pre">True</span></code>, there’s an equal probability of keeping the original text unchanged (operation method will be “keep_original”). Set to <code class="docutils literal notranslate"><span class="pre">False</span></code> to disable this option.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">extra_instructions</span></code> parameter can provide additional guidance to the model. This is an optional string parameter.</p></li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<ul class="simple">
+<li><p><strong>sentence</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) The input sentence or query.</p></li>
+<li><p><strong>current_format</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>, optional) The current format of the query. Required if using fixed format operations.</p></li>
+<li><p><strong>answer</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>, optional) The ground truth answer. Required if using fixed format operations and you want the answer transformed.</p></li>
+<li><p><strong>keep_original</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">bool</span></code>, optional) Whether to keep the original text unchanged. Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>extra_instructions</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>, optional) Additional instructions for the model.</p></li>
+</ul>
+</section>
+<section id="paraphrase-sentence-method">
+<h3>paraphrase_sentence method<a class="headerlink" href="#paraphrase-sentence-method" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">paraphrase_sentence</span></code> method is designed to generate a new version of the input sentence while maintaining its original meaning. This method is particularly useful for diversifying the phrasing of a given sentence without altering its core content. The paraphrased sentence will be structurally different from the original, potentially using different words, sentence structures, or grammatical constructs, but it will convey the same meaning.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<ul class="simple">
+<li><p><strong>sentence</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) The input sentence to paraphrase.</p></li>
+</ul>
+</section>
+<section id="modify-sentence-length-method">
+<h3>modify_sentence_length method<a class="headerlink" href="#modify-sentence-length-method" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">modify_sentence_length</span></code> method is used to adjust the length of the input sentence. This method can either lengthen or shorten the sentence, depending on the specified or randomly selected length modification type. Lengthening a sentence involves adding more detail but ensuring that the core meaning of the sentence remains intact, while shortening a sentence involves condensing the information into fewer words.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<ul class="simple">
+<li><p><strong>sentence</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) The input sentence to modify.</p></li>
+<li><p><strong>length_modification</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>, optional) The type of length modification. Can be “lengthen” or “shorten”. Defaults to randomly selecting one.</p></li>
+</ul>
+</section>
+<section id="transform-question-format-method">
+<h3>transform_question_format method<a class="headerlink" href="#transform-question-format-method" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">transform_question_format</span></code> method is used to convert a question from one format to another. This method supports transforming questions between multiple-choice, true/false, and open-ended formats. If a ground truth answer is provided, the method will ensure that the transformed question retains the correct answer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<ul class="simple">
+<li><p><strong>current_format</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) The current format of the question.</p></li>
+<li><p><strong>current_question</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) The current question to transform.</p></li>
+<li><p><strong>answer</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>, optional) The ground truth answer. Required if you want the answer transformed.</p></li>
+<li><p><strong>target_format</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>, optional) The target format to transform to. If not provided, a random format will be selected.</p></li>
+</ul>
+<p>Available current_format:</p>
+<ul class="simple">
+<li><p>“Multiple choice question”</p></li>
+<li><p>“True/False question”</p></li>
+<li><p>“Open ended question”</p></li>
+</ul>
+</section>
+</section>
+<section id="example-usage">
+<h2>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>enhance_diversity method<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">trusteval</span> <span class="kn">import</span> <span class="n">ContextualVariator</span>
+<span class="n">variator</span> <span class="o">=</span> <span class="n">ContextualVariator</span><span class="p">()</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># non_format query/sentence</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">variator</span><span class="o">.</span><span class="n">enhance_diversity</span><span class="p">(</span><span class="s2">&quot;This is a test sentence.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+
+    <span class="c1"># offer &#39;current_format&#39; and &#39;answer&#39;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">variator</span><span class="o">.</span><span class="n">enhance_diversity</span><span class="p">(</span>
+        <span class="s2">&quot;What is the capital of France?&quot;</span><span class="p">,</span>
+        <span class="n">current_format</span><span class="o">=</span><span class="s2">&quot;Open ended question&quot;</span><span class="p">,</span>
+        <span class="n">answer</span><span class="o">=</span><span class="s2">&quot;Paris&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+
+    <span class="c1"># only offer &#39;current_format&#39;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">variator</span><span class="o">.</span><span class="n">enhance_diversity</span><span class="p">(</span>
+        <span class="s2">&quot;What is the meaning of life?&quot;</span><span class="p">,</span>
+        <span class="n">current_format</span><span class="o">=</span><span class="s2">&quot;Open ended question&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">asyncio</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><strong>Output format:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sentence&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Let me rephrase this test sentence for you.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;enhancement_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;paraphrase_sentence&quot;</span>
+<span class="p">}</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sentence&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;What is the capital of France?\nA) Berlin\nB) Madrid\nC) Paris\nD) Rome&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;answer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Paris&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Multiple choice question&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;enhancement_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;transform_to_multiple_choice&quot;</span>
+<span class="p">}</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sentence&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;What is the meaning of life? a) Happiness b) Success c) 42 d) Love&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Multiple choice question&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;enhancement_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;transform_to_multiple_choice&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>paraphrase_sentence method<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sentence</span> <span class="o">=</span> <span class="s2">&quot;Life is like a box of chocolates.&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">variator</span><span class="o">.</span><span class="n">paraphrase_sentence</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output format:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sentence&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Life resembles a box of chocolates; you never know what you&#39;re going to get.&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>modify_sentence_length method<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sentence</span> <span class="o">=</span> <span class="s2">&quot;The quick brown fox jumps over the lazy dog.&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">variator</span><span class="o">.</span><span class="n">modify_sentence_length</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1"># Specify length modification</span>
+<span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">variator</span><span class="o">.</span><span class="n">modify_sentence_length</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="s2">&quot;lengthen&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output format:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sentence&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The swift and agile brown fox gracefully leaps over the indolent and sluggish canine.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;operation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lengthen&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>transform_question_format method<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">current_format</span> <span class="o">=</span> <span class="s2">&quot;Multiple choice question&quot;</span>
+<span class="n">current_question</span> <span class="o">=</span> <span class="s2">&quot;What is the capital of France? a) Berlin b) Madrid c) Paris d) Rome&quot;</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="s2">&quot;c) Paris&quot;</span> <span class="c1"># Optional, provide if ground truth exists</span>
+
+<span class="c1"># Random format selection</span>
+<span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">variator</span><span class="o">.</span><span class="n">transform_question_format</span><span class="p">(</span><span class="n">current_format</span><span class="p">,</span> <span class="n">current_question</span><span class="o">=</span><span class="n">current_question</span><span class="p">,</span> <span class="n">answer</span><span class="o">=</span><span class="n">answer</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1"># Specify target format</span>
+<span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">variator</span><span class="o">.</span><span class="n">transform_question_format</span><span class="p">(</span>
+    <span class="n">current_format</span><span class="p">,</span>
+    <span class="n">target_format</span><span class="o">=</span><span class="s2">&quot;True/False question&quot;</span><span class="p">,</span>
+    <span class="n">current_question</span><span class="o">=</span><span class="n">current_question</span><span class="p">,</span>
+    <span class="n">answer</span><span class="o">=</span><span class="n">answer</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output format:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sentence&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;What is the capital of France?&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;answer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Paris.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Open ended question&quot;</span>
+<span class="p">}</span>
+
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sentence&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;What is the capital of France? a) Berlin b) Madrid c) Paris d) Rome&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Multiple choice question&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;answer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Paris&quot;</span>
+<span class="p">}</span>
+
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sentence&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Paris is the capital of France. True or False&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;answer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;True/false question&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="recommended-usage-batch-file-processing">
+<h2>Recommended Usage: Batch File Processing<a class="headerlink" href="#recommended-usage-batch-file-processing" title="Link to this heading"></a></h2>
+<p>The recommended way to use Contextual Variator is through the <code class="docutils literal notranslate"><span class="pre">contextual_variator_cli</span></code> function for batch processing, which is the most efficient method for handling large datasets.</p>
+<dl class="simple">
+<dt>Prepare your dataset folder containing:</dt><dd><ul class="simple">
+<li><p>Configuration file <code class="docutils literal notranslate"><span class="pre">file_config.json</span></code></p></li>
+<li><p>One or more data files (in .json format)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Use the Python to process the dataset:
+.. code-block:: python</p>
+<blockquote>
+<div><p>from trusteval import contextual_variator_cli</p>
+<p>dataset_folder = “path/to/your/dataset”
+contextual_variator_cli(dataset_folder=dataset_folder)</p>
+</div></blockquote>
+<p><strong>Example Folder Structure</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>your_dataset/
+├── file_config.json
+├── data_1.json
+├── data_2.json
+└── data_3.json
+</pre></div>
+</div>
+<p><strong>Configuration File Example (file_config.json)</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;file_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data_1.json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;question_format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;open_ended&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;transformation_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;paraphrase_sentence&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;transform_to_multiple_choice&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;file_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data_2.json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;question_format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;multiple_choice&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;transformation_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;paraphrase_sentence&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;modify_sentence_length&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;transform_to_true_false&quot;</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Input File Format Example (data_1.json)</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;What is the capital of France?&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ground_truth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Paris&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;extra_instructions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Optional instructions for the model&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Which planet is known as the Red Planet?&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ground_truth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mars&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Output File Format Example (data_1_enhanced.json)</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;What is the capital of France?&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ground_truth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Paris&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;original_format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;open_ended&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;enhanced_prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;What is the capital of France? A) Berlin B) Madrid C) Rome D) Paris&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;enhanced_ground_truth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;D&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;enhancement_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;transform_to_multiple_choice&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;multiple_choice&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Which planet is known as the Red Planet?&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ground_truth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mars&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;original_format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;open_ended&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;enhanced_prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mars is known as the Red Planet, answer true or false.&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;enhanced_ground_truth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;True&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;enhancement_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;transform_to_true_false&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;true_false&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-turn-dialogue-support">
+<h2>Multi-turn Dialogue Support<a class="headerlink" href="#multi-turn-dialogue-support" title="Link to this heading"></a></h2>
+<p>For multi-turn dialogue data, <code class="docutils literal notranslate"><span class="pre">transformation_method</span></code> should be a 2D list where each sublist corresponds to transformation methods for one turn:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;file_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dialogue_data.json&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;question_format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;open_ended&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;transformation_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;paraphrase_sentence&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;transform_to_multiple_choice&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="p">[</span><span class="s2">&quot;modify_sentence_length&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Multi-turn dialogue data format:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;prompt&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;First turn question&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Second turn question&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Third turn question&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;ground_truth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The answer&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;extra_instructions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Optional instructions&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="metadata_curator.html" class="btn btn-neutral float-left" title="Metadata Curator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="response_generator.html" class="btn btn-neutral float-right" title="Response Generator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, TrustEval Teams.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

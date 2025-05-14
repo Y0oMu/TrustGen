@@ -28,9 +28,7 @@ https://github.com/user-attachments/assets/489501b9-69ae-467f-9be3-e4a02a7f9019
 - [📍 Overview](#-overview)
 - [👾 Features](#-features)
 - [🚀 Getting Started](#-getting-started)
-  - [⚙️ Installation](#️-installation)
-    - [**1. Clone the Repository**](#1-clone-the-repository)
-    - [**2. Set Up a Conda Environment**](#2-set-up-a-conda-environment)
+    - [**1. Set Up a Conda Environment**](#1-set-up-a-conda-environment)
     - [**3. Install Dependencies**](#3-install-dependencies)
   - [🤖 Usage](#-usage)
     - [**Configure API Keys**](#configure-api-keys)
@@ -71,6 +69,8 @@ https://github.com/user-attachments/assets/489501b9-69ae-467f-9be3-e4a02a7f9019
 - **Detailed Reports**: Generate interactive, easy-to-interpret evaluation reports.
 
 ---
+
+> 📖 The documentation can be viewed directly with a browser at TrustGen/docs/html/index.html.
 
 ## 🚀 Getting Started
 

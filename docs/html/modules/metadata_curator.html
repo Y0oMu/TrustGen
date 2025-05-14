@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Metadata Curator &mdash; TrustEval Docs 0.1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=718a2b65" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a58bc63e"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contextual Variator" href="contextual_variator.html" />
+    <link rel="prev" title="ModelService" href="model_service.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TrustEval Docs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quick_start.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="model_service.html">ModelService</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Metadata Curator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#components">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#web-browsing-agents">Web-Browsing agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bingwebsearchpipeline">BingWebSearchPipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bingimagesearchpipeline">BingImageSearchPipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#dataset-pool-maintainer">Dataset Pool Maintainer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-based-data-generators">Model-based Data Generators</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#quickstart">Quickstart</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Web-Browsing agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">BingWebSearchPipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">BingImageSearchPipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#dataset-pool">Dataset Pool</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#output-format">Output Format</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Web-Browsing agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">BingWebSearchPipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">BingImageSearchPipeline</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contextual_variator.html">Contextual Variator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="response_generator.html">Response Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="judgement_processor.html">Judgement Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="report_generator.html">Report Generator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notes/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TrustEval Docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Metadata Curator</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/metadata_curator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="metadata-curator">
+<h1>Metadata Curator<a class="headerlink" href="#metadata-curator" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Metadata Curator is designed for intelligent data generation, combining web search, section-specific dataset generation, and model-based generation to create high-quality, diverse datasets for various research and application needs.</p>
+</section>
+<section id="components">
+<h2>Components<a class="headerlink" href="#components" title="Link to this heading"></a></h2>
+<section id="web-browsing-agents">
+<h3>Web-Browsing agents<a class="headerlink" href="#web-browsing-agents" title="Link to this heading"></a></h3>
+<section id="bingwebsearchpipeline">
+<h4>BingWebSearchPipeline<a class="headerlink" href="#bingwebsearchpipeline" title="Link to this heading"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">BingWebSearchPipeline</span></code> automates the process of web searching and result processing. It extracts keywords from user input, performs a Bing search, and processes the results into JSON format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<ul class="simple">
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>instruction</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) A string that specifies the user’s instruction for what to find on the web pages.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>basic information</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">dict</span></code>) A dictionary that defines the specific information for the search.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>need_azure</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">bool</span></code>) A boolean that indicates whether to use the Azure API for generating responses.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>output_format</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">dict</span></code>) A dictionary that outlines the structure of the expected results.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>keyword_model</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) The model to use for generating keywords (e.g., “gpt-4o”).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>response_model</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) The model to use for generating responses (e.g., “gpt-4o”).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>include_url</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">bool</span></code>) A boolean that indicates whether to include the URL of the web pages in the output.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>include_summary</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">bool</span></code>) A boolean that indicates whether to include a summary of the web pages in the output.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>include_original_html</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">bool</span></code>) A boolean that indicates whether to include the original HTML of the web pages in the output.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>include_access_time</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">bool</span></code>) A boolean that indicates whether to include the access time of the web pages in the output.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>output_file</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) A string that specifies the name of the output file where the results will be saved.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>direct_search_keyword</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>, optional) Direct keyword for the search. If provided, this keyword will be used directly.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>direct_site</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>, optional) Specific site to search within. If provided, the search will be limited to this site. If there are multiple specified websites, please separate them with commas, for example <cite>“www.wikipedia.com,www.nytimes.com”</cite>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="bingimagesearchpipeline">
+<h4>BingImageSearchPipeline<a class="headerlink" href="#bingimagesearchpipeline" title="Link to this heading"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">BingImageSearchPipeline</span></code> automates the process of extracting keywords from user input, performing a Bing image search, and processing the results into JSON format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<ul class="simple">
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>instruction</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) A string that specifies the user’s instruction for what kind of images to find.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>basic_information</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">dict</span></code>) A dictionary that defines the specific information for the search (e.g., breed of dog, age, etc.).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>output_path</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>, optional) A string that specifies the name of the output file where the results will be saved. Defaults to “processed_image_results.json”.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>keyword_model</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) The model to use for generating keywords (e.g., “gpt-4o”).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>include_access_time</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">bool</span></code>, optional) A boolean that indicates whether to include the access time of the web pages in the output. Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="field-list simple">
+<dt class="field-odd">param <strong>direct_search_keyword</strong><span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>, optional) Direct keyword for the search. If provided, this keyword will be used directly.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+<section id="dataset-pool-maintainer">
+<h3>Dataset Pool Maintainer<a class="headerlink" href="#dataset-pool-maintainer" title="Link to this heading"></a></h3>
+<p>The dataset pool maintainer component is a mechanism for creating diverse and enriched test sets by leveraging section-specific pipelines. Each section (such as safety, ethics, fairness) contains its own pipeline for generating targeted test datasets.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p><strong>Section-Specific Generation</strong>: Each research section has a dedicated pipeline for generating relevant test datasets.</p></li>
+<li><p><strong>Targeted Data Creation</strong>: Pipelines focus on producing datasets specific to their domain’s unique requirements.</p></li>
+<li><p><strong>Diversity and Representation</strong>: Ensure comprehensive coverage of potential scenarios.</p></li>
+</ul>
+</div>
+<p><strong>Workflow</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Section Selection</strong>: Choose a specific research section (e.g., safety, ethics, robustness).</p></li>
+<li><p><strong>Pipeline Execution</strong>:
+- Navigate to the section’s directory.
+- Run the section’s <code class="docutils literal notranslate"><span class="pre">pipeline.py</span></code>.
+- Generate a domain-specific test dataset.</p></li>
+</ol>
+<p><strong>Available Sections</strong></p>
+<ul class="simple">
+<li><p>Safety</p></li>
+<li><p>Ethics</p></li>
+<li><p>Fairness</p></li>
+<li><p>Privacy</p></li>
+<li><p>Robustness</p></li>
+<li><p>Truthfulness</p></li>
+</ul>
+</section>
+<section id="model-based-data-generators">
+<h3>Model-based Data Generators<a class="headerlink" href="#model-based-data-generators" title="Link to this heading"></a></h3>
+<p>The Model-based data generators component leverages advanced language models to directly generate synthetic data. This approach provides a flexible and powerful method for creating datasets tailored to specific requirements.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p><strong>Direct Model Invocation</strong>: Call generation services to produce data.</p></li>
+<li><p><strong>Configurable Generation Parameters</strong>: Customize the generation process.</p></li>
+<li><p><strong>Support for Multiple Model Services</strong>: Compatible with various model services.</p></li>
+</ul>
+</div>
+<p><strong>Usage</strong></p>
+<p>For detailed instructions on using the model service, refer to the <a class="reference external" href="Evaluation.md">ModelService documentation</a>.</p>
+</section>
+</section>
+<section id="quickstart">
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Web-Browsing agents<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<section id="id2">
+<h4>BingWebSearchPipeline<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">trusteval.src.metadata_curator</span> <span class="kn">import</span> <span class="n">BingWebSearchPipeline</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">instruction</span> <span class="o">=</span> <span class="s2">&quot;Please find examples of unfair treatment that match the given information.&quot;</span>
+    <span class="n">basic_information</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Gender&quot;</span> <span class="p">:</span> <span class="s2">&quot;Female&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Nation&quot;</span> <span class="p">:</span> <span class="s2">&quot;United States&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">output_format</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Example&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;Specific example 1 mentioned on the webpage&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Specific example x mentioned on the webpage (and so on)&quot;</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="n">output_path</span> <span class="o">=</span> <span class="s2">&quot;a.json&quot;</span>
+
+    <span class="n">extractor</span> <span class="o">=</span> <span class="n">BingWebSearchPipeline</span><span class="p">(</span>
+        <span class="n">instruction</span><span class="o">=</span><span class="n">instruction</span><span class="p">,</span>
+        <span class="n">basic_information</span><span class="o">=</span><span class="n">basic_information</span><span class="p">,</span>
+        <span class="n">need_azure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">output_format</span><span class="o">=</span><span class="n">output_format</span><span class="p">,</span>
+        <span class="n">keyword_model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+        <span class="n">response_model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+        <span class="n">include_url</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">include_summary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">include_original_html</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">include_access_time</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">extractor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">output_file</span><span class="o">=</span><span class="n">output_path</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h4>BingImageSearchPipeline<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">trusteval.src.metadata_curator</span> <span class="kn">import</span> <span class="n">BingImageSearchPipeline</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">instruction</span> <span class="o">=</span> <span class="s2">&quot;Find images of cute puppies&quot;</span>
+    <span class="n">basic_information</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;breed&quot;</span><span class="p">:</span> <span class="s2">&quot;Golden Retriever&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="s2">&quot;2 months&quot;</span><span class="p">}</span>
+    <span class="n">custom_output_path</span> <span class="o">=</span> <span class="s2">&quot;custom_puppy_images.json&quot;</span>
+
+    <span class="n">pipeline</span> <span class="o">=</span> <span class="n">BingImageSearchPipeline</span><span class="p">(</span><span class="n">instruction</span><span class="p">,</span> <span class="n">basic_information</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="n">custom_output_path</span><span class="p">)</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">())</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="dataset-pool">
+<h3>Dataset Pool<a class="headerlink" href="#dataset-pool" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Navigate to a specific section</span>
+<span class="nb">cd</span><span class="w"> </span>section/robustness/robustness_llm
+
+<span class="c1"># Run the section&#39;s pipeline to generate a test dataset</span>
+python<span class="w"> </span>pipeline.py
+</pre></div>
+</div>
+</section>
+</section>
+<section id="output-format">
+<h2>Output Format<a class="headerlink" href="#output-format" title="Link to this heading"></a></h2>
+<section id="id4">
+<h3>Web-Browsing agents<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<section id="id5">
+<h4>BingWebSearchPipeline<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+<p>The generated JSON file will have the following structure:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Example&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;25% of working women have earned less than male counterparts for the same job, while only 5% of working men report earning less than female peers.&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;Women are four times more likely than men to feel treated as incompetent due to gender (23% vs. 6%).&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;16% of women report experiencing repeated small slights at work due to their gender, compared to 5% of men.&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;15% of working women say they received less support from senior leaders than male counterparts; only 7% of men report similar experiences.&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;10% of working women have been passed over for important assignments due to gender, compared to 5% of men.&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;22% of women have personally experienced sexual harassment compared to 7% of men.&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;53% of employed black women report experiencing gender discrimination, compared to 40% of white and Hispanic women.&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;22% of black women report being passed over for important assignments due to gender, compared to 8% of white and 9% of Hispanic women.&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.pewresearch.org/short-reads/2017/12/14/gender-discrimination-comes-in-many-forms-for-todays-working-women/&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[[Summary: \n\n**Main Topic: Gender Discrimination in the Workplace**\n\n1. **Prevalence of Discrimination:**\n   - Approximately 42% of working women in the U.S. report experiencing gender discrimination at work.\n   - Women are about twice as likely as men (42% vs. 22%) to report experiencing at least one of eight specific forms of gender discrimination.\n\n2. **Forms of Discrimination:**\n   - 25% of working women have earned less than male counterparts for the same job, while only 5% of working men report earning less than female peers.\n   - Women are four times more likely than men to feel treated as incompetent due to gender (23% vs. 6%).\n   - 16% of women report experiencing repeated small slights at work due to their gender, compared to 5% of men.\n   - 15% of working women say they received less support from senior leaders than male counterparts; only 7% of men report similar experiences.\n   - 10% of working women have been passed over for important assignments due to gender, compared to 5% of men.\n\n3. **Sexual Harassment:**\n   - 36% of women and 35% of men believe sexual harassment is a problem in their workplace; however, 22% of women have personally experienced it compared to 7% of men.\n   - Variability in reports of sexual harassment exists depending on survey questions.\n\n4. **Differences by Education:**\n   - Women with a postgraduate degree report higher rates of discrimination compared to those with less education: 57% vs. 40% (bachelor\u2019s degree) and 39% (less than bachelor\u2019s).\n   - 29% of women with postgraduate degrees experience repeated small slights compared to 18% (bachelor\u2019s) and 12% (less education).\n\n5. **Income Disparities:**\n   - 30% of women with family incomes of $100,000 or higher report earning less than male counterparts, compared to 21% of women with lower incomes.\n\n6. **Racial and Ethnic Differences:**\n   - 53% of employed black women report experiencing gender discrimination, compared to 40% of white and Hispanic women.\n   - 22% of black women report being passed over for important assignments due to gender, compared to 8% of white and 9% of Hispanic women.\n\n7. **Political Party Differences:**\n   - 48% of working Democratic women report experiencing gender discrimination, compared to one-third of Republican women.\n\n8. **Survey Details:**\n   - The survey was conducted from July 11 to August 10, 2017, with a representative sample of 4,914 adults, including 4,702 employed adults.\n   - The margin of error is \u00b12.0 percentage points for the total sample and \u00b13.0 for employed women.\n\n**Authors:** Kim Parker and Cary Funk, Pew Research Center. \n**Publication Date:** December 14, 2017.]]&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;access_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-08-10T05:21:17.497674&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// There will be multiple such blocks for different search results.</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h4>BingImageSearchPipeline<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<p>The generated JSON file will have the following structure:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Image Name&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;contentUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.com/contentUrl&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">//The original image URL is large and may be inaccessible.</span>
+<span class="w">        </span><span class="nt">&quot;thumbnailUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.com/thumbnailUrl&quot;</span><span class="p">,</span><span class="c1">//The thumbnail URL generated by bing search can theoretically be accessed directly</span>
+<span class="w">        </span><span class="nt">&quot;hostPageUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.com/hostPageUrl&quot;</span><span class="p">,</span><span class="c1">//Original URL of the webpage where the image is located</span>
+<span class="w">        </span><span class="nt">&quot;encodingFormat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jpg&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;datePublished&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-08-11T14:57:45.000Z&quot;</span><span class="p">,</span><span class="c1">//Image published time</span>
+<span class="w">        </span><span class="nt">&quot;accessTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-08-11T14:57:45.000Z&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// There will be multiple such blocks for different search results.</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="model_service.html" class="btn btn-neutral float-left" title="ModelService" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contextual_variator.html" class="btn btn-neutral float-right" title="Contextual Variator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, TrustEval Teams.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

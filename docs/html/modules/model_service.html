@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ModelService &mdash; TrustEval Docs 0.1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=718a2b65" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a58bc63e"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Metadata Curator" href="metadata_curator.html" />
+    <link rel="prev" title="Getting Started" href="../getting_started/quick_start.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TrustEval Docs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quick_start.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ModelService</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initialization">Initialization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#constructor-parameters">Constructor Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-models">Supported Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pipeline-initialization">Pipeline Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#methods">Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#process">process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#process-async">process_async</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="metadata_curator.html">Metadata Curator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contextual_variator.html">Contextual Variator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="response_generator.html">Response Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="judgement_processor.html">Judgement Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="report_generator.html">Report Generator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notes/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TrustEval Docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ModelService</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/model_service.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="modelservice">
+<h1>ModelService<a class="headerlink" href="#modelservice" title="Link to this heading"></a></h1>
+<p>The <cite>ModelService</cite> class is the central utility for managing various models, including <strong>Large Language Models (LLMs)</strong>, <strong>Vision-Language Models (VLMs)</strong>, and <strong>Text-to-Image (T2I)</strong> models. It abstracts the complexity of model initialization, request handling, and response generation, providing a unified interface for both text and image-based tasks.</p>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h2>
+<p>The <cite>ModelService</cite> is included in the <cite>trustgen</cite> package. To get started:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">trusteval</span> <span class="kn">import</span> <span class="n">ModelService</span>
+
+<span class="c1"># Initialize ModelService</span>
+<span class="n">model_service</span> <span class="o">=</span> <span class="n">ModelService</span><span class="p">(</span>
+    <span class="n">request_type</span><span class="o">=</span><span class="s2">&quot;llm&quot;</span><span class="p">,</span>
+    <span class="n">handler_type</span><span class="o">=</span><span class="s2">&quot;api&quot;</span><span class="p">,</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+    <span class="n">config_path</span><span class="o">=</span><span class="s2">&quot;/path/to/config.yaml&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Process a single prompt</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">model_service</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="s2">&quot;Your prompt here.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="initialization">
+<h2>Initialization<a class="headerlink" href="#initialization" title="Link to this heading"></a></h2>
+<p>To create an instance of the <cite>ModelService</cite> class, you need to specify the following parameters:</p>
+<section id="constructor-parameters">
+<h3>Constructor Parameters<a class="headerlink" href="#constructor-parameters" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 10.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>request_type</cite></p></td>
+<td><p><cite>str</cite></p></td>
+<td><p>The type of request: “llm” (Language Model), “vlm” (Vision Model), or “t2i” (Text-to-Image).</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>handler_type</cite></p></td>
+<td><p><cite>str</cite></p></td>
+<td><p>The handler type: “api” (remote API-based inference) or “local” (local inference).</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>model_name</cite></p></td>
+<td><p><cite>str</cite></p></td>
+<td><p>The name of the model to use, mapped internally.</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>config_path</cite></p></td>
+<td><p><cite>str</cite></p></td>
+<td><p>Path to the YAML configuration file.</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>save_folder</cite></p></td>
+<td><p><cite>str</cite></p></td>
+<td><p>(Optional) Folder to save the generated images (for <cite>t2i</cite> requests).</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>file_name</cite></p></td>
+<td><p><cite>str</cite></p></td>
+<td><p>(Optional) Name of the file to save the generated image as (for <cite>t2i</cite> requests).</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>image_urls</cite></p></td>
+<td><p><cite>List[str]</cite></p></td>
+<td><p>(Optional) List of image URLs or local image paths (for <cite>vlm</cite> requests).</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>**kwargs</cite></p></td>
+<td><p><cite>dict</cite></p></td>
+<td><p>Additional parameters to customize behavior (e.g., temperature).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="supported-models">
+<h2>Supported Models<a class="headerlink" href="#supported-models" title="Link to this heading"></a></h2>
+<p>The <cite>ModelService</cite> supports a wide range of models for text, vision, and text-to-image tasks. Below is a comprehensive table of the supported models, categorized by request type (<cite>llm</cite>, <cite>vlm</cite>, <cite>t2i</cite>), model name, and whether the model uses <cite>api</cite> or <cite>local</cite> inference.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.2%" />
+<col style="width: 55.6%" />
+<col style="width: 22.2%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Request Type</p></th>
+<th class="head"><p>Model Name</p></th>
+<th class="head"><p>Handler Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>gpt-4o</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>gpt-4o-mini</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>gpt-3.5-turbo</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>text-embedding-ada-002</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>glm-4</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>glm-4-plus</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>llama-3-8B</cite></p></td>
+<td><p><cite>api/local</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>llama-3.1-70B</cite></p></td>
+<td><p><cite>api/local</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>llama-3.1-8B</cite></p></td>
+<td><p><cite>api/local</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>qwen-2.5-72B</cite></p></td>
+<td><p><cite>api/local</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>mistral-7B</cite></p></td>
+<td><p><cite>api/local</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>mistral-8x7B</cite></p></td>
+<td><p><cite>api/local</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>claude-3.5-sonnet</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>claude-3-haiku</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>gemini-1.5-pro</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>gemini-1.5-flash</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>command-r-plus</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>command-r</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>gemma-2-27B</cite></p></td>
+<td><p><cite>api/local</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>deepseek-chat</cite></p></td>
+<td><p><cite>api/local</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LLM</strong></p></td>
+<td><p><cite>yi-lightning</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>VLM</strong></p></td>
+<td><p><cite>glm-4v</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>VLM</strong></p></td>
+<td><p><cite>glm-4v-plus</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>VLM</strong></p></td>
+<td><p><cite>llama-3.2-90B-V</cite></p></td>
+<td><p><cite>api/local</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>VLM</strong></p></td>
+<td><p><cite>llama-3.2-11B-V</cite></p></td>
+<td><p><cite>api/local</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>VLM</strong></p></td>
+<td><p><cite>qwen-vl-max-0809</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>VLM</strong></p></td>
+<td><p><cite>qwen-2-vl-72B</cite></p></td>
+<td><p><cite>api/local</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>VLM</strong></p></td>
+<td><p><cite>internLM-72B</cite></p></td>
+<td><p><cite>api/local</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>VLM</strong></p></td>
+<td><p><cite>claude-3-haiku</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>VLM</strong></p></td>
+<td><p><cite>gemini-1.5-pro</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>VLM</strong></p></td>
+<td><p><cite>gemini-1.5-flash</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>T2I</strong></p></td>
+<td><p><cite>dall-e-3</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>T2I</strong></p></td>
+<td><p><cite>flux-1.1-pro</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>T2I</strong></p></td>
+<td><p><cite>flux_schnell</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>T2I</strong></p></td>
+<td><p><cite>cogview-3-plus</cite></p></td>
+<td><p><cite>api</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>T2I</strong></p></td>
+<td><p><cite>sd-3.5-large</cite></p></td>
+<td><p><cite>local</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>T2I</strong></p></td>
+<td><p><cite>sd-3.5-large-turbo</cite></p></td>
+<td><p><cite>local</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>T2I</strong></p></td>
+<td><p><cite>HunyuanDiT</cite></p></td>
+<td><p><cite>local</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>T2I</strong></p></td>
+<td><p><cite>kolors</cite></p></td>
+<td><p><cite>local</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>T2I</strong></p></td>
+<td><p><cite>playground-v2.5</cite></p></td>
+<td><p><cite>local</cite></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pipeline-initialization">
+<h2>Pipeline Initialization<a class="headerlink" href="#pipeline-initialization" title="Link to this heading"></a></h2>
+<p>The <cite>_initialize_pipeline</cite> method sets up the appropriate pipeline based on the provided parameters. It automatically configures the model, handler, and other runtime options.</p>
+<p><strong>Example: Initialize a GPT-4o Pipeline for API Use</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_service</span> <span class="o">=</span> <span class="n">ModelService</span><span class="p">(</span>
+    <span class="n">request_type</span><span class="o">=</span><span class="s2">&quot;llm&quot;</span><span class="p">,</span>
+    <span class="n">handler_type</span><span class="o">=</span><span class="s2">&quot;api&quot;</span><span class="p">,</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+    <span class="n">config_path</span><span class="o">=</span><span class="s2">&quot;/path/to/config.yaml&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Link to this heading"></a></h2>
+<section id="process">
+<h3>process<a class="headerlink" href="#process" title="Link to this heading"></a></h3>
+<p><strong>Definition:</strong>
+<code class="docutils literal notranslate"><span class="pre">process(prompt:</span> <span class="pre">Union[str,</span> <span class="pre">List[str]],</span> <span class="pre">**kwargs)</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code></p>
+<p>Processes a single prompt or a list of prompts synchronously. It supports both one-off interactions and multi-turn conversations.</p>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><strong>prompt</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code> or <code class="xref py py-type docutils literal notranslate"><span class="pre">List[str]</span></code>): The input prompt(s).</p></li>
+<li><p><strong>kwargs</strong>: Additional parameters for model customization.</p></li>
+</ul>
+<p><strong>Returns</strong>:
+Model-generated responses as a string.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Single prompt</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">model_service</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="s2">&quot;Your prompt here.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Multi-turn interaction</span>
+<span class="n">prompts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;What is the capital of France?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;What is the population of Paris?&quot;</span>
+<span class="p">]</span>
+<span class="n">responses</span> <span class="o">=</span> <span class="n">model_service</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">prompts</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="process-async">
+<h3>process_async<a class="headerlink" href="#process-async" title="Link to this heading"></a></h3>
+<p><strong>Definition:</strong>
+<code class="docutils literal notranslate"><span class="pre">process_async(prompt:</span> <span class="pre">Union[str,</span> <span class="pre">List[str]],</span> <span class="pre">**kwargs)</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code></p>
+<p>Handles requests asynchronously, enabling high concurrency for demanding applications.</p>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><strong>prompt</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code> or <code class="xref py py-type docutils literal notranslate"><span class="pre">List[str]</span></code>): The input prompt(s).</p></li>
+<li><p><strong>kwargs</strong>: Additional parameters for model customization.</p></li>
+</ul>
+<p><strong>Returns</strong>:
+Model-generated responses as a string.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Asynchronous prompt</span>
+<span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">model_service</span><span class="o">.</span><span class="n">process_async</span><span class="p">(</span><span class="s2">&quot;Your prompt here.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../getting_started/quick_start.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="metadata_curator.html" class="btn btn-neutral float-right" title="Metadata Curator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, TrustEval Teams.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

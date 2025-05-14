@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Report Generator &mdash; TrustEval Docs 0.1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=718a2b65" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=a58bc63e"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributing" href="../notes/contributing.html" />
+    <link rel="prev" title="Judgement Processor" href="judgement_processor.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            TrustEval Docs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quick_start.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="model_service.html">ModelService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata_curator.html">Metadata Curator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contextual_variator.html">Contextual Variator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="response_generator.html">Response Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="judgement_processor.html">Judgement Processor</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Report Generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#report-pipeline">report_pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reportgenerator">ReportGenerator</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generate-report">generate_report</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-chart-data">prepare_chart_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-summary-with-gpt">generate_summary_with_gpt</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notes/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TrustEval Docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Report Generator</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/report_generator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="report-generator">
+<h1>Report Generator<a class="headerlink" href="#report-generator" title="Link to this heading"></a></h1>
+<p>The Report Generator module is designed to handle the generation of reports using various models. It includes the main component: <cite>report_pipeline</cite> for generating reports.</p>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h2>
+<section id="report-pipeline">
+<h3>report_pipeline<a class="headerlink" href="#report-pipeline" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">report_pipeline</span></code> function processes all data files in a specified directory to generate reports using specified models.</p>
+<p><strong>Definition:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">report_pipeline</span><span class="p">(</span>
+    <span class="n">base_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">model_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">aspect</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<ul class="simple">
+<li><p><strong>base_dir</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) Base directory for data and output</p></li>
+<li><p><strong>model_type</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) Type of model (‘llm’, ‘vlm’, etc.)</p></li>
+<li><p><strong>aspect</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) Evaluation aspect (‘robustness’, ‘fairness’, etc.)</p></li>
+</ul>
+<p><strong>Examples:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">trusteval</span>
+<span class="n">trusteval</span><span class="o">.</span><span class="n">report_pipeline</span><span class="p">(</span>
+    <span class="n">base_dir</span><span class="o">=</span><span class="s1">&#39;path/to/base_dir&#39;</span><span class="p">,</span>
+    <span class="n">model_type</span><span class="o">=</span><span class="s1">&#39;llm&#39;</span><span class="p">,</span> <span class="c1"># or &#39;vlm&#39;, &#39;t2i&#39;</span>
+    <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;robustness&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h2>
+<section id="reportgenerator">
+<h3>ReportGenerator<a class="headerlink" href="#reportgenerator" title="Link to this heading"></a></h3>
+<p>The <cite>ReportGenerator</cite> class processes data from different models to generate reports.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<ul class="simple">
+<li><p><strong>base_dir</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) Base directory for data and output</p></li>
+<li><p><strong>model_type</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) Type of model (‘llm’, ‘vlm’, etc.)</p></li>
+<li><p><strong>aspect</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) Evaluation aspect (‘robustness’, ‘fairness’, etc.)</p></li>
+</ul>
+</section>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<section id="generate-report">
+<h3>generate_report<a class="headerlink" href="#generate-report" title="Link to this heading"></a></h3>
+<p><strong>Definition:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">generate_report</span><span class="p">(</span>
+    <span class="n">test_data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">leaderboard</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">aspect</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">case_data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">base_dir</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<ul class="simple">
+<li><p><strong>test_data</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>) DataFrame containing test data</p></li>
+<li><p><strong>leaderboard</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>) DataFrame containing leaderboard data</p></li>
+<li><p><strong>aspect</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) Evaluation aspect (‘robustness’, ‘fairness’, etc.)</p></li>
+<li><p><strong>case_data</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">Dict[str,</span> <span class="pre">Any]</span></code>) Dictionary containing case data</p></li>
+<li><p><strong>base_dir</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) Base directory for data and output</p></li>
+</ul>
+</section>
+<section id="prepare-chart-data">
+<h3>prepare_chart_data<a class="headerlink" href="#prepare-chart-data" title="Link to this heading"></a></h3>
+<p><strong>Definition:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prepare_chart_data</span><span class="p">(</span>
+    <span class="n">leaderboard</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">test_data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">aspect</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<ul class="simple">
+<li><p><strong>leaderboard</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>) DataFrame containing leaderboard data</p></li>
+<li><p><strong>test_data</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>) DataFrame containing test data</p></li>
+<li><p><strong>aspect</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">str</span></code>) Evaluation aspect (‘robustness’, ‘fairness’, etc.)</p></li>
+</ul>
+</section>
+<section id="generate-summary-with-gpt">
+<h3>generate_summary_with_gpt<a class="headerlink" href="#generate-summary-with-gpt" title="Link to this heading"></a></h3>
+<p><strong>Definition:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">generate_summary_with_gpt</span><span class="p">(</span>
+    <span class="n">test_data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">leaderboard</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<ul class="simple">
+<li><p><strong>test_data</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>) DataFrame containing test data</p></li>
+<li><p><strong>leaderboard</strong> (<code class="xref py py-type docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>) DataFrame containing leaderboard data</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="judgement_processor.html" class="btn btn-neutral float-left" title="Judgement Processor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../notes/contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, TrustEval Teams.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
